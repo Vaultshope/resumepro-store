@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Amara Okafor - Art Director</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; font-size: 9.5pt; line-height: 1.6; color: #292524; background: #f5f0ea; }
+.page { width: 210mm; min-height: 297mm; margin: 2rem auto; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,0.12); position: relative; display: flex; }
+.sidebar { width: 30%; background: #fef7ed; padding: 36px 22px; display: flex; flex-direction: column; gap: 22px; border-right: 3px solid #d97706; position: relative; }
+.sidebar::before { content: ""; position: absolute; top: 30px; right: -18px; width: 36px; height: 36px; border-radius: 50%; background: #d97706; opacity: 0.15; }
+.sidebar::after { content: ""; position: absolute; bottom: 60px; right: -12px; width: 24px; height: 24px; border-radius: 50%; background: #d97706; opacity: 0.1; }
+.sidebar-name { font-family: 'Playfair Display', serif; font-size: 24pt; font-weight: 700; color: #1c1917; line-height: 1.1; }
+.sidebar-role { font-size: 8.5pt; font-weight: 500; color: #d97706; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+.sidebar-contact { font-size: 8.5pt; color: #57534e; line-height: 2; }
+.sidebar-section-title { font-size: 9pt; font-weight: 600; color: #d97706; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid #d97706; padding-bottom: 4px; margin-bottom: 10px; }
+.sidebar-skill { margin-bottom: 8px; }
+.sidebar-skill-name { font-size: 8.5pt; font-weight: 500; color: #292524; }
+.sidebar-skill-bar { height: 4px; background: #e7e5e4; border-radius: 2px; margin-top: 3px; overflow: hidden; }
+.sidebar-skill-fill { height: 100%; background: #d97706; border-radius: 2px; }
+.sidebar-lang-item { font-size: 8.5pt; color: #57534e; display: flex; justify-content: space-between; margin-bottom: 3px; }
+.main { flex: 1; padding: 36px 34px; }
+.summary { font-size: 9.5pt; color: #57534e; line-height: 1.7; margin-bottom: 24px; font-style: italic; padding-left: 16px; border-left: 3px solid #d97706; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 12pt; font-weight: 600; color: #1c1917; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.section-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, #d97706, transparent); }
+.entry { margin-bottom: 18px; position: relative; padding-left: 20px; border-left: 2px solid #fde68a; }
+.entry::before { content: ""; position: absolute; left: -5px; top: 6px; width: 8px; height: 8px; border-radius: 50%; background: #d97706; }
+.entry-header { display: flex; justify-content: space-between; align-items: baseline; }
+.entry-title { font-size: 10pt; font-weight: 600; color: #1c1917; }
+.entry-subtitle { font-size: 9pt; color: #78716c; font-weight: 500; }
+.entry-date { font-size: 8pt; color: #d97706; font-weight: 500; white-space: nowrap; }
+.entry-bullets { margin-top: 4px; padding-left: 14px; list-style: none; }
+.entry-bullets li { font-size: 9pt; color: #57534e; line-height: 1.65; position: relative; padding-left: 12px; margin-bottom: 2px; }
+.entry-bullets li::before { content: "↳"; position: absolute; left: 0; color: #d97706; font-size: 8pt; }
+.education-item { margin-bottom: 8px; }
+.education-item .degree { font-size: 9.5pt; font-weight: 500; color: #1c1917; }
+.education-item .school { font-size: 8.5pt; color: #78716c; }
+.watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+.watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+@media print { * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } @page { size: A4; margin: 0; } body { background: #fff; } .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; overflow: hidden; } .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; } .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="sidebar">
+<div>
+<div class="sidebar-name">Amara Okafor</div>
+<div class="sidebar-role">Art Director</div>
+<div class="sidebar-contact">amara.okafor@email.com · +1 (212) 555-0417 · Brooklyn, NY · amaraokafor.art</div>
+</div>
+<div>
+<div class="sidebar-section-title">Expertise</div>
+<div class="sidebar-skill"><div class="sidebar-skill-name">Art Direction</div><div class="sidebar-skill-bar"><div class="sidebar-skill-fill" style="width:95%"></div></div></div>
+<div class="sidebar-skill"><div class="sidebar-skill-name">Visual Design</div><div class="sidebar-skill-bar"><div class="sidebar-skill-fill" style="width:90%"></div></div></div>
+<div class="sidebar-skill"><div class="sidebar-skill-name">Photography</div><div class="sidebar-skill-bar"><div class="sidebar-skill-fill" style="width:85%"></div></div></div>
+<div class="sidebar-skill"><div class="sidebar-skill-name">Brand Strategy</div><div class="sidebar-skill-bar"><div class="sidebar-skill-fill" style="width:80%"></div></div></div>
+<div class="sidebar-skill"><div class="sidebar-skill-name">Typography</div><div class="sidebar-skill-bar"><div class="sidebar-skill-fill" style="width:75%"></div></div></div>
+</div>
+<div>
+<div class="sidebar-section-title">Languages</div>
+<div class="sidebar-lang-item"><span>English</span><span>Native</span></div>
+<div class="sidebar-lang-item"><span>Yoruba</span><span>Native</span></div>
+<div class="sidebar-lang-item"><span>French</span><span>Professional</span></div>
+</div>
+<div>
+<div class="sidebar-section-title">Education</div>
+<div class="education-item"><div class="degree">B.F.A., Fine Arts</div><div class="school">Rhode Island School of Design, 2015</div></div>
+<div class="education-item"><div class="degree">A.A., Graphic Design</div><div class="school">Parsons School of Design, 2013</div></div>
+</div>
+</div>
+<div class="main">
+<div class="summary">Award-winning art director with 9 years of experience leading visual storytelling for global brands. Adept at translating brand strategy into compelling creative campaigns across print, digital, and experiential media. Known for building and mentoring high-performing creative teams.</div>
+<div class="section-title">Experience</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Art Director</span><span class="entry-date">2020 — Present</span></div>
+<div class="entry-subtitle">Vanguard Creative Agency, New York, NY</div>
+<ul class="entry-bullets">
+<li>Lead visual direction for 25+ campaigns across luxury fashion, beauty, and lifestyle clients, generating $18M in billable revenue over 3 years.</li>
+<li>Directed photoshoots and video productions from concept to final delivery, managing budgets up to $500K and coordinating crews of 30+ talent and staff.</li>
+<li>Established a standardized creative review process that reduced revision cycles by 40% while improving client satisfaction scores by 25%.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Senior Designer</span><span class="entry-date">2017 — 2020</span></div>
+<div class="entry-subtitle">Atlas Media Group, New York, NY</div>
+<ul class="entry-bullets">
+<li>Conceptualized and executed visual identity systems for 8 major brand launches, including packaging, digital presence, and environmental design.</li>
+<li>Collaborated with creative directors to develop seasonal campaign concepts that were featured in Vogue, GQ, and The New York Times Style Magazine.</li>
+<li>Mentored a team of 4 junior designers through weekly critiques and skill-building workshops, resulting in 2 promotions within the team.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Junior Art Director</span><span class="entry-date">2015 — 2017</span></div>
+<div class="entry-subtitle">Collective Studio, Boston, MA</div>
+<ul class="entry-bullets">
+<li>Assisted in creating award-winning print and digital campaigns for nonprofit organizations, including a public awareness campaign that reached 5M+ impressions.</li>
+<li>Produced mood boards, style frames, and presentation decks that effectively communicated creative concepts to clients and secured repeat business.</li>
+<li>Managed art production for 12 direct-mail campaigns, overseeing vendor relationships and ensuring print quality standards were consistently met.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

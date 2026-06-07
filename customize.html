@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ResumePro — Customizer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #0f172a; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+    .header { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0.75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; z-index: 10; }
+    .header-left { display: flex; align-items: center; gap: 1rem; }
+    .logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.25rem; color: #4f46e5; }
+    .logo span { color: #0f172a; font-weight: 600; }
+    .toolbar { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+    select, .btn { font-family: inherit; font-size: 0.85rem; border-radius: 0.5rem; padding: 0.5rem 0.75rem; border: 1px solid #e2e8f0; background: #fff; cursor: pointer; transition: all 0.15s; }
+    select:hover, .btn:hover { border-color: #4f46e5; background: #f5f3ff; }
+    select { min-width: 160px; }
+    .btn-primary { background: #4f46e5; color: #fff; border-color: #4f46e5; font-weight: 600; }
+    .btn-primary:hover { background: #4338ca; }
+    .btn-secondary { background: #fff; color: #0f172a; }
+    .file-input-wrapper { position: relative; }
+    .file-input-wrapper input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .badge { display: inline-flex; align-items: center; gap: 0.35rem; padding: 0.35rem 0.75rem; border-radius: 999px; font-size: 0.75rem; font-weight: 600; background: #f5f3ff; color: #4f46e5; }
+    .main { display: flex; flex: 1; overflow: hidden; }
+    .sidebar-tips { width: 260px; background: #fff; border-right: 1px solid #e2e8f0; padding: 1.5rem; flex-shrink: 0; overflow-y: auto; }
+    .sidebar-tips h3 { font-size: 0.85rem; font-weight: 700; color: #1e293b; margin-bottom: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    .tip { font-size: 0.8rem; color: #64748b; line-height: 1.6; margin-bottom: 1rem; padding: 0.75rem; background: #f8fafc; border-radius: 0.5rem; border: 1px solid #f1f5f9; }
+    .tip strong { color: #334155; }
+    .tip-num { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: #4f46e5; color: #fff; border-radius: 50%; font-size: 0.7rem; font-weight: 700; margin-right: 0.4rem; flex-shrink: 0; }
+    .photo-status { font-size: 0.78rem; color: #64748b; margin-top: 0.4rem; padding: 0.5rem; background: #fefce8; border: 1px solid #fef08a; border-radius: 0.5rem; }
+    .photo-status.has-photo { background: #f0fdf4; border-color: #bbf7d0; color: #166534; }
+    .editor-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+    .editor-toolbar { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0.5rem 1rem; display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0; }
+    .iframe-container { flex: 1; overflow: auto; background: #525659; padding: 1.5rem; display: flex; justify-content: center; }
+    .iframe-container iframe { background: #fff; border: none; box-shadow: 0 25px 80px rgba(0,0,0,0.3); }
+    .status-bar { background: #1e293b; color: #94a3b8; padding: 0.35rem 1rem; font-size: 0.72rem; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+    .editing-highlight { outline: 2px dashed #4f46e5 !important; outline-offset: 2px; cursor: text !important; }
+    @media (max-width: 800px) { .sidebar-tips { display: none; } }
+    .code-entry-wrapper { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 0.5rem; padding: 0.75rem; margin-top: 0.5rem; }
+    .code-entry-wrapper input { font-family: monospace; font-size: 0.85rem; width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 0.375rem; text-align: center; letter-spacing: 0.1em; }
+    .code-entry-wrapper input:focus { outline: 2px solid #4f46e5; outline-offset: -1px; border-color: transparent; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-left">
+      <div class="logo">ResumePro <span>Customizer</span></div>
+      <div class="badge" id="templateBadge">Classic</div>
+    </div>
+    <div class="toolbar">
+      <select id="templateSelect" onchange="switchTemplate(this.value)">
+        <option value="classic">Classic</option>
+        <option value="modern">Modern</option>
+        <option value="minimal">Minimal</option>
+        <option value="executive">Executive</option>
+        <option value="editorial">Editorial</option>
+        <option value="creative">Creative</option>
+        <option value="technical">Technical</option>
+        <option value="academic">Academic</option>
+        <option value="bold">Bold</option>
+        <option value="elegant">Elegant</option>
+        <option value="compact">Compact</option>
+        <option value="vibrant">Vibrant</option>
+        <option value="mcwell">McWell</option>
+        <option value="altacv">AltaCV</option>
+        <option value="friggeri">Friggeri</option>
+        <option value="twentys">TwentySeconds</option>
+        <option value="material">Material</option>
+        <option value="orbit">Orbit</option>
+        <option value="hipster">Hipster</option>
+        <option value="rows">Rows</option>
+        <option value="sidebarleft">Sidebar Left</option>
+        <option value="infographic">Infographic</option>
+        <option value="sharp">Sharp</option>
+        <option value="simple">Simple</option>
+        <option value="thoughteer">Thoughteer</option>
+        <option value="pseudomanifold">Pseudomanifold</option>
+        <option value="bobok">Bobok</option>
+        <option value="cies">Cies</option>
+        <option value="gboeing">GBoeing</option>
+        <option value="roycoding">RoyCoding</option>
+        <option value="agonist">Agonist</option>
+        <option value="sc932">SC932</option>
+      </select>
+      <div class="file-input-wrapper">
+        <button class="btn btn-secondary">Upload Photo</button>
+        <input type="file" id="photoUpload" accept="image/*" onchange="handlePhotoUpload(event)">
+      </div>
+      <button class="btn btn-secondary" onclick="resetEdits()">Reset</button>
+      <button class="btn btn-primary" onclick="downloadResume()">Download PDF</button>
+    </div>
+  </div>
+
+  <div class="main">
+    <div class="sidebar-tips">
+      <h3>How to use</h3>
+      <div class="tip"><span class="tip-num">1</span><strong>Click any text</strong> in the resume to edit it directly.</div>
+      <div class="tip"><span class="tip-num">2</span><strong>Upload a photo</strong> (only on templates with a photo slot).</div>
+      <div class="tip"><span class="tip-num">3</span>Click <strong>Download PDF</strong>. Free users get a watermarked PDF. Enter an unlock code for clean download.</div>
+<div class="tip" style="background:#fefce8;border-color:#fef08a;"><strong>PDF tip:</strong> In the print dialog, click "More settings" and uncheck "Headers and footers" to remove page title/URL from your PDF.</div>
+
+      <div id="photoStatus" class="photo-status">No photo uploaded</div>
+
+      <div class="photo-status" style="margin-top:0.5rem;background:var(--bg-secondary, #f8fafc);border-color:var(--border, #e2e8f0);">
+        <strong>Status:</strong>
+        <div id="unlockStatusDisplay" style="font-size:0.78rem;color:#dc2626;margin-top:0.25rem;">Free mode — PDF is watermarked</div>
+        <button onclick="showUnlockInput()" id="unlockBtn" style="margin-top:0.4rem;font-size:0.72rem;background:#4f46e5;color:#fff;border:none;padding:0.3rem 0.6rem;border-radius:0.375rem;cursor:pointer;">Enter Unlock Code</button>
+        <div id="unlockInputArea" class="code-entry-wrapper" style="display:none;">
+          <input type="text" id="unlockCodeInput" placeholder="RESUME-XXXX-XXXX" maxlength="19" onkeydown="if(event.key==='Enter')redeemUnlockCode()" />
+          <button onclick="redeemUnlockCode()" style="margin-top:0.4rem;width:100%;font-size:0.75rem;background:#10b981;color:#fff;border:none;padding:0.3rem;border-radius:0.375rem;cursor:pointer;">Activate Code</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="editor-area">
+      <div class="editor-toolbar">
+        <span style="font-size:0.8rem;color:#64748b;font-weight:500;">Click any text to edit</span>
+        <span style="flex:1"></span>
+        <span style="font-size:0.72rem;color:#94a3b8;" id="lastSaved">Ready</span>
+      </div>
+      <div class="iframe-container">
+        <iframe id="previewFrame" style="width:794px;height:1123px;"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="status-bar">
+    <span>ResumePro Customizer · All edits are local · No data leaves your browser</span>
+    <span id="statusMsg">Loaded</span>
+  </div>
+
+<script>
+  const BASE_URL = './templates/';
+  let currentTemplate = new URLSearchParams(window.location.search).get('template') || 'classic';
+  let originalHtml = '';
+  let currentPhotoData = null;
+  let isUnlocked = false;
+  let unlockedTemplates = [];
+
+  const TEMPLATE_NAMES = {
+    classic: 'Classic', modern: 'Modern', minimal: 'Minimal', executive: 'Executive',
+    editorial: 'Editorial', creative: 'Creative', technical: 'Technical',
+    academic: 'Academic', bold: 'Bold', elegant: 'Elegant', compact: 'Compact', vibrant: 'Vibrant',
+    mcwell: 'McWell', altacv: 'AltaCV', friggeri: 'Friggeri', twentys: 'TwentySeconds',
+    material: 'Material', orbit: 'Orbit', hipster: 'Hipster', rows: 'Rows',
+    sidebarleft: 'Sidebar Left', infographic: 'Infographic',
+    sharp: 'Sharp', simple: 'Simple', thoughteer: 'Thoughteer',
+    pseudomanifold: 'Pseudomanifold', bobok: 'Bobok',
+    cies: 'Cies', gboeing: 'GBoeing', roycoding: 'RoyCoding',
+    agonist: 'Agonist', sc932: 'SC932'
+  };
+
+  function init() {
+    templateSelect.value = currentTemplate;
+    document.getElementById('templateBadge').textContent = TEMPLATE_NAMES[currentTemplate] || currentTemplate;
+    loadUnlockStatus();
+    loadTemplate(currentTemplate);
+  }
+
+  // ===== UNLOCK CODE SYSTEM =====
+
+  function loadUnlockStatus() {
+    try {
+      const saved = localStorage.getItem('RESUME-UNLOCKED');
+      unlockedTemplates = saved ? JSON.parse(saved) : [];
+    } catch { unlockedTemplates = []; }
+    updateUnlockUI();
+  }
+
+  function updateUnlockUI() {
+    const display = document.getElementById('unlockStatusDisplay');
+    if (unlockedTemplates.includes('ALL')) {
+      isUnlocked = true;
+      display.textContent = 'All 12 templates unlocked — clean PDF download';
+      display.style.color = '#059669';
+      document.getElementById('unlockBtn').textContent = 'Change Code';
+    } else if (unlockedTemplates.length > 0) {
+      if (unlockedTemplates.includes(currentTemplate)) {
+        isUnlocked = true;
+        display.textContent = 'This template is unlocked — clean PDF download';
+        display.style.color = '#059669';
+        document.getElementById('unlockBtn').textContent = 'Manage Codes';
+      } else {
+        isUnlocked = false;
+        display.textContent = 'Unlocked: ' + unlockedTemplates.join(', ') + ' (switch to one of these for clean download)';
+        display.style.color = '#92400e';
+      }
+    } else {
+      isUnlocked = false;
+      display.textContent = 'Free mode — PDF includes watermark';
+      display.style.color = '#dc2626';
+      document.getElementById('unlockBtn').textContent = 'Enter Unlock Code';
+    }
+  }
+
+  function showUnlockInput() {
+    const area = document.getElementById('unlockInputArea');
+    area.style.display = area.style.display === 'none' ? 'block' : 'none';
+    if (area.style.display === 'block') {
+      document.getElementById('unlockCodeInput').focus();
+    }
+  }
+
+  async function redeemUnlockCode() {
+    const input = document.getElementById('unlockCodeInput');
+    const code = input.value.trim().toUpperCase();
+    if (!code || code.length < 10) {
+      alert('Please enter a valid unlock code (format: RESUME-XXXX-XXXX)');
+      return;
+    }
+    try {
+      const res = await fetch('https://resumepro-store.vercel.app/api/verify-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        alert(err.error || 'Invalid unlock code');
+        return;
+      }
+      const data = await res.json();
+      const access = data.access;
+      if (access === 'ALL') {
+        unlockedTemplates = ['ALL'];
+        isUnlocked = true;
+      } else if (Array.isArray(access)) {
+        unlockedTemplates = [...new Set([...unlockedTemplates, ...access])];
+        isUnlocked = unlockedTemplates.includes(currentTemplate);
+      }
+      localStorage.setItem('RESUME-UNLOCKED', JSON.stringify(unlockedTemplates));
+      document.getElementById('unlockInputArea').style.display = 'none';
+      input.value = '';
+      updateUnlockUI();
+      showToast('Templates unlocked! Clean PDF download available.');
+    } catch (err) {
+      alert('Could not verify code. Check your connection or contact support.');
+    }
+  }
+
+  // ===== TEMPLATE LOADING =====
+
+  function switchTemplate(id) {
+    if (id === currentTemplate) return;
+    currentTemplate = id;
+    currentPhotoData = null;
+    updatePhotoStatus();
+    document.getElementById('templateBadge').textContent = TEMPLATE_NAMES[id] || id;
+    window.history.replaceState({}, '', '?template=' + id);
+    updateUnlockUI();
+    loadTemplate(id);
+  }
+
+  function loadTemplate(id) {
+    document.getElementById('statusMsg').textContent = 'Loading...';
+    fetch(BASE_URL + id + '.html')
+      .then(r => r.text())
+      .then(html => {
+        originalHtml = html;
+        renderInIframe(html);
+        document.getElementById('statusMsg').textContent = 'Template loaded';
+      })
+      .catch(err => {
+        document.getElementById('statusMsg').textContent = 'Error: ' + err.message;
+      });
+  }
+
+  function renderInIframe(html) {
+    const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+    doc.open();
+    doc.write(html);
+    doc.close();
+    previewFrame.style.width = '794px';
+    previewFrame.style.height = '1123px';
+    setTimeout(setupClickToEdit, 300);
+  }
+
+  function setupClickToEdit() {
+    const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+    const body = doc.body;
+    const newBody = body.cloneNode(true);
+    body.parentNode.replaceChild(newBody, body);
+
+    newBody.addEventListener('click', function(e) {
+      let el = e.target;
+      while (el && el !== newBody) {
+        const tag = el.tagName.toLowerCase();
+        if (['h1','h2','h3','h4','h5','h6','p','span','div','li','td','th','figcaption','a','strong','em','b','i'].includes(tag)) {
+          if (el.textContent.trim().length > 0 || el.children.length === 0) break;
+        }
+        el = el.parentElement;
+      }
+      if (el && el !== newBody) {
+        disableAllEditing();
+        el.contentEditable = 'true';
+        el.classList.add('editing-highlight');
+        el.focus();
+        const range = doc.createRange();
+        range.selectNodeContents(el);
+        const sel = doc.defaultView.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+        const disable = () => {
+          el.contentEditable = 'false';
+          el.classList.remove('editing-highlight');
+          document.getElementById('lastSaved').textContent = 'Saved: ' + new Date().toLocaleTimeString();
+          document.getElementById('statusMsg').textContent = 'Editing';
+          el.removeEventListener('blur', disable);
+        };
+        el.addEventListener('blur', disable, { once: true });
+        el.addEventListener('keydown', function(ev) { if (ev.key === 'Escape') el.blur(); });
+        document.getElementById('statusMsg').textContent = 'Editing...';
+      }
+    });
+  }
+
+  function disableAllEditing() {
+    const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+    doc.querySelectorAll('[contenteditable="true"]').forEach(el => {
+      el.contentEditable = 'false';
+      el.classList.remove('editing-highlight');
+    });
+  }
+
+  // ===== PHOTO =====
+
+  function handlePhotoUpload(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    if (!file.type.startsWith('image/')) { alert('Please select an image file.'); return; }
+    if (file.size > 2 * 1024 * 1024) { alert('Image too large. Please use under 2MB.'); return; }
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      currentPhotoData = ev.target.result;
+      injectPhoto(currentPhotoData);
+      updatePhotoStatus();
+      document.getElementById('lastSaved').textContent = 'Photo uploaded';
+    };
+    reader.readAsDataURL(file);
+    e.target.value = '';
+  }
+
+  function injectPhoto(dataUrl) {
+    const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+    const selectors = ['.profile-photo', '.avatar', '.avatar-img', '.profile-img', '.photo-slot', '.profile-pic', '.profile-picture', 'header img', '.header img', '.hero img'];
+    let injected = false;
+    for (const sel of selectors) {
+      const el = doc.body.querySelector(sel);
+      if (el) {
+        if (el.tagName === 'IMG') { el.src = dataUrl; }
+        else {
+          const img = doc.createElement('img');
+          img.src = dataUrl;
+          img.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:inherit;';
+          el.innerHTML = '';
+          el.appendChild(img);
+        }
+        injected = true;
+        break;
+      }
+    }
+    if (!injected) {
+      document.getElementById('photoStatus').textContent = 'This template has no photo slot.';
+      document.getElementById('photoStatus').style.background = '#fefce8';
+    }
+  }
+
+  function updatePhotoStatus() {
+    const el = document.getElementById('photoStatus');
+    if (currentPhotoData) {
+      el.className = 'photo-status has-photo';
+      el.innerHTML = 'Photo uploaded <button onclick="removePhoto()" style="margin-top:0.2rem;font-size:0.72rem;background:transparent;border:none;color:#dc2626;cursor:pointer;text-decoration:underline;">Remove</button>';
+    } else {
+      el.className = 'photo-status';
+      el.textContent = 'No photo uploaded';
+    }
+  }
+
+  function removePhoto() {
+    currentPhotoData = null;
+    const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+    const img = doc.querySelector('.profile-photo img, .avatar img, .avatar-img, .profile-img IMG');
+    if (img) { const parent = img.closest('.profile-photo, .avatar, .avatar-img, .profile-img'); if (parent) parent.innerHTML = ''; }
+    updatePhotoStatus();
+    document.getElementById('lastSaved').textContent = 'Photo removed';
+  }
+
+  function resetEdits() {
+    if (!originalHtml) return;
+    currentPhotoData = null;
+    updatePhotoStatus();
+    renderInIframe(originalHtml);
+    document.getElementById('lastSaved').textContent = 'Reset to original';
+    document.getElementById('statusMsg').textContent = 'Reset complete';
+  }
+
+  // ===== DOWNLOAD PDF =====
+
+  function downloadResume() {
+    const doc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+
+    doc.querySelectorAll('[contenteditable="true"]').forEach(el => {
+      el.contentEditable = 'false';
+      el.classList.remove('editing-highlight');
+    });
+
+    const watermarkCSS = isUnlocked ? `
+      @media print {
+        .watermark { display: none !important; }
+        .watermark-text { display: none !important; }
+      }
+    ` : `
+      @media print {
+        .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 999999 !important; pointer-events: none !important; }
+        .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; font-family: Inter, sans-serif !important; }
+      }
+    `;
+
+    const pageCSS = `
+      @page {
+        size: A4;
+        margin: 0;
+      }
+      @media print {
+        body { margin: 0; }
+        #rp-preview-banner { display: block !important; }
+      }
+    `;
+
+    const style = doc.createElement('style');
+    style.id = 'resumepro-print-override';
+    style.textContent = watermarkCSS + pageCSS;
+    doc.head.appendChild(style);
+
+    if (isUnlocked) {
+      doc.querySelectorAll('.watermark, .watermark-text').forEach(el => el.remove());
+    } else {
+      const existing = doc.getElementById('rp-preview-banner');
+      if (existing) existing.remove();
+      const banner = doc.createElement('div');
+      banner.id = 'rp-preview-banner';
+      banner.style.cssText = 'position:fixed;top:0;left:0;right:0;background:#ef4444;color:#fff;text-align:center;padding:6px;font-family:Inter,sans-serif;font-size:11pt;font-weight:700;z-index:999999;';
+      banner.textContent = 'PREVIEW — Purchase at resumepro-store.vercel.app to unlock clean PDF';
+      doc.body.insertBefore(banner, doc.body.firstChild);
+    }
+
+    showToast(isUnlocked ? 'Generating clean PDF...' : 'Generating watermarked PDF...');
+
+    setTimeout(() => {
+      previewFrame.contentWindow.focus();
+      previewFrame.contentWindow.print();
+    }, 200);
+  }
+
+  // ===== TOAST =====
+  function showToast(msg) {
+    const existing = document.querySelector('.custom-toast');
+    if (existing) existing.remove();
+    const t = document.createElement('div');
+    t.className = 'custom-toast';
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;bottom:2rem;right:2rem;z-index:100;padding:1rem 1.5rem;border-radius:0.75rem;background:#fff;border:1px solid #e2e8f0;box-shadow:0 8px 32px rgba(0,0,0,0.15);font-weight:500;max-width:400px;font-family:Inter,sans-serif;';
+    document.body.appendChild(t);
+    setTimeout(() => { t.style.opacity = '0'; t.style.transition = 'opacity 0.3s'; setTimeout(() => t.remove(), 300); }, 3500);
+  }
+
+  init();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Victoria Ashford — Executive Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+    /* ===== RESET & BASE ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 9.25pt;
+      line-height: 1.45;
+      color: #1a1a1a;
+      background: #e6e2db;
+      display: flex;
+      justify-content: center;
+      padding: 32px 16px;
+    }
+
+    /* ===== PAGE CONTAINER ===== */
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      background: #ffffff;
+      box-shadow: 0 25px 80px rgba(10, 22, 40, 0.18), 0 2px 8px rgba(10, 22, 40, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ===== HEADER ===== */
+    .header {
+      background: #080f1c;
+      padding: 52px 56px 42px;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -80px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(201,149,43,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header::after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, #c9952b, #e8c97a, #c9952b);
+      margin-top: 20px;
+      border-radius: 2px;
+    }
+
+    .header-name {
+      font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      font-size: 36pt;
+      font-weight: 600;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .header-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 11pt;
+      font-weight: 400;
+      color: #c9952b;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .header-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      font-size: 8pt;
+      color: rgba(255,255,255,0.7);
+      font-weight: 300;
+      letter-spacing: 0.3px;
+    }
+
+    .header-contact span { white-space: nowrap; }
+
+    /* ===== BODY LAYOUT ===== */
+    .body-content {
+      display: flex;
+      min-height: 600px;
+    }
+
+    .sidebar {
+      width: 230px;
+      min-width: 230px;
+      background: #f6f3ed;
+      padding: 36px 26px 40px;
+      border-right: 1px solid #e8e2d6;
+    }
+
+    .main {
+      flex: 1;
+      padding: 32px 40px 36px 32px;
+    }
+
+    /* ===== SIDEBAR SECTIONS ===== */
+    .sidebar-section { margin-bottom: 28px; }
+
+    .sidebar-section-header {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 9pt;
+      font-weight: 600;
+      color: #0a1628;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid rgba(10, 22, 40, 0.12);
+      position: relative;
+    }
+    .sidebar-section-header::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 28px;
+      height: 1px;
+      background: #c9952b;
+    }
+
+    .sidebar-text {
+      font-size: 8pt;
+      line-height: 1.55;
+      color: #2c2c2c;
+    }
+
+    /* Skills / Competency grid */
+    .competency-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 7px;
+    }
+
+    .competency-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .competency-label {
+      font-size: 7.75pt;
+      font-weight: 400;
+      color: #1a1a1a;
+    }
+
+    .stars {
+      display: inline-flex;
+      gap: 2px;
+      letter-spacing: 1px;
+    }
+
+    .star-filled { color: #c9952b; font-size: 7.5pt; }
+    .star-empty  { color: #d5cfc7; font-size: 7.5pt; }
+
+    .sidebar-contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 6px;
+      font-size: 7.75pt;
+      color: #2c2c2c;
+      line-height: 1.4;
+    }
+
+    .sidebar-contact-item .icon {
+      color: #c9952b;
+      font-weight: 600;
+      min-width: 14px;
+      text-align: center;
+      font-size: 8pt;
+    }
+
+    .board-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .board-list li {
+      font-size: 7.75pt;
+      line-height: 1.5;
+      padding-left: 12px;
+      position: relative;
+      margin-bottom: 4px;
+      color: #2c2c2c;
+    }
+
+    .board-list li::before {
+      content: '\25C6';
+      position: absolute;
+      left: 0;
+      color: #c9952b;
+      font-size: 6pt;
+    }
+
+    /* ===== MAIN SECTIONS ===== */
+    .main-section { margin-bottom: 22px; }
+
+    .main-section-header {
+      font-family: 'Inter', sans-serif;
+      font-size: 8pt;
+      font-weight: 600;
+      color: #c9952b;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid rgba(201,149,43,0.35);
+    }
+
+    .executive-summary {
+      font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+      font-size: 11pt;
+      font-style: italic;
+      line-height: 1.55;
+      color: #2a2a2a;
+      padding: 0 4px;
+    }
+
+    .lang-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 8pt;
+      color: #2c2c2c;
+      margin-bottom: 4px;
+    }
+
+    .lang-row:last-child { margin-bottom: 0; }
+
+    .lang-level {
+      color: #666;
+      font-size: 7.5pt;
+    }
+
+    /* ===== EXPERIENCE ENTRIES ===== */
+    .exp-entry { margin-bottom: 16px; }
+
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .exp-role {
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: #0a1628;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .exp-company {
+      font-size: 8.5pt;
+      font-weight: 500;
+      color: #555;
+      display: block;
+    }
+
+    .exp-date {
+      font-size: 7.5pt;
+      font-weight: 400;
+      color: #888;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    .exp-details {
+      list-style: none;
+      padding: 0;
+      margin: 4px 0 0;
+    }
+
+    .exp-details li {
+      font-size: 8pt;
+      line-height: 1.5;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 3px;
+      color: #2c2c2c;
+    }
+
+    .exp-details li::before {
+      content: '\25C6';
+      position: absolute;
+      left: 0;
+      top: 2px;
+      color: #c9952b;
+      font-size: 5.5pt;
+    }
+
+    /* ===== EDUCATION ===== */
+    .edu-entry {
+      margin-bottom: 12px;
+    }
+
+    .edu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .edu-degree {
+      font-size: 9pt;
+      font-weight: 600;
+      color: #0a1628;
+    }
+
+    .edu-school {
+      font-size: 8pt;
+      font-weight: 400;
+      color: #555;
+    }
+
+    .edu-date {
+      font-size: 7.5pt;
+      color: #888;
+      white-space: nowrap;
+    }
+
+    .edu-detail {
+      font-size: 7.75pt;
+      color: #666;
+      font-style: italic;
+    }
+
+    /* ===== CERTIFICATIONS ===== */
+    .cert-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px 16px;
+    }
+
+    .cert-list li {
+      font-size: 7.75pt;
+      color: #2c2c2c;
+      padding-left: 12px;
+      position: relative;
+    }
+
+    .cert-list li::before {
+      content: '\25C6';
+      position: absolute;
+      left: 0;
+      color: #c9952b;
+      font-size: 5.5pt;
+    }
+
+    /* ===== PRINT ===== */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { size: A4; margin: 0; }
+      body {
+        padding: 0;
+        font-size: 7.75pt;
+        line-height: 1.28;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .page {
+        box-shadow: none;
+        width: 210mm;
+        min-height: 297mm;
+      }
+      .header { padding: 0.35cm 0.4cm 0.3cm; }
+      .header-name { font-size: 22pt; margin-bottom: 4px; }
+      .header::after { margin-top: 10px; }
+      .body-content { min-height: auto; }
+      .sidebar { padding: 0.3cm 0.25cm; width: 200px; min-width: 200px; }
+      .main { padding: 0.3cm 0.35cm 0.3cm 0.3cm; }
+      .sidebar-section { margin-bottom: 0.45rem; }
+      .main-section { margin-bottom: 0.45rem; }
+      .exp-entry { margin-bottom: 0.35rem; }
+      .edu-entry { margin-bottom: 0.3rem; }
+      .exp-details li { margin-bottom: 1px; }
+      .header {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background: #0a1628 !important;
+      }
+      .sidebar {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        background: #f8f4ef !important;
+      }
+    }
+
+    @media screen and (max-width: 700px) {
+      body { padding: 16px 8px; }
+      .header { padding: 32px 24px 28px; }
+      .header-name { font-size: 28pt; }
+      .body-content { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        min-width: 0;
+        padding: 24px 20px;
+      }
+      .main { padding: 24px 20px; }
+    }
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; }
+      .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; }
+    }
+    .watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+    .watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <header class="header">
+      <div class="header-name">Victoria Ashford</div>
+      <div class="header-title">Chief Operating Officer</div>
+      <div class="header-contact">
+        <span>victoria.ashford@email.com</span>
+        <span>(555) 890-1234</span>
+        <span>Chicago, IL</span>
+        <span>linkedin.com/in/victoriaashford</span>
+      </div>
+    </header>
+
+    <div class="body-content">
+
+      <aside class="sidebar">
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-header">Core Competencies</div>
+          <div class="competency-grid">
+            <div class="competency-item">
+              <span class="competency-label">Strategic Planning</span>
+              <span class="stars">
+                <span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span>
+              </span>
+            </div>
+            <div class="competency-item">
+              <span class="competency-label">P&amp;L Management</span>
+              <span class="stars">
+                <span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span>
+              </span>
+            </div>
+            <div class="competency-item">
+              <span class="competency-label">Operations</span>
+              <span class="stars">
+                <span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span>
+              </span>
+            </div>
+            <div class="competency-item">
+              <span class="competency-label">M&amp;A Integration</span>
+              <span class="stars">
+                <span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-empty">&#9733;</span>
+              </span>
+            </div>
+            <div class="competency-item">
+              <span class="competency-label">Team Leadership</span>
+              <span class="stars">
+                <span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span>
+              </span>
+            </div>
+            <div class="competency-item">
+              <span class="competency-label">Change Management</span>
+              <span class="stars">
+                <span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-filled">&#9733;</span><span class="star-empty">&#9733;</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-header">Board Memberships</div>
+          <ul class="board-list">
+            <li>Advisory Board, Horizon Health Systems</li>
+            <li>Board Director, Chicago Business Council</li>
+            <li>Trustee, Midwest Leadership Foundation</li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-header">Languages</div>
+          <div class="sidebar-text">
+            <div class="lang-row"><span>English</span><span class="lang-level">Native</span></div>
+            <div class="lang-row"><span>Spanish</span><span class="lang-level">Professional</span></div>
+            <div class="lang-row"><span>French</span><span class="lang-level">Conversational</span></div>
+          </div>
+        </div>
+
+      </aside>
+
+      <main class="main">
+
+        <section class="main-section">
+          <h2 class="main-section-header">Executive Profile</h2>
+          <p class="executive-summary">
+            Accomplished C-suite executive with 18+ years leading global operations, driving organizational transformation, and delivering sustained revenue growth across Fortune 500 and mid-market enterprises. Expert in scaling operations, optimizing cost structures, and building high-performance leadership teams. Track record of leading three successful M&amp;A integrations totaling $400M in combined value.
+          </p>
+        </section>
+
+        <section class="main-section">
+          <h2 class="main-section-header">Professional Experience</h2>
+
+          <div class="exp-entry">
+            <div class="exp-header">
+              <div>
+                <span class="exp-role">Chief Operating Officer</span>
+                <span class="exp-company">Meridian Global Industries &mdash; Chicago, IL</span>
+              </div>
+              <span class="exp-date">2019 &ndash; Present</span>
+            </div>
+            <ul class="exp-details">
+              <li>Oversee $280M P&amp;L across 12 business units in North America and EMEA with 2,400 employees</li>
+              <li>Led operational restructuring that reduced costs by 18% while improving on-time delivery from 82% to 97%</li>
+              <li>Championed digital transformation initiative, deploying ERP and analytics platforms across all divisions</li>
+              <li>Built executive leadership team of 8 VPs; reduced executive turnover by 40% through succession planning</li>
+            </ul>
+          </div>
+
+          <div class="exp-entry">
+            <div class="exp-header">
+              <div>
+                <span class="exp-role">VP of Operations</span>
+                <span class="exp-company">Atlas Manufacturing Corp. &mdash; Detroit, MI</span>
+              </div>
+              <span class="exp-date">2014 &ndash; 2019</span>
+            </div>
+            <ul class="exp-details">
+              <li>Managed supply chain, manufacturing, and logistics for $120M revenue division</li>
+              <li>Implemented lean manufacturing program saving $8.5M annually in operational waste</li>
+              <li>Led post-acquisition integration of two companies within 14-month timeline, retaining 95% of key talent</li>
+            </ul>
+          </div>
+
+          <div class="exp-entry">
+            <div class="exp-header">
+              <div>
+                <span class="exp-role">Director of Business Operations</span>
+                <span class="exp-company">Summit Consulting Group &mdash; New York, NY</span>
+              </div>
+              <span class="exp-date">2010 &ndash; 2014</span>
+            </div>
+            <ul class="exp-details">
+              <li>Directed firm-wide operations for 350-person management consulting practice</li>
+              <li>Designed KPI framework adopted firm-wide, improving project margin visibility by 30%</li>
+              <li>Managed $15M annual operating budget and vendor relationships across 6 office locations</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="main-section">
+          <h2 class="main-section-header">Education</h2>
+
+          <div class="edu-entry">
+            <div class="edu-header">
+              <div>
+                <span class="edu-degree">MBA, Strategy &amp; Operations</span>
+                <span class="edu-school"> &mdash; Northwestern Kellogg School of Management</span>
+              </div>
+              <span class="edu-date">2010</span>
+            </div>
+            <div class="edu-detail">Baker Scholar, Top 5% of class</div>
+          </div>
+
+          <div class="edu-entry">
+            <div class="edu-header">
+              <div>
+                <span class="edu-degree">B.S. Industrial Engineering</span>
+                <span class="edu-school"> &mdash; University of Michigan</span>
+              </div>
+              <span class="edu-date">2006</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="main-section">
+          <h2 class="main-section-header">Certifications</h2>
+          <ul class="cert-list">
+            <li>Certified Six Sigma Black Belt (ASQ)</li>
+            <li>Project Management Professional (PMP)</li>
+            <li>Executive Leadership Program, Harvard Business School</li>
+          </ul>
+        </section>
+
+      </main>
+
+    </div>
+
+  </div>
+  
+  <div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

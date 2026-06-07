@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professor Alistair Finch - Historian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Source Serif 4', 'Inter', Georgia, serif; font-size: 10pt; line-height: 1.65; color: #451a03; background: #e8ddd0; }
+.page { width: 210mm; min-height: 297mm; margin: 2rem auto; background: #fdf6ec; box-shadow: 0 20px 60px rgba(0,0,0,0.12); position: relative; }
+.page-inner { padding: 48px 52px; }
+.header { text-align: center; padding-bottom: 24px; border-bottom: 2px solid #b8860b; margin-bottom: 24px; }
+.header h1 { font-size: 26pt; font-weight: 700; color: #451a03; letter-spacing: 0.02em; margin-bottom: 2px; }
+.header .role { font-size: 10pt; color: #b8860b; font-weight: 600; font-style: italic; letter-spacing: 0.06em; }
+.header .contact { font-size: 8.5pt; color: #7c5c3b; margin-top: 10px; display: flex; justify-content: center; gap: 18px; flex-wrap: wrap; }
+.summary { font-size: 10pt; color: #5c3a1e; line-height: 1.7; margin-bottom: 24px; font-style: italic; text-align: center; padding: 0 24px; }
+.section-title { font-size: 10pt; font-weight: 700; color: #451a03; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid #d4a843; }
+.entry { margin-bottom: 18px; }
+.entry-header { display: flex; justify-content: space-between; align-items: baseline; }
+.entry-title { font-size: 11pt; font-weight: 600; color: #451a03; font-style: italic; }
+.entry-subtitle { font-size: 9.5pt; color: #7c5c3b; font-weight: 500; }
+.entry-date { font-size: 8.5pt; color: #b8860b; font-weight: 600; white-space: nowrap; }
+.entry-bullets { margin-top: 5px; padding-left: 20px; list-style: none; }
+.entry-bullets li { font-size: 9.5pt; color: #5c3a1e; line-height: 1.7; position: relative; padding-left: 14px; }
+.entry-bullets li::before { content: "✻"; position: absolute; left: 0; color: #b8860b; font-size: 7pt; }
+.skills-list { font-size: 9.5pt; color: #5c3a1e; line-height: 1.8; }
+.skills-list strong { color: #451a03; }
+.edu-item { margin-bottom: 8px; }
+.edu-item .deg { font-size: 10.5pt; font-weight: 600; color: #451a03; font-style: italic; }
+.edu-item .sch { font-size: 9.5pt; color: #7c5c3b; }
+.watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+.watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+@media print { * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } @page { size: A4; margin: 0; } body { background: #fff; } .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; overflow: hidden; } .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; } .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="page-inner">
+<div class="header">
+<h1>Alistair Finch</h1>
+<div class="role">Professor of Medieval History</div>
+<div class="contact"><span>a.finch@oxford.ac.uk</span><span>+44 (1865) 555-0147</span><span>Oxford, United Kingdom</span><span>ox.ac.uk/history/finch</span></div>
+</div>
+<div class="summary">Award-winning historian and educator with 15 years of experience in medieval European history. Author of 3 monographs and 30+ peer-reviewed articles. Dedicated to advancing public understanding of history through teaching, research, and digital humanities initiatives.</div>
+<div class="section-title">Academic Appointments</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Professor of Medieval History</span><span class="entry-date">2018 — Present</span></div>
+<div class="entry-subtitle">University of Oxford — Balliol College, Oxford, UK</div>
+<ul class="entry-bullets">
+<li>Teach undergraduate and graduate courses on medieval political thought, manuscript culture, and the Crusades, consistently receiving top departmental teaching evaluations.</li>
+<li>Supervise 8 doctoral candidates, with 5 successful completions and 3 thesis prize nominations in the last 6 years.</li>
+<li>Secured £1.2M in research grant funding from the AHRC and Leverhulme Trust for a digital archive project reconstructing monastic library networks in 12th-century England.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Associate Professor</span><span class="entry-date">2012 — 2018</span></div>
+<div class="entry-subtitle">University of Cambridge — St. John's College, Cambridge, UK</div>
+<ul class="entry-bullets">
+<li>Published two monographs: "Script and Society in Anglo-Norman England" (2014) and "The Medieval Archive: Memory, Text, and Power" (2017), both with Oxford University Press.</li>
+<li>Led an interdisciplinary research group on medieval literacy that published 12 joint articles and organized 4 international conferences.</li>
+<li>Designed and convened 6 new undergraduate courses, including a popular module on medieval travel writing and cross-cultural encounter.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Junior Research Fellow</span><span class="entry-date">2009 — 2012</span></div>
+<div class="entry-subtitle">King's College London, London, UK</div>
+<ul class="entry-bullets">
+<li>Completed a postdoctoral project on the reception of classical historiography in 12th-century English chronicles, resulting in 8 journal articles and a book contract.</li>
+<li>Contributed to the construction of a digital prosopography database of medieval British scribes, now used by 200+ researchers worldwide.</li>
+<li>Organized a major international conference on "Text and Temporality in the Medieval World" with 60+ participants from 15 countries.</li>
+</ul>
+</div>
+<div class="section-title">Education &amp; Distinctions</div>
+<div class="edu-item"><div class="deg">D.Phil., Medieval History</div><div class="sch"> — University of Oxford (2009)</div></div>
+<div class="edu-item"><div class="deg">M.Phil., Historical Studies</div><div class="sch"> — University of Cambridge (2005)</div></div>
+<div class="edu-item"><div class="deg">B.A., History (First Class)</div><div class="sch"> — Durham University (2003)</div></div>
+<div class="section-title" style="margin-top:16px">Skills &amp; Expertise</div>
+<div class="skills-list"><strong>Research:</strong> Paleography, Diplomatics, Manuscript Studies, Textual Criticism<br><strong>Languages:</strong> Latin (Fluent), Old English (Advanced), Old French (Advanced), Middle High German (Reading)<br><strong>Digital:</strong> TEI XML, Python, IIIF, Digital Humanities Methodologies</div>
+</div>
+</div>
+<div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

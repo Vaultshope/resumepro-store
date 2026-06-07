@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. William Ashford - Literary Scholar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; font-size: 10pt; line-height: 1.65; color: #292524; background: #f0ede8; }
+.page { width: 210mm; min-height: 297mm; margin: 2rem auto; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,0.12); position: relative; }
+.header { text-align: center; padding: 40px 55px 28px; border-bottom: 3px double #ca8a04; margin-bottom: 0; }
+.header h1 { font-size: 36pt; font-weight: 300; color: #0f172a; letter-spacing: 0.04em; margin-bottom: 2px; }
+.header .role { font-family: 'Lora', serif; font-size: 11pt; font-style: italic; color: #ca8a04; }
+.header .contact { font-size: 8.5pt; color: #94a3b8; margin-top: 10px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.page-inner { padding: 28px 55px 40px; }
+.summary { font-family: 'Lora', serif; font-size: 10pt; font-style: italic; color: #57534e; line-height: 1.8; margin-bottom: 26px; text-align: center; padding: 16px 28px; background: #fefce8; border-radius: 4px; }
+.section { margin-bottom: 22px; }
+.section-title { font-size: 9pt; font-weight: 600; color: #0f172a; text-transform: uppercase; letter-spacing: 0.15em; border-bottom: 1px solid #ca8a04; padding-bottom: 6px; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+.section-title::after { content: ""; flex: 1; height: 1px; background: #e2e8f0; }
+.entry { margin-bottom: 20px; }
+.entry-header { display: flex; justify-content: space-between; align-items: baseline; }
+.entry-title { font-family: 'Lora', serif; font-size: 11pt; font-weight: 600; color: #0f172a; font-style: italic; }
+.entry-subtitle { font-size: 9.5pt; color: #78716c; font-weight: 500; }
+.entry-date { font-size: 8.5pt; color: #ca8a04; font-weight: 500; white-space: nowrap; }
+.entry-bullets { margin-top: 5px; padding-left: 20px; list-style: none; }
+.entry-bullets li { font-size: 9.5pt; color: #57534e; line-height: 1.7; position: relative; padding-left: 16px; margin-bottom: 2px; }
+.entry-bullets li::before { content: "—"; position: absolute; left: 0; color: #ca8a04; }
+.skills-block { font-size: 9pt; color: #57534e; line-height: 1.9; }
+.skills-block strong { color: #0f172a; font-weight: 600; }
+.edu-item { margin-bottom: 8px; }
+.edu-item .deg { font-family: 'Lora', serif; font-size: 10.5pt; font-weight: 600; color: #0f172a; }
+.edu-item .sch { font-size: 9pt; color: #78716c; }
+.watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+.watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+@media print { * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } @page { size: A4; margin: 0; } body { background: #fff; } .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; overflow: hidden; } .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; } .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="header">
+<h1>William Ashford</h1>
+<div class="role">Associate Professor of English Literature</div>
+<div class="contact"><span>w.ashford@cambridge.ac.uk</span><span>+44 (1223) 555-0367</span><span>Cambridge, United Kingdom</span><span>english.cam.ac.uk/ashford</span></div>
+</div>
+<div class="page-inner">
+<div class="summary">"The role of the scholar is not merely to interpret the past, but to illuminate the present." A dedicated educator and researcher with 12 years of experience in Victorian and modernist literature. Author of 2 monographs and numerous articles on narrative form, print culture, and the history of the novel.</div>
+<div class="section">
+<div class="section-title">Appointments</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Associate Professor</span><span class="entry-date">2019 — Present</span></div>
+<div class="entry-subtitle">University of Cambridge — King's College, Cambridge, UK</div>
+<ul class="entry-bullets">
+<li>Teach undergraduate and graduate seminars on Victorian fiction, modernist poetry, and literary theory, with consistently outstanding student evaluations across all courses.</li>
+<li>Supervise 6 doctoral candidates working on topics including 19th-century serial fiction, the history of literary criticism, and interwar women's writing.</li>
+<li>Awarded a prestigious Leverhulme Research Fellowship (£180K) for a 3-year project on "The Serial Imagination in Victorian Britain."</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">University Lecturer</span><span class="entry-date">2014 — 2019</span></div>
+<div class="entry-subtitle">University College London, London, UK</div>
+<ul class="entry-bullets">
+<li>Published monograph "Forms of Attention: Reading and Reception in the Victorian Novel" (Oxford University Press, 2016), shortlisted for the British Academy Book Prize.</li>
+<li>Secured a £250K AHRC grant for a collaborative digital humanities project creating a searchable database of 19th-century periodical circulation data.</li>
+<li>Designed 5 new undergraduate modules including "The Victorian Bestseller" and "Literature and the Rise of Journalism," attracting 100+ students annually.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Postdoctoral Fellow</span><span class="entry-date">2012 — 2014</span></div>
+<div class="entry-subtitle">Institute of English Studies, University of London, London, UK</div>
+<ul class="entry-bullets">
+<li>Conducted archival research on the manuscript revisions of Thomas Hardy's later novels, resulting in 4 journal articles and a chapter in a major scholarly collection.</li>
+<li>Organized an international symposium on "Material Texts and the History of Reading" with 35 participants from 10 countries.</li>
+<li>Served as book reviews editor for the Journal of Victorian Culture, commissioning and editing 40+ reviews per year.</li>
+</ul>
+</div>
+</div>
+<div class="section">
+<div class="section-title">Education &amp; Honours</div>
+<div class="edu-item"><div class="deg">Ph.D., English Literature</div><div class="sch"> — University of Cambridge (2012)</div></div>
+<div class="edu-item"><div class="deg">M.Phil., Literary Studies</div><div class="sch"> — University of Oxford (2008)</div></div>
+<div class="edu-item"><div class="deg">B.A., English (First Class Honours)</div><div class="sch"> — Durham University (2006)</div></div>
+</div>
+<div class="section">
+<div class="section-title">Specialisations</div>
+<div class="skills-block"><strong>Scholarly:</strong> Victorian fiction, Modernist poetry, Narrative theory, Print culture, History of reading<br><strong>Languages:</strong> Latin (Reading), French (Reading), German (Reading)<br><strong>Digital:</strong> TEI/XML, Digital editing, Text encoding, Python (basic)</div>
+</div>
+</div>
+</div>
+<div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

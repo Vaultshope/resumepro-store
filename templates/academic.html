@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+
+    /* ---------- Reset & Base ---------- */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      font-size: 10pt;
+      line-height: 1.55;
+      color: #1c1917;
+      background: #ffffff;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 2.2cm 2.2cm 1.5cm;
+    }
+
+    /* ---------- Header Ribbon ---------- */
+    .header {
+      background: #faf5ff;
+      border-bottom: 3px solid #6d28d9;
+      margin: -2.2cm -2.2cm 1.8rem -2.2cm;
+      padding: 2.2cm 2.2cm 0.9rem 2.2cm;
+      position: relative;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 2.2cm;
+      right: 2.2cm;
+      height: 1px;
+      background: linear-gradient(90deg, #6d28d9 0%, #c4b5fd 50%, transparent 100%);
+    }
+
+    .header-name {
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 24pt;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #1c1917;
+      line-height: 1.15;
+      margin-bottom: 0.1rem;
+    }
+
+    .header-title {
+      font-size: 11pt;
+      font-weight: 500;
+      color: #6d28d9;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .header-affiliation {
+      font-size: 9pt;
+      color: #57534e;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      margin-top: 0.05rem;
+    }
+
+    .contact-ribbon {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.2rem;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 8pt;
+      color: #57534e;
+      margin-top: 0.65rem;
+      padding-top: 0.55rem;
+      border-top: 1px solid #e4d5f7;
+    }
+
+    .contact-ribbon span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .contact-ribbon .contact-icon {
+      display: inline-block;
+      width: 12px;
+      text-align: center;
+      color: #6d28d9;
+      font-weight: 500;
+      font-size: 7.5pt;
+    }
+
+    .contact-ribbon a {
+      color: #57534e;
+      text-decoration: none;
+      border-bottom: 1px dotted #c4b5fd;
+      transition: color 0.15s;
+    }
+
+    .contact-ribbon a:hover {
+      color: #6d28d9;
+    }
+
+    .orcid-badge {
+      display: inline-block;
+      background: #6d28d9;
+      color: #fff;
+      font-size: 6.5pt;
+      font-weight: 600;
+      padding: 0.05rem 0.35rem;
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+      margin-left: 0.15rem;
+    }
+
+    /* ---------- Section ---------- */
+    .section {
+      margin-bottom: 1.35rem;
+    }
+
+    .section-title {
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 9.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #6d28d9;
+      border-bottom: 1.5px solid #6d28d9;
+      padding-bottom: 0.25rem;
+      margin-bottom: 0.75rem;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -1.5px;
+      left: 0;
+      width: 3.5rem;
+      height: 1.5px;
+      background: #6d28d9;
+    }
+
+    .section-bg {
+      background: #faf5ff;
+      padding: 0.85rem 1rem 0.7rem;
+      border-radius: 3px;
+    }
+
+    /* ---------- Stats Bar ---------- */
+    .stats-bar {
+      display: flex;
+      gap: 1.5rem;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 8.5pt;
+      color: #6d28d9;
+      background: #faf5ff;
+      padding: 0.5rem 0.8rem;
+      border-radius: 3px;
+      margin-bottom: 0.85rem;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: baseline;
+      gap: 0.3rem;
+    }
+
+    .stat-value {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #6d28d9;
+    }
+
+    .stat-label {
+      font-size: 7.5pt;
+      font-weight: 400;
+      color: #78716c;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ---------- Education ---------- */
+    .edu-entry {
+      margin-bottom: 0.7rem;
+      padding-left: 0.75rem;
+      border-left: 2px solid #e4d5f7;
+    }
+
+    .edu-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .edu-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.05rem;
+    }
+
+    .edu-degree {
+      font-weight: 600;
+      font-size: 10.5pt;
+      color: #1c1917;
+    }
+
+    .edu-date {
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 8.5pt;
+      color: #a8a29e;
+      white-space: nowrap;
+    }
+
+    .edu-school {
+      font-style: italic;
+      color: #57534e;
+      font-size: 9.5pt;
+    }
+
+    .edu-detail {
+      font-size: 9.5pt;
+      color: #44403c;
+      line-height: 1.55;
+      margin-top: 0.1rem;
+    }
+
+    .edu-detail .honor {
+      display: inline-block;
+      background: #6d28d9;
+      color: #fff;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 7pt;
+      font-weight: 600;
+      padding: 0.05rem 0.4rem;
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+      margin-right: 0.2rem;
+    }
+
+    .edu-detail .honor-outline {
+      display: inline-block;
+      border: 1px solid #6d28d9;
+      color: #6d28d9;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 7pt;
+      font-weight: 600;
+      padding: 0.05rem 0.4rem;
+      border-radius: 2px;
+      letter-spacing: 0.03em;
+      margin-right: 0.2rem;
+    }
+
+    /* ---------- Academic Appointments ---------- */
+    .appt-entry {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.35rem 0;
+      border-bottom: 1px solid #f2ecfb;
+    }
+
+    .appt-entry:last-child {
+      border-bottom: none;
+    }
+
+    .appt-left {
+      flex: 1;
+    }
+
+    .appt-role {
+      font-weight: 600;
+      font-size: 10pt;
+      color: #1c1917;
+    }
+
+    .appt-sub {
+      font-style: italic;
+      font-size: 9pt;
+      color: #57534e;
+      margin-top: 0.05rem;
+    }
+
+    .appt-date {
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 8.5pt;
+      color: #a8a29e;
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
+    /* ---------- Publications ---------- */
+    .pub-list {
+      list-style: none;
+      counter-reset: pub-counter;
+      padding: 0;
+    }
+
+    .pub-item {
+      counter-increment: pub-counter;
+      padding: 0.45rem 0 0.4rem 2.4rem;
+      position: relative;
+      font-size: 9.5pt;
+      line-height: 1.55;
+      color: #44403c;
+      border-bottom: 1px solid #f2ecfb;
+    }
+
+    .pub-item:first-child {
+      padding-top: 0.15rem;
+    }
+
+    .pub-item:last-child {
+      border-bottom: none;
+    }
+
+    .pub-item::before {
+      content: counter(pub-counter) ".";
+      position: absolute;
+      left: 0;
+      top: 0.45rem;
+      width: 2rem;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #6d28d9;
+      text-align: right;
+    }
+
+    .pub-authors {
+      font-style: italic;
+    }
+
+    .pub-title {
+      font-weight: 600;
+    }
+
+    .pub-journal {
+      font-style: italic;
+      color: #57534e;
+    }
+
+    .pub-year-tag {
+      display: inline-block;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 7pt;
+      font-weight: 600;
+      color: #6d28d9;
+      border: 1px solid #c4b5fd;
+      border-radius: 2px;
+      padding: 0.02rem 0.35rem;
+      margin-left: 0.3rem;
+      vertical-align: middle;
+    }
+
+    /* ---------- Grants ---------- */
+    .grants-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+    }
+
+    .grants-table td {
+      padding: 0.4rem 0.3rem;
+      border-bottom: 1px solid #f2ecfb;
+      vertical-align: baseline;
+    }
+
+    .grants-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .grant-amount {
+      font-weight: 700;
+      color: #6d28d9;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 10pt;
+      white-space: nowrap;
+      width: 1%;
+      padding-right: 0.6rem;
+    }
+
+    .grant-source {
+      color: #292524;
+    }
+
+    .grant-role {
+      display: inline-block;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 7pt;
+      font-weight: 600;
+      background: #faf5ff;
+      color: #6d28d9;
+      padding: 0.05rem 0.35rem;
+      border-radius: 2px;
+      margin-left: 0.3rem;
+    }
+
+    .grant-dates {
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 8pt;
+      color: #a8a29e;
+      white-space: nowrap;
+    }
+
+    .grant-total {
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 500;
+      color: #6d28d9;
+      background: #faf5ff;
+      padding: 0.35rem 0.8rem;
+      border-radius: 3px;
+      margin-top: 0.5rem;
+      display: inline-block;
+    }
+
+    /* ---------- Teaching ---------- */
+    .teaching-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .teaching-col {
+      background: #faf5ff;
+      padding: 0.7rem 0.85rem;
+      border-radius: 3px;
+    }
+
+    .teaching-col h4 {
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #6d28d9;
+      margin-bottom: 0.45rem;
+      border-bottom: 1px solid #e4d5f7;
+      padding-bottom: 0.2rem;
+    }
+
+    .teaching-entry {
+      margin-bottom: 0.35rem;
+      font-size: 9pt;
+      line-height: 1.5;
+      color: #44403c;
+    }
+
+    .teaching-entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .teaching-entry .course-code {
+      font-weight: 600;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 8.5pt;
+      color: #6d28d9;
+    }
+
+    .teaching-entry .course-title {
+      font-weight: 500;
+    }
+
+    .teaching-entry .course-note {
+      font-style: italic;
+      color: #78716c;
+      font-size: 8.5pt;
+    }
+
+    .teaching-award {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .teaching-award::before {
+      content: '\2605';
+      color: #6d28d9;
+      font-size: 8pt;
+    }
+
+    .teaching-stat {
+      font-size: 9pt;
+      color: #44403c;
+      margin-top: 0.2rem;
+    }
+
+    .teaching-stat strong {
+      color: #6d28d9;
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    }
+
+    /* ---------- Professional Service ---------- */
+    .service-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.1rem 1.5rem;
+    }
+
+    .service-item {
+      padding: 0.3rem 0 0.3rem 1.1rem;
+      position: relative;
+      font-size: 9.5pt;
+      color: #44403c;
+      line-height: 1.5;
+    }
+
+    .service-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65rem;
+      width: 5px;
+      height: 5px;
+      background: #6d28d9;
+      border-radius: 1px;
+      transform: rotate(45deg);
+    }
+
+    .service-role {
+      font-weight: 500;
+    }
+
+    .service-venue {
+      color: #57534e;
+    }
+
+    .service-dates {
+      font-family: 'Inter', 'Helvetica Neue', sans-serif;
+      font-size: 8pt;
+      color: #a8a29e;
+    }
+
+    /* ---------- Alt Section (Publications background) ---------- */
+    .alt-section .section-title {
+      margin-bottom: 0.45rem;
+    }
+
+    /* ---------- Print ---------- */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { size: A4; margin: 0; }
+      html { zoom: 0.52; }
+      body {
+        font-size: 7pt;
+        line-height: 1.24;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .container {
+        padding: 0;
+        width: 210mm;
+        min-height: 297mm;
+      }
+      .header {
+        margin: 0 0 0.35rem 0;
+        padding: 0 0 0.35rem 0;
+      }
+      .header-name { font-size: 14pt; }
+      .header-title { margin-bottom: 0.15rem; }
+      .contact-ribbon { gap: 0.35rem 0.6rem; margin-top: 0.25rem; }
+      .stats-bar { margin-bottom: 0.35rem; padding: 0.25rem 0; gap: 0.5rem; }
+      .stat-value { font-size: 11pt; }
+      .section { margin-bottom: 0.35rem; }
+      .section-title { margin-bottom: 0.25rem; }
+      .edu-entry, .appt-entry { margin-bottom: 0.2rem; padding-bottom: 0.2rem; }
+      .pub-item { padding: 0.2rem 0 0.2rem 1.6rem; margin-bottom: 0; }
+      .grants-table td { padding: 0.2rem 0.35rem; }
+      .teaching-grid { gap: 0.35rem; }
+      .service-item { margin-bottom: 0.12rem; }
+      .section-bg { padding: 0.35rem 0.45rem; }
+    }
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; }
+      .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; }
+    }
+    .watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+    .watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="header-name">Dr. Elena Vasquez</div>
+      <div class="header-title">Associate Professor of Computational Biology</div>
+      <div class="header-affiliation">Department of Bioengineering &middot; Stanford University</div>
+      <div class="contact-ribbon">
+        <span><span class="contact-icon">&#9993;</span> evasquez@stanford.edu</span>
+        <span><span class="contact-icon">&#9742;</span> (555) 789-0123</span>
+        <span><span class="contact-icon">&#9906;</span> Stanford, CA</span>
+        <span><span class="contact-icon">&#128279;</span> <a href="#">scholar.google.com/citations?user=evasquez</a></span>
+        <span><span class="contact-icon">&#9997;</span> ORCID: 0000-0002-1824-5678 <span class="orcid-badge">iD</span></span>
+      </div>
+    </header>
+
+    <!-- ===== STATS BAR ===== -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <span class="stat-value">28</span>
+        <span class="stat-label">Publications</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">18</span>
+        <span class="stat-label">h-index</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">2,450</span>
+        <span class="stat-label">Citations</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">$8.2M</span>
+        <span class="stat-label">Total Funding</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-value">12</span>
+        <span class="stat-label">PhD Students</span>
+      </div>
+    </div>
+
+    <!-- ===== EDUCATION ===== -->
+    <section class="section">
+      <h2 class="section-title">Education</h2>
+
+      <div class="edu-entry">
+        <div class="edu-row">
+          <span class="edu-degree">Doctor of Philosophy in Computational Biology</span>
+          <span class="edu-date">2014 &ndash; 2018</span>
+        </div>
+        <div class="edu-school">Massachusetts Institute of Technology</div>
+        <div class="edu-detail">
+          Dissertation: &ldquo;Machine Learning Approaches for Predicting Protein-Protein Interactions at Scale&rdquo;
+        </div>
+      </div>
+
+      <div class="edu-entry">
+        <div class="edu-row">
+          <span class="edu-degree">Bachelor of Science in Biological Sciences</span>
+          <span class="edu-date">2010 &ndash; 2014</span>
+        </div>
+        <div class="edu-school">University of California, Berkeley</div>
+        <div class="edu-detail">
+          <span class="honor">Summa Cum Laude</span> GPA: 3.98/4.0 &middot; Minor in Computer Science
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ACADEMIC APPOINTMENTS ===== -->
+    <section class="section">
+      <h2 class="section-title">Academic Appointments</h2>
+
+      <div class="appt-entry">
+        <div class="appt-left">
+          <div class="appt-role">Associate Professor</div>
+          <div class="appt-sub">Stanford University, Department of Bioengineering</div>
+        </div>
+        <span class="appt-date">2024 &ndash; Present</span>
+      </div>
+
+      <div class="appt-entry">
+        <div class="appt-left">
+          <div class="appt-role">Assistant Professor</div>
+          <div class="appt-sub">Stanford University, Department of Bioengineering</div>
+        </div>
+        <span class="appt-date">2018 &ndash; 2024</span>
+      </div>
+
+      <div class="appt-entry">
+        <div class="appt-left">
+          <div class="appt-role">Postdoctoral Fellow</div>
+          <div class="appt-sub">Broad Institute of MIT and Harvard &mdash; Advisor: Dr. Jennifer Lipton</div>
+        </div>
+        <span class="appt-date">2018 &ndash; 2019</span>
+      </div>
+    </section>
+
+    <!-- ===== SELECTED PUBLICATIONS ===== -->
+    <section class="section alt-section">
+      <h2 class="section-title">Selected Publications</h2>
+
+      <div class="section-bg">
+        <ol class="pub-list">
+          <li class="pub-item">
+            <span class="pub-authors">Vasquez, E.</span>, Kim, J., Patel, S., and Thompson, R. (2026).
+            <span class="pub-title">DeepGraphBind: A Graph Neural Network for Predicting DNA-Binding Proteins</span>.
+            <span class="pub-journal">Nature Computational Science</span>, 6(2), 112&ndash;128.
+            <span class="pub-year-tag">2026</span>
+          </li>
+          <li class="pub-item">
+            <span class="pub-authors">Vasquez, E.</span> and Liu, M. (2024).
+            <span class="pub-title">Scalable Single-Cell Analysis Using Transformer-Based Architectures</span>.
+            <span class="pub-journal">Cell Systems</span>, 15(4), 345&ndash;360.
+            <span class="pub-year-tag">2024</span>
+          </li>
+          <li class="pub-item">
+            Wong, A., <span class="pub-authors">Vasquez, E.</span>, and Chen, L. (2023).
+            <span class="pub-title">Integrating Multi-Omics Data with Graph Neural Networks for Disease Subtype Classification</span>.
+            <span class="pub-journal">Bioinformatics</span>, 39(8), 891&ndash;903.
+            <span class="pub-year-tag">2023</span>
+          </li>
+          <li class="pub-item">
+            <span class="pub-authors">Vasquez, E.</span> (2022).
+            <span class="pub-title">A Comparative Analysis of Protein Language Models for Function Prediction</span>.
+            <span class="pub-journal">PLOS Computational Biology</span>, 18(6), e1010245.
+            <span class="pub-year-tag">2022</span>
+          </li>
+          <li class="pub-item">
+            <span class="pub-authors">Vasquez, E.</span>, Park, D., and Martinez, G. (2021).
+            <span class="pub-title">Efficient Inference of Gene Regulatory Networks Using Deep Learning</span>.
+            <span class="pub-journal">Genome Research</span>, 31(5), 876&ndash;889.
+            <span class="pub-year-tag">2021</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===== GRANTS & FUNDING ===== -->
+    <section class="section">
+      <h2 class="section-title">Grants &amp; Funding</h2>
+
+      <table class="grants-table">
+        <tr>
+          <td class="grant-amount">$2,500,000</td>
+          <td class="grant-source">
+            NIH R01: Machine Learning for Protein Engineering
+            <span class="grant-role">PI</span>
+          </td>
+          <td class="grant-dates">2024&ndash;2029</td>
+        </tr>
+        <tr>
+          <td class="grant-amount">$750,000</td>
+          <td class="grant-source">
+            NSF CAREER Award: Interpretable Deep Learning for Genomics
+            <span class="grant-role">PI</span>
+          </td>
+          <td class="grant-dates">2022&ndash;2027</td>
+        </tr>
+        <tr>
+          <td class="grant-amount">$500,000</td>
+          <td class="grant-source">
+            Chan Zuckerberg Initiative: Single-Cell Analysis Tools
+            <span class="grant-role">Co-PI</span>
+          </td>
+          <td class="grant-dates">2023&ndash;2025</td>
+        </tr>
+        <tr>
+          <td class="grant-amount">$200,000</td>
+          <td class="grant-source">
+            Google Research Scholar Award: Deep Learning for Genomics
+            <span class="grant-role">PI</span>
+          </td>
+          <td class="grant-dates">2023&ndash;2024</td>
+        </tr>
+      </table>
+
+      <div class="grant-total">Total funded research: $8,200,000 (as PI or Co-PI)</div>
+    </section>
+
+    <!-- ===== TEACHING ===== -->
+    <section class="section">
+      <h2 class="section-title">Teaching Experience</h2>
+
+      <div class="teaching-grid">
+        <div class="teaching-col">
+          <h4>Courses Taught</h4>
+          <div class="teaching-entry">
+            <span class="course-code">BIOE 220</span> &mdash;
+            <span class="course-title">Introduction to Computational Biology</span>
+            <span class="course-note"> (Stanford)</span>
+          </div>
+          <div class="teaching-entry">
+            <span class="course-code">BIOE 320</span> &mdash;
+            <span class="course-title">Advanced Machine Learning for Biology</span>
+            <span class="course-note"> (Stanford)</span>
+          </div>
+          <div class="teaching-entry">
+            <span class="course-code">CS 229</span> &mdash;
+            <span class="course-title">Machine Learning</span>
+            <span class="course-note"> (Stanford, Guest Lecturer)</span>
+          </div>
+        </div>
+
+        <div class="teaching-col">
+          <h4>Awards &amp; Mentoring</h4>
+          <div class="teaching-entry teaching-award">Stanford Teaching Excellence Award (2023, 2025)</div>
+          <div class="teaching-stat">
+            Mentored <strong>12</strong> Ph.D. students and <strong>8</strong> postdoctoral fellows
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROFESSIONAL SERVICE ===== -->
+    <section class="section">
+      <h2 class="section-title">Professional Service</h2>
+
+      <ul class="service-list">
+        <li class="service-item">
+          <span class="service-role">Associate Editor</span>,
+          <span class="service-venue">PLOS Computational Biology</span>
+          <span class="service-dates"> &mdash; 2023&ndash;Present</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Program Committee Member</span>,
+          <span class="service-venue">ISMB Conference</span>
+          <span class="service-dates"> &mdash; 2022&ndash;Present</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Ad Hoc Reviewer</span> for
+          <span class="service-venue">Nature Methods, Cell Systems, Bioinformatics, Genome Research</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">NSF Graduate Research Fellowship</span>
+          <span class="service-venue">Panel Reviewer</span>
+          <span class="service-dates"> &mdash; 2023, 2024</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Editorial Board Member</span>,
+          <span class="service-venue">Journal of Computational Biology</span>
+          <span class="service-dates"> &mdash; 2024&ndash;Present</span>
+        </li>
+        <li class="service-item">
+          <span class="service-role">Conference Organizer</span>,
+          <span class="service-venue">RECOMB Satellite Workshop on ML in Biology</span>
+          <span class="service-dates"> &mdash; 2023, 2024</span>
+        </li>
+      </ul>
+    </section>
+
+  </div>
+  
+  <div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

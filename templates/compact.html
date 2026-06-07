@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compact Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #1e293b;
+      line-height: 1.25;
+      font-size: 7.5pt;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 1.8cm 1.4cm;
+    }
+
+    /* --- Header --- */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.35rem;
+      border-bottom: 1.5px solid #334155;
+      margin-bottom: 0.5rem;
+    }
+    .header h1 {
+      font-size: 16pt;
+      font-weight: 700;
+      color: #0f172a;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+    }
+    .contact {
+      display: flex;
+      gap: 0.6rem;
+      font-size: 6.5pt;
+      color: #64748b;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .contact span { white-space: nowrap; }
+
+    /* --- Sections --- */
+    .section { margin-bottom: 0.45rem; }
+    .section-title {
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #334155;
+      border-bottom: 0.75px solid #e2e8f0;
+      padding-bottom: 0.12rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* --- Summary --- */
+    .summary {
+      font-size: 7.5pt;
+      color: #475569;
+      line-height: 1.45;
+      margin-bottom: 0.35rem;
+      padding: 0.25rem 0.5rem;
+      background: #f8fafc;
+      border-left: 2px solid #334155;
+      border-radius: 0 2px 2px 0;
+    }
+
+    /* --- Experience --- */
+    .entry { margin-bottom: 0.5rem; }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+    .entry-header > span:first-child {
+      flex: 1;
+      min-width: 0;
+    }
+    .entry-title {
+      font-weight: 600;
+      font-size: 8pt;
+      color: #0f172a;
+    }
+    .entry-subtitle {
+      font-size: 7pt;
+      color: #64748b;
+    }
+    .entry-date {
+      font-size: 6.5pt;
+      color: #94a3b8;
+      white-space: nowrap;
+      font-weight: 400;
+      flex-shrink: 0;
+    }
+    .entry-desc {
+      font-size: 7pt;
+      color: #64748b;
+      line-height: 1.45;
+      margin-top: 0.15rem;
+    }
+
+    /* --- Skills Grid --- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.15rem 1rem;
+    }
+    .skill-row {
+      display: flex;
+      gap: 0.25rem;
+      align-items: baseline;
+      padding: 0.1rem 0;
+      flex-wrap: wrap;
+    }
+    .skill-label {
+      font-weight: 600;
+      font-size: 6pt;
+      color: #334155;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      min-width: 5em;
+    }
+    .skill-items {
+      font-size: 6pt;
+      color: #64748b;
+      line-height: 1.35;
+    }
+
+    /* --- Education / Certs one-liner --- */
+    .one-liner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem 1.2rem;
+      font-size: 7pt;
+      color: #475569;
+      padding: 0.15rem 0;
+    }
+    .one-liner-item {
+      display: flex;
+      gap: 0.2rem;
+      align-items: baseline;
+    }
+    .one-liner-label {
+      font-weight: 600;
+      color: #334155;
+      white-space: nowrap;
+    }
+    .one-liner-sep {
+      color: #cbd5e1;
+    }
+
+    /* --- Print --- */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { size: A4; margin: 0; }
+      body { font-size: 8pt; line-height: 1.35; }
+      .container { padding: 0; width: 210mm; min-height: 297mm; }
+      .summary { background: #f8fafc; }
+      .section { margin-bottom: 0.55rem; }
+      .entry { margin-bottom: 0.35rem; }
+      .entry-header { flex-wrap: wrap; gap: 0.15rem; }
+      .one-liner { flex-wrap: wrap; }
+    }
+
+    /* --- Sub-pixel tweaks for dense readability --- */
+    .text-muted { color: #94a3b8; }
+    .accent { color: #334155; }
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; }
+      .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; }
+    }
+    .watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+    .watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Header -->
+    <div class="header">
+      <h1>Jordan Kim</h1>
+      <div class="contact">
+        <span>jordan.kim@email.com</span>
+        <span>&#183;</span>
+        <span>(555) 012-3456</span>
+        <span>&#183;</span>
+        <span>Austin, TX</span>
+        <span>&#183;</span>
+        <span>linkedin.com/in/jordankim</span>
+        <span>&#183;</span>
+        <span>jordankim.dev</span>
+      </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary">
+      Product Marketing Manager with 6+ years of experience driving go-to-market strategy, competitive positioning, and demand generation for B2B SaaS products. Background in brand management at Fortune 500 CPG companies, bridging creative storytelling with data-informed decision-making. Track record of launching products that capture market share and accelerate pipeline velocity across multiple verticals.
+    </div>
+
+    <!-- Experience -->
+    <div class="section">
+      <div class="section-title">Experience</div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span><span class="entry-title">Product Marketing Manager</span> &middot; <span class="entry-subtitle">SprintScale &mdash; Austin, TX</span></span>
+          <span class="entry-date">2022 &ndash; Present</span>
+        </div>
+        <div class="entry-desc">
+          Led GTM strategy for 4 product launches generating $6.2M in pipeline within first quarter, exceeding targets by 35%. Developed competitive intelligence program that informed pricing strategy, increasing win rates 18% and shortening sales cycles by 22%. Created sales enablement content adopted by 50+ reps, reducing ramp time 25%. Managed $500K annual marketing budget across paid, content, and events, achieving 3.5&times; blended ROI.
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span><span class="entry-title">Associate Product Marketing Manager</span> &middot; <span class="entry-subtitle">BrightPath Software &mdash; San Antonio, TX</span></span>
+          <span class="entry-date">2020 &ndash; 2022</span>
+        </div>
+        <div class="entry-desc">
+          Supported GTM campaigns for 3 product releases exceeding lead generation targets by 40%. Produced customer case studies and white papers driving 30% organic traffic growth. Built and maintained competitive battle cards, positioning docs, and messaging frameworks used across a 40-person marketing org. Collaborated with product and engineering to refine feature narratives based on user research.
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span><span class="entry-title">Marketing Coordinator</span> &middot; <span class="entry-subtitle">GrowthLab Agency &mdash; Austin, TX</span></span>
+          <span class="entry-date">2018 &ndash; 2020</span>
+        </div>
+        <div class="entry-desc">
+          Coordinated multi-channel campaigns for 12 B2B tech clients managing budgets up to $150K. Analyzed campaign performance data and delivered weekly optimization recommendations that improved avg. conversion rates 15%. Led quarterly competitive landscape reports shared across client leadership teams.
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span><span class="entry-title">Brand Management Intern</span> &middot; <span class="entry-subtitle">Procter &amp; Gamble &mdash; Cincinnati, OH</span></span>
+          <span class="entry-date">Summer 2017</span>
+        </div>
+        <div class="entry-desc">
+          Supported $50M brand portfolio with consumer insights analysis and packaging A/B testing. Presented shelf-optimization recommendations adopted across 3 product lines, contributing to 4% same-store sales lift.
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="section">
+      <div class="section-title">Skills &amp; Expertise</div>
+      <div class="skills-grid">
+        <div class="skill-row"><span class="skill-label">GTM &amp; Strategy</span><span class="skill-items">Product Launch, Positioning, Messaging, Pricing Strategy, Competitive Analysis, Market Sizing</span></div>
+        <div class="skill-row"><span class="skill-label">Marketing Ops</span><span class="skill-items">Demand Gen, Content Marketing, Email Automation, SEO/SEM, Social Media, ABM</span></div>
+        <div class="skill-row"><span class="skill-label">Analytics</span><span class="skill-items">Google Analytics, Mixpanel, Tableau, SQL, Excel, A/B Testing, Attribution Modeling</span></div>
+        <div class="skill-row"><span class="skill-label">Tools &amp; Platforms</span><span class="skill-items">Salesforce, HubSpot, Marketo, Asana, Jira, Figma, Canva, Looker</span></div>
+      </div>
+    </div>
+
+    <!-- Education & Certifications -->
+    <div class="section">
+      <div class="section-title">Education &amp; Credentials</div>
+      <div class="one-liner">
+        <span class="one-liner-item"><span class="one-liner-label">Education</span> <span>BBA Marketing, UT Austin &mdash; GPA 3.85, Dean's List, Magna Cum Laude</span></span>
+        <span class="one-liner-sep">|</span>
+        <span class="one-liner-item"><span class="one-liner-label">Certifications</span> <span>Pragmatic Institute Certified (2023), HubSpot Inbound (2022), Google Digital Marketing (2021)</span></span>
+        <span class="one-liner-sep">|</span>
+        <span class="one-liner-item"><span class="one-liner-label">Languages</span> <span>English (Native), Korean (Professional), Spanish (Conversational)</span></span>
+      </div>
+    </div>
+
+  </div>
+  
+  <div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

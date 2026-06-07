@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimal Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+
+    /* ─── Reset ─── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    /* ─── Base ─── */
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #0f172a;
+      background: #ffffff;
+      line-height: 1.7;
+      font-size: 9.5pt;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .container {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 3.5cm 2.5cm;
+    }
+
+    /* ─── Header ─── */
+    .header {
+      margin-bottom: 3rem;
+    }
+
+    .header h1 {
+      font-size: 28pt;
+      font-weight: 200;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #1e293b;
+      margin-bottom: 0.75rem;
+      line-height: 1.15;
+    }
+
+    .header .title {
+      font-size: 9pt;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      margin-bottom: 1.25rem;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 2.5rem;
+      font-size: 8pt;
+      color: #94a3b8;
+      letter-spacing: 0.02em;
+      font-weight: 400;
+    }
+
+    .contact span {
+      white-space: nowrap;
+    }
+
+    /* ─── Dividers ─── */
+    hr {
+      border: none;
+      height: 1px;
+      background: #e2e8f0;
+      margin: 2rem 0;
+    }
+
+    /* ─── Sections ─── */
+    .section {
+      margin-bottom: 2rem;
+    }
+
+    .section-title {
+      font-size: 7.5pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #94a3b8;
+      margin-bottom: 1rem;
+    }
+
+    /* ─── About / Summary ─── */
+    .summary p {
+      font-size: 9.5pt;
+      color: #475569;
+      font-weight: 300;
+      line-height: 1.8;
+      max-width: 65ch;
+    }
+
+    /* ─── Experience & Education Entries ─── */
+    .entry {
+      margin-bottom: 1.5rem;
+    }
+    .entry:last-child {
+      margin-bottom: 0;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.1rem;
+    }
+
+    .entry-role {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: #1e293b;
+      letter-spacing: -0.01em;
+    }
+
+    .entry-date {
+      font-size: 8pt;
+      color: #94a3b8;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+
+    .entry-org {
+      font-size: 9pt;
+      color: #64748b;
+      font-weight: 400;
+      margin-bottom: 0.35rem;
+    }
+
+    .entry-desc {
+      font-size: 9pt;
+      color: #475569;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+
+    .entry-desc ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .entry-desc ul li {
+      position: relative;
+      padding-left: 1.25rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .entry-desc ul li:last-child {
+      margin-bottom: 0;
+    }
+
+    .entry-desc ul li::before {
+      content: "\2014";
+      position: absolute;
+      left: 0;
+      color: #cbd5e1;
+      font-weight: 300;
+    }
+
+    /* ─── Skills ─── */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0;
+    }
+
+    .skills span {
+      font-size: 9pt;
+      font-weight: 300;
+      color: #475569;
+    }
+
+    .skills span:not(:last-child)::after {
+      content: "\00A0\2014\00A0";
+      color: #cbd5e1;
+      font-weight: 200;
+    }
+
+    /* ─── Print ─── */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { size: A4; margin: 0; }
+      body {
+        font-size: 8.75pt;
+        line-height: 1.32;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .container { padding: 0; width: 210mm; min-height: 297mm; }
+      .header h1 { font-size: 16pt; letter-spacing: 0.1em; }
+      .header .title { margin-bottom: 0.5rem; }
+      hr { margin: 0.55rem 0; }
+      .section { margin-bottom: 0.45rem; }
+      .section-title { margin-bottom: 0.45rem; }
+      .entry { margin-bottom: 0.5rem; }
+      .entry-desc ul li { margin-bottom: 0.08rem; }
+    }
+
+    /* ─── Screen (non-print) refinements ─── */
+    @media screen and (max-width: 720px) {
+      .container {
+        padding: 2rem 1.5rem;
+      }
+
+      .header h1 {
+        font-size: 22pt;
+        letter-spacing: 0.14em;
+      }
+
+      .contact {
+        gap: 0 1.5rem;
+      }
+
+      .entry-header {
+        flex-direction: column;
+      }
+
+      .entry-date {
+        margin-top: 0.1rem;
+      }
+    }
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; }
+      .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; }
+    }
+    .watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+    .watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <h1>Lucas Martinez</h1>
+      <div class="title">Creative Director</div>
+      <div class="contact">
+        <span>lucas.m@email.com</span>
+        <span>(555) 345-6789</span>
+        <span>Los Angeles, CA</span>
+        <span>lucasmartinez.design</span>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- About -->
+    <div class="section">
+      <div class="section-title">About</div>
+      <div class="summary">
+        <p>Creative Director with a decade of experience building brand identities and leading creative teams at award-winning agencies. I believe in the power of simplicity&mdash;clear thinking, clean execution, and purpose-driven design that connects with people.</p>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Experience -->
+    <div class="section">
+      <div class="section-title">Experience</div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-role">Creative Director</span>
+          <span class="entry-date">2020 &ndash; Present</span>
+        </div>
+        <div class="entry-org">Studio Thirty-Four <span class="entry-date">&mdash; Los Angeles, CA</span></div>
+        <div class="entry-desc">
+          <ul>
+            <li>Lead a team of 12 designers, copywriters, and art directors serving clients in fashion, tech, and hospitality</li>
+            <li>Oversee creative strategy and execution for 20+ annual brand campaigns, growing agency revenue by 60%</li>
+            <li>Established the studio&rsquo;s design philosophy and visual language, winning 5 industry awards in 3 years</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-role">Senior Art Director</span>
+          <span class="entry-date">2017 &ndash; 2020</span>
+        </div>
+        <div class="entry-org">Bright Idea Agency <span class="entry-date">&mdash; Los Angeles, CA</span></div>
+        <div class="entry-desc">
+          <ul>
+            <li>Directed visual identity projects for 15+ national brands, including a complete rebrand for a Fortune 500 company</li>
+            <li>Managed a team of 5 designers, establishing workflows that improved project delivery speed by 35%</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-role">Art Director</span>
+          <span class="entry-date">2014 &ndash; 2017</span>
+        </div>
+        <div class="entry-org">Muse Creative <span class="entry-date">&mdash; Portland, OR</span></div>
+        <div class="entry-desc">
+          <ul>
+            <li>Designed brand campaigns, packaging, and digital experiences for lifestyle and consumer goods clients</li>
+            <li>Developed brand guidelines and visual systems used consistently across print, digital, and environmental media</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Education -->
+    <div class="section">
+      <div class="section-title">Education</div>
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-role">BFA in Graphic Design</span>
+          <span class="entry-date">2010 &ndash; 2014</span>
+        </div>
+        <div class="entry-org">Rhode Island School of Design</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Skills -->
+    <div class="section">
+      <div class="section-title">Skills</div>
+      <div class="skills">
+        <span>Brand Strategy</span>
+        <span>Visual Identity</span>
+        <span>Typography</span>
+        <span>Art Direction</span>
+        <span>Creative Strategy</span>
+        <span>Team Leadership</span>
+        <span>Adobe Creative Suite</span>
+        <span>Figma</span>
+        <span>Motion Design</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

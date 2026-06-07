@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elegant Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 400;
+      font-size: 9.5pt;
+      line-height: 1.6;
+      color: #1e293b;
+      background: #ffffff;
+    }
+
+    /* ── Container ── */
+    .container {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 2.5cm 2.2cm;
+    }
+
+    /* ── Header ── */
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .header .name-wrapper { position: relative; display: inline-block; }
+    .header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 30pt;
+      letter-spacing: 0.06em;
+      color: #0c0f15;
+      line-height: 1.15;
+      text-transform: uppercase;
+    }
+    .header .title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 9.5pt;
+      font-weight: 500;
+      color: #0d9488;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      margin-top: 0.35rem;
+      margin-bottom: 0;
+    }
+    .header .divider-line {
+      width: 56px;
+      height: 2.5px;
+      background: #0d9488;
+      margin: 1rem auto 0.85rem;
+      border-radius: 2px;
+    }
+    .header .contact-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.75rem;
+      font-size: 8.25pt;
+      color: #64748b;
+      letter-spacing: 0.03em;
+    }
+    .header .contact-row span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .header .contact-row .contact-icon {
+      color: #0d9488;
+      font-size: 6.5pt;
+      opacity: 0.8;
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 1.35rem;
+      page-break-inside: avoid;
+    }
+    .section-alt {
+      background: #f8fafc;
+      margin-left: -2.2cm;
+      margin-right: -2.2cm;
+      padding: 1.35rem 2.2cm;
+      border-top: 1px solid #f1f5f9;
+      border-bottom: 1px solid #f1f5f9;
+    }
+    .section-alt .section-title .title-rule { background: #0d9488; }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: 12pt;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 0.7rem;
+      letter-spacing: 0.01em;
+    }
+    .section-title .title-rule {
+      display: inline-block;
+      width: 32px;
+      height: 1.5px;
+      background: #0d9488;
+      margin-right: 0.85rem;
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+
+    /* ── Experience Entry ── */
+    .entry {
+      margin-bottom: 0.9rem;
+      page-break-inside: avoid;
+    }
+    .entry:last-child { margin-bottom: 0; }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+    .entry-title {
+      font-weight: 600;
+      font-size: 10pt;
+      color: #0f172a;
+      letter-spacing: 0.01em;
+    }
+    .entry-subtitle {
+      font-size: 8.75pt;
+      color: #0d9488;
+      font-weight: 500;
+      margin-top: 0.05rem;
+    }
+    .entry-date {
+      font-size: 8pt;
+      color: #94a3b8;
+      white-space: nowrap;
+      font-weight: 400;
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.02em;
+    }
+    .entry-desc {
+      margin-top: 0.3rem;
+      font-size: 8.75pt;
+      color: #475569;
+      line-height: 1.65;
+    }
+    .entry-desc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .entry-desc ul li {
+      padding-left: 1.1rem;
+      margin-bottom: 0.2rem;
+      position: relative;
+    }
+    .entry-desc ul li::before {
+      content: "\2014";
+      position: absolute;
+      left: 0;
+      color: #0d9488;
+      font-weight: 400;
+    }
+    .entry-desc ul li:last-child { margin-bottom: 0; }
+
+    /* ── Two-Column Layout ── */
+    .two-col {
+      display: flex;
+      gap: 2.5rem;
+    }
+    .two-col .col { flex: 1; min-width: 0; }
+
+    /* ── Education ── */
+    .education-item {
+      margin-bottom: 0.75rem;
+      page-break-inside: avoid;
+    }
+    .education-item:last-child { margin-bottom: 0; }
+    .education-item .degree {
+      font-weight: 600;
+      font-size: 9.5pt;
+      color: #0f172a;
+    }
+    .education-item .school {
+      font-size: 8.75pt;
+      color: #475569;
+      margin-top: 0.05rem;
+    }
+    .education-item .year {
+      font-size: 8pt;
+      color: #94a3b8;
+      font-weight: 400;
+      margin-top: 0.05rem;
+    }
+
+    /* ── Certifications ── */
+    .cert-item {
+      margin-bottom: 0.4rem;
+      font-size: 8.75pt;
+      color: #334155;
+      page-break-inside: avoid;
+    }
+    .cert-item:last-child { margin-bottom: 0; }
+    .cert-item .cert-name { font-weight: 500; color: #0f172a; }
+    .cert-item .cert-org { color: #64748b; }
+
+    /* ── Skills / Expertise ── */
+    .skill-group {
+      margin-bottom: 0.7rem;
+      page-break-inside: avoid;
+    }
+    .skill-group:last-child { margin-bottom: 0; }
+    .skill-group .group-title {
+      font-size: 7.5pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #0d9488;
+      margin-bottom: 0.15rem;
+    }
+    .skill-group .group-items {
+      font-size: 8.5pt;
+      color: #334155;
+      line-height: 1.7;
+    }
+
+    /* ── Profile paragraph ── */
+    .profile-text {
+      font-size: 9pt;
+      line-height: 1.7;
+      color: #475569;
+      font-weight: 400;
+    }
+
+    /* ── Print Styles ── */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { size: A4; margin: 0; }
+      body {
+        font-size: 8.5pt;
+        line-height: 1.3;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .container { padding: 0; width: 210mm; min-height: 297mm; }
+      .header { margin-bottom: 0.45rem; padding-bottom: 0.45rem; }
+      .header h1 { font-size: 22pt; }
+      .divider-line { margin: 0.45rem auto; }
+      .section { margin-bottom: 0.5rem; }
+      .section-title { margin-bottom: 0.35rem; }
+      .entry { margin-bottom: 0.4rem; }
+      .entry-desc ul li { margin-bottom: 0.08rem; }
+      .section-alt {
+        margin-left: 0;
+        margin-right: 0;
+        padding: 0.35rem 0;
+      }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .container { padding: 1.5rem 1rem; }
+      .section-alt {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        padding: 1.25rem 1rem;
+      }
+      .two-col { flex-direction: column; gap: 0.75rem; }
+      .entry-header { flex-direction: column; gap: 0.1rem; }
+      .header h1 { font-size: 24pt; }
+    }
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; }
+      .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; }
+    }
+    .watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+    .watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+
+</style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- ─── Header ─── -->
+    <header class="header">
+      <div class="name-wrapper">
+        <h1>Alexandra Bennett</h1>
+      </div>
+      <div class="title">Portfolio Manager &mdash; Fixed Income</div>
+      <div class="divider-line"></div>
+      <div class="contact-row">
+        <span><span class="contact-icon">&#9679;</span> a.bennett@email.com</span>
+        <span><span class="contact-icon">&#9679;</span> (555) 901-2345</span>
+        <span><span class="contact-icon">&#9679;</span> Boston, MA</span>
+        <span><span class="contact-icon">&#9679;</span> linkedin.com/in/alexandrabennett</span>
+      </div>
+    </header>
+
+    <!-- ─── Profile ─── -->
+    <section class="section">
+      <h2 class="section-title"><span class="title-rule"></span>Profile</h2>
+      <p class="profile-text">
+        Accomplished Portfolio Manager with 12+ years of experience in fixed income markets, portfolio optimization, and risk management. Proven track record of delivering alpha across market cycles while maintaining rigorous risk controls. CFA charterholder with deep expertise in credit analysis, derivative strategies, and ESG integration.
+      </p>
+    </section>
+
+    <!-- ─── Professional Experience ─── -->
+    <section class="section section-alt">
+      <h2 class="section-title"><span class="title-rule"></span>Professional Experience</h2>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Portfolio Manager &mdash; Fixed Income</span>
+          <span class="entry-date">2020 &ndash; Present</span>
+        </div>
+        <div class="entry-subtitle">Atlas Capital Management &mdash; Boston, MA</div>
+        <div class="entry-desc">
+          <ul>
+            <li>Manage a $3.2B fixed income portfolio spanning government, corporate, and emerging market debt</li>
+            <li>Generated annualized alpha of 185 bps above benchmark over 4 years through active duration management and sector rotation</li>
+            <li>Led the firm&rsquo;s ESG integration initiative, creating a sustainable investing framework adopted across $12B in AUM</li>
+            <li>Reduced portfolio volatility by 22% through strategic use of derivatives and hedging strategies</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Senior Credit Analyst</span>
+          <span class="entry-date">2016 &ndash; 2020</span>
+        </div>
+        <div class="entry-subtitle">Meridian Asset Management &mdash; Boston, MA</div>
+        <div class="entry-desc">
+          <ul>
+            <li>Covered 60+ investment-grade and high-yield corporate credits across the industrials and energy sectors</li>
+            <li>Recommended 20+ high-conviction long/short ideas with an average return of 320 bps over benchmark</li>
+            <li>Developed proprietary credit scoring models that improved default prediction accuracy by 35%</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Analyst, Fixed Income</span>
+          <span class="entry-date">2014 &ndash; 2016</span>
+        </div>
+        <div class="entry-subtitle">Goldman Sachs &mdash; New York, NY</div>
+        <div class="entry-desc">
+          <ul>
+            <li>Supported the investment team in analyzing $5B+ in corporate bond and CDS positions</li>
+            <li>Prepared credit memos, financial models, and relative value analyses for the investment committee</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Education ─── -->
+    <section class="section">
+      <h2 class="section-title"><span class="title-rule"></span>Education</h2>
+      <div class="two-col">
+        <div class="col">
+          <div class="education-item">
+            <div class="degree">Master of Finance</div>
+            <div class="school">MIT Sloan School of Management</div>
+            <div class="year">2014</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="education-item">
+            <div class="degree">B.S. in Economics, magna cum laude</div>
+            <div class="school">Boston College</div>
+            <div class="year">2012</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Certifications & Designations ─── -->
+    <section class="section section-alt">
+      <h2 class="section-title"><span class="title-rule"></span>Certifications &amp; Designations</h2>
+      <div class="two-col">
+        <div class="col">
+          <div class="cert-item"><span class="cert-name">CFA Charterholder</span> &mdash; <span class="cert-org">CFA Institute (2016)</span></div>
+          <div class="cert-item"><span class="cert-name">FRM</span> &mdash; <span class="cert-org">GARP (2017)</span></div>
+        </div>
+        <div class="col">
+          <div class="cert-item"><span class="cert-name">Series 7, 63, 86/87</span> &mdash; <span class="cert-org">FINRA</span></div>
+          <div class="cert-item"><span class="cert-name">ESG Investing Certificate</span> &mdash; <span class="cert-org">CFA Institute (2021)</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── Areas of Expertise ─── -->
+    <section class="section">
+      <h2 class="section-title"><span class="title-rule"></span>Areas of Expertise</h2>
+      <div class="two-col">
+        <div class="col">
+          <div class="skill-group">
+            <div class="group-title">Investment</div>
+            <div class="group-items">Fixed Income Analysis, Credit Research, Duration Management, Relative Value, Derivatives</div>
+          </div>
+          <div class="skill-group">
+            <div class="group-title">Risk</div>
+            <div class="group-items">VaR Modeling, Stress Testing, Scenario Analysis, Liquidity Risk, Counterparty Risk</div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="skill-group">
+            <div class="group-title">Analytical</div>
+            <div class="group-items">Financial Modeling, Quantitative Analysis, Bloomberg, MATLAB, Python, FactSet</div>
+          </div>
+          <div class="skill-group">
+            <div class="group-title">Languages</div>
+            <div class="group-items">English (Native), French (Professional), Spanish (Professional)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  
+  <div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

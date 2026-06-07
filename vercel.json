@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 30
+    }
+  },
+  "routes": [
+    { "src": "/api/_config", "dest": "/api/_config" },
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/download/(.*)", "dest": "/api/download.js?token=$1" },
+    { "src": "/(.*)", "dest": "/$1" }
+  ]
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Kovacs - Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Roboto', 'Inter', sans-serif; font-size: 9.5pt; line-height: 1.6; color: #1e293b; background: #eef0f5; }
+.page { width: 210mm; min-height: 297mm; margin: 2rem auto; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,0.12); position: relative; }
+.header { background: #4338ca; color: #fff; padding: 32px 40px; }
+.header h1 { font-size: 26pt; font-weight: 300; letter-spacing: -0.02em; margin-bottom: 2px; }
+.header .role { font-size: 10pt; font-weight: 400; opacity: 0.85; letter-spacing: 0.06em; }
+.header .contact { font-size: 8.5pt; font-weight: 300; opacity: 0.8; margin-top: 10px; display: flex; gap: 20px; flex-wrap: wrap; }
+.page-inner { padding: 28px 40px 40px; }
+.summary { font-size: 9.5pt; color: #475569; line-height: 1.7; margin-bottom: 24px; padding: 16px 20px; background: #f8fafc; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+.section { margin-bottom: 28px; }
+.section-title { font-size: 10pt; font-weight: 500; color: #4338ca; text-transform: uppercase; letter-spacing: 0.08em; padding-bottom: 4px; border-bottom: 2px solid #4338ca; margin-bottom: 14px; }
+.entry { margin-bottom: 20px; padding: 14px 16px; background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04); }
+.entry-header { display: flex; justify-content: space-between; align-items: baseline; }
+.entry-title { font-size: 10.5pt; font-weight: 500; color: #0f172a; }
+.entry-subtitle { font-size: 9pt; color: #64748b; font-weight: 400; margin-top: 1px; }
+.entry-date { font-size: 8pt; color: #4338ca; font-weight: 500; white-space: nowrap; }
+.entry-bullets { margin-top: 6px; padding-left: 18px; list-style: none; }
+.entry-bullets li { font-size: 9pt; color: #334155; line-height: 1.7; position: relative; padding-left: 14px; margin-bottom: 2px; }
+.entry-bullets li::before { content: "●"; position: absolute; left: 0; color: #4338ca; font-size: 5pt; top: 4px; }
+.skills-section { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-chip { font-size: 8.5pt; background: #eef2ff; color: #4338ca; padding: 4px 12px; border-radius: 16px; font-weight: 500; }
+.education-card { padding: 14px 16px; background: #fff; border-radius: 8px; box-shadow: 0 1px 4px rgba(0,0,0,0.06); margin-bottom: 10px; }
+.education-card .degree { font-size: 10pt; font-weight: 500; color: #0f172a; }
+.education-card .school { font-size: 9pt; color: #64748b; }
+.watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+.watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+@media print { * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } @page { size: A4; margin: 0; } body { background: #fff; } .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; overflow: hidden; } .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; } .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="header">
+<h1>Daniel Kovacs</h1>
+<div class="role">Software Engineer</div>
+<div class="contact"><span>daniel.kovacs@email.com</span><span>+1 (425) 555-0638</span><span>Redmond, WA</span><span>github.com/dkovacs</span></div>
+</div>
+<div class="page-inner">
+<div class="summary">Full-stack software engineer with 6 years of experience building scalable web applications and distributed systems. Proficient in TypeScript, Go, and cloud-native architectures. Passionate about developer tooling, system reliability, and clean, maintainable code.</div>
+<div class="section">
+<div class="section-title">Experience</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Senior Software Engineer</span><span class="entry-date">2021 — Present</span></div>
+<div class="entry-subtitle">Northwind Technologies, Redmond, WA</div>
+<ul class="entry-bullets">
+<li>Architected and implemented a microservices-based order processing system handling 50K+ requests per minute, achieving 99.99% uptime over 18 months in production.</li>
+<li>Led migration of a monolithic Rails application to a Go + TypeScript microservices architecture, reducing deployment time from 45 minutes to 8 minutes.</li>
+<li>Mentored 5 junior engineers through structured code reviews, pair programming sessions, and internal tech talks on distributed systems patterns.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Software Engineer</span><span class="entry-date">2019 — 2021</span></div>
+<div class="entry-subtitle">Streamline Analytics, Seattle, WA</div>
+<ul class="entry-bullets">
+<li>Built real-time data processing pipelines using Apache Kafka and Flink, processing 2TB+ of streaming data daily for client-facing analytics dashboards.</li>
+<li>Developed a RESTful API layer in Go that reduced average response latency by 60% compared to the previous Node.js implementation.</li>
+<li>Implemented automated CI/CD pipelines in GitHub Actions and Terraform, enabling zero-downtime deployments across staging and production environments.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Software Engineer Intern</span><span class="entry-date">2018</span></div>
+<div class="entry-subtitle">Google, Mountain View, CA</div>
+<ul class="entry-bullets">
+<li>Contributed to the internal developer tools team, building a CLI tool in Go that automated dependency audit reports used by 200+ engineering teams.</li>
+<li>Optimized query performance in Bigtable by redesigning row key schemas, reducing p99 latency by 35% for the monitoring backend service.</li>
+<li>Wrote comprehensive unit and integration tests achieving 92% code coverage for the team's core library modules.</li>
+</ul>
+</div>
+</div>
+<div class="section">
+<div class="section-title">Education</div>
+<div class="education-card"><div class="degree">M.S., Computer Science</div><div class="school">University of Washington, 2019</div></div>
+<div class="education-card"><div class="degree">B.S., Computer Engineering</div><div class="school">Purdue University, 2017</div></div>
+</div>
+<div class="section">
+<div class="section-title">Skills</div>
+<div class="skills-section">
+<span class="skill-chip">TypeScript</span><span class="skill-chip">Go</span><span class="skill-chip">Python</span><span class="skill-chip">React</span><span class="skill-chip">Node.js</span><span class="skill-chip">PostgreSQL</span><span class="skill-chip">Kubernetes</span><span class="skill-chip">Docker</span><span class="skill-chip">AWS</span><span class="skill-chip">Terraform</span><span class="skill-chip">Kafka</span><span class="skill-chip">GraphQL</span>
+</div>
+</div>
+</div>
+</div>
+<div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

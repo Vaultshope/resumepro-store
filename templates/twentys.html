@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sophia Reyes - Product Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; font-size: 9.5pt; line-height: 1.6; color: #1e293b; background: #f4f0fa; }
+.page { width: 210mm; min-height: 297mm; margin: 2rem auto; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,0.12); position: relative; }
+.header-band { background: linear-gradient(135deg, #7c3aed, #a78bfa); padding: 36px 40px 32px; color: #fff; display: flex; align-items: center; gap: 28px; }
+.avatar-circle { width: 80px; height: 80px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 28pt; font-weight: 700; color: #fff; border: 3px solid rgba(255,255,255,0.4); flex-shrink: 0; }
+.header-content { flex: 1; }
+.header-content h1 { font-size: 26pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+.header-content .role { font-size: 10pt; font-weight: 400; opacity: 0.85; letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2px; }
+.header-content .contact { font-size: 8pt; opacity: 0.8; margin-top: 8px; display: flex; gap: 16px; flex-wrap: wrap; }
+.page-inner { padding: 30px 40px 40px; }
+.summary { font-size: 9.5pt; color: #475569; line-height: 1.7; margin-bottom: 26px; padding: 16px 20px; background: #f8fafc; border-left: 4px solid #7c3aed; border-radius: 0 8px 8px 0; }
+.content-grid { display: flex; gap: 30px; }
+.main-col { flex: 1; }
+.side-col { width: 220px; flex-shrink: 0; }
+.section-title { font-size: 9pt; font-weight: 700; color: #7c3aed; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+.section-title .badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: #7c3aed; color: #fff; font-size: 8pt; font-weight: 700; }
+.entry { margin-bottom: 20px; }
+.entry-header { display: flex; justify-content: space-between; align-items: baseline; }
+.entry-title { font-size: 10.5pt; font-weight: 600; color: #0f172a; }
+.entry-subtitle { font-size: 9pt; color: #64748b; font-weight: 500; }
+.entry-date { font-size: 8pt; color: #7c3aed; font-weight: 500; white-space: nowrap; }
+.entry-bullets { margin-top: 5px; padding-left: 18px; list-style: none; }
+.entry-bullets li { font-size: 9pt; color: #334155; line-height: 1.65; position: relative; padding-left: 14px; margin-bottom: 2px; }
+.entry-bullets li::before { content: "◆"; position: absolute; left: 0; color: #7c3aed; font-size: 5pt; top: 4px; }
+.skill-group { margin-bottom: 16px; }
+.skill-group-title { font-size: 8.5pt; font-weight: 600; color: #0f172a; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.06em; }
+.skill-items { font-size: 8.5pt; color: #475569; line-height: 1.7; }
+.edu-item { margin-bottom: 12px; }
+.edu-item .deg { font-size: 9.5pt; font-weight: 600; color: #0f172a; }
+.edu-item .sch { font-size: 8.5pt; color: #64748b; }
+.watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+.watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+@media print { * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } @page { size: A4; margin: 0; } body { background: #fff; } .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; overflow: hidden; } .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; } .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="header-band">
+<div class="avatar-circle">SR</div>
+<div class="header-content">
+<h1>Sophia Reyes</h1>
+<div class="role">Product Designer</div>
+<div class="contact"><span>sophia.reyes@email.com</span><span>+1 (415) 555-0294</span><span>Portfolio: sophiareyes.design</span><span>San Francisco, CA</span></div>
+</div>
+</div>
+<div class="page-inner">
+<div class="summary">Creative product designer with 7 years of experience crafting user-centered digital experiences. Skilled in design systems, interaction design, and driving product strategy from concept to launch. Passionate about accessible and inclusive design.</div>
+<div class="content-grid">
+<div class="main-col">
+<div class="section-title"><span class="badge">1</span> Experience</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Product Designer</span><span class="entry-date">2022 — Present</span></div>
+<div class="entry-subtitle">Lumina Health, San Francisco, CA</div>
+<ul class="entry-bullets">
+<li>Designed and shipped a patient-facing mobile app from concept to launch, improving medication adherence rates by 28% through intuitive interaction patterns and behavioral nudges.</li>
+<li>Built and maintained a comprehensive design system with 200+ components, reducing design-to-development handoff time by 40% across 3 cross-functional teams.</li>
+<li>Conducted 25+ user research sessions and usability tests, iterating on designs based on feedback that led to a 15-point improvement in System Usability Score.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">UX/UI Designer</span><span class="entry-date">2019 — 2022</span></div>
+<div class="entry-subtitle">Craftbase Inc., Los Angeles, CA</div>
+<ul class="entry-bullets">
+<li>Led the redesign of the core e-commerce platform, resulting in a 22% increase in conversion rates and a 35% decrease in customer support tickets related to checkout confusion.</li>
+<li>Created interactive prototypes in Figma and Framer that were used to secure $4M in Series A funding through compelling product demonstrations to investors.</li>
+<li>Established a user research program including A/B testing and analytics review, providing data-driven design recommendations that improved retention by 18%.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Junior Designer</span><span class="entry-date">2017 — 2019</span></div>
+<div class="entry-subtitle">Bright Studio, Portland, OR</div>
+<ul class="entry-bullets">
+<li>Collaborated with senior designers on 15+ web and mobile projects for clients in healthcare, education, and fintech sectors, delivering pixel-perfect mockups and prototypes.</li>
+<li>Developed responsive wireframes and user flows that improved task completion rates by an average of 20% across client projects.</li>
+<li>Assisted in building a reusable component library in Sketch that standardized design output across the agency's 12-person creative team.</li>
+</ul>
+</div>
+</div>
+<div class="side-col">
+<div class="section-title"><span class="badge">2</span> Skills</div>
+<div class="skill-group"><div class="skill-group-title">Design</div><div class="skill-items">UX Research, Interaction Design, Design Systems, Prototyping, Information Architecture, Accessibility</div></div>
+<div class="skill-group"><div class="skill-group-title">Tools</div><div class="skill-items">Figma, Sketch, Framer, Principle, Adobe Creative Suite, Maze</div></div>
+<div class="skill-group"><div class="skill-group-title">Code</div><div class="skill-items">HTML/CSS, JavaScript, React Basics, Tailwind</div></div>
+<div class="section-title"><span class="badge">3</span> Education</div>
+<div class="edu-item"><div class="deg">B.F.A., Interaction Design</div><div class="sch">California College of the Arts, 2017</div></div>
+<div class="edu-item"><div class="deg">Cert., UX Research</div><div class="sch">Nielsen Norman Group, 2020</div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ResumePro — Premium Resume Templates</title>
+<meta name="description" content="Premium, print-ready resume templates starting at $2. Pay with USDT, receive your files instantly." />
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --accent: #6366f1;
+  --accent2: #8b5cf6;
+  --accent3: #a78bfa;
+  --accent-glow: rgba(99,102,241,0.2);
+  --accent-glow-strong: rgba(99,102,241,0.35);
+  --bg: #f6f8fc;
+  --bg-secondary: #f1f4fa;
+  --card: rgba(255,255,255,0.85);
+  --card-border: rgba(255,255,255,0.4);
+  --text: #0b1120;
+  --text2: #4a5a7a;
+  --text3: #8896b0;
+  --border: #e2e8f0;
+  --radius: 1rem;
+  --radius-lg: 1.5rem;
+  --shadow: 0 1px 3px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.06);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,.08);
+  --shadow-xl: 0 20px 60px rgba(0,0,0,.1);
+  --nav-h: 4rem;
+}
+
+.dark {
+  --accent: #818cf8;
+  --accent2: #a78bfa;
+  --accent3: #c4b5fd;
+  --accent-glow: rgba(129,140,248,0.2);
+  --accent-glow-strong: rgba(129,140,248,0.35);
+  --bg: #070b15;
+  --bg-secondary: #0d1425;
+  --card: rgba(22,32,52,0.85);
+  --card-border: rgba(30,41,59,0.6);
+  --text: #eef2f8;
+  --text2: #8899bb;
+  --text3: #5a6e8a;
+  --border: #1a2744;
+  --shadow: 0 1px 3px rgba(0,0,0,.2),0 4px 16px rgba(0,0,0,.3);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,.4);
+  --shadow-xl: 0 20px 60px rgba(0,0,0,.5);
+}
+
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background .4s cubic-bezier(.4,0,.2,1),color .4s cubic-bezier(.4,0,.2,1);overflow-x:hidden}
+.font-display{font-family:'Playfair Display',serif}
+.font-grotesk{font-family:'Space Grotesk',sans-serif}
+.font-mono{font-family:'JetBrains Mono',monospace}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--text3);border-radius:3px}
+
+/* ===== ANIMATED BACKGROUND ===== */
+.hero-bg{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-bg .orb{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;animation:orbFloat 20s ease-in-out infinite}
+.hero-bg .orb:nth-child(1){width:600px;height:600px;background:radial-gradient(circle,rgba(99,102,241,.25),transparent 70%);top:-20%;left:-10%;animation-delay:0s}
+.hero-bg .orb:nth-child(2){width:500px;height:500px;background:radial-gradient(circle,rgba(168,85,247,.2),transparent 70%);bottom:-15%;right:-8%;animation-delay:-7s}
+.hero-bg .orb:nth-child(3){width:400px;height:400px;background:radial-gradient(circle,rgba(244,114,182,.15),transparent 70%);top:40%;left:55%;animation-delay:-14s}
+@keyframes orbFloat{0%,100%{translate:0 0}25%{translate:30px -40px}50%{translate:-20px 30px}75%{translate:40px 20px}}
+
+/* ===== GRID OVERLAY ===== */
+.grid-overlay{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;opacity:.3}
+.dark .grid-overlay{opacity:.12}
+
+/* ===== FLOATING PARTICLES ===== */
+.particles{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.particle{position:absolute;width:4px;height:4px;border-radius:50%;background:var(--accent);opacity:.3;animation:particleFloat 15s infinite linear}
+@keyframes particleFloat{0%{translate:0 100vh;opacity:0}10%{opacity:.4}90%{opacity:.4}100%{translate:0 -10vh;opacity:0}}
+
+/* ===== GLASS CARD ===== */
+.glass{background:var(--card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid var(--card-border)}
+.card{border:1px solid var(--border);background:var(--card);backdrop-filter:blur(12px);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:all .4s cubic-bezier(.175,.885,.32,1.275);box-shadow:var(--shadow)}
+.card:hover{translate:0 -8px;box-shadow:var(--shadow-xl);border-color:var(--accent)}
+.card:hover .card-img{scale:1.12}
+.card-img{transition:scale .6s cubic-bezier(.175,.885,.32,1.275);width:100%;height:100%;object-fit:cover;object-position:top center}
+
+/* ===== GRADIENT TEXT ===== */
+.gradient-text{background:linear-gradient(135deg,var(--accent),#a78bfa,#f472b6,#e879f9);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 6s ease-in-out infinite}
+@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.7rem 1.8rem;border-radius:.75rem;font-weight:600;font-size:.875rem;cursor:pointer;border:none;transition:all .3s cubic-bezier(.175,.885,.32,1.275);position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;inset:0;border-radius:inherit;background:linear-gradient(135deg,transparent 30%,rgba(255,255,255,.15) 50%,transparent 70%);translate:-100% 0;transition:translate .6s}
+.btn:hover::after{translate:100% 0}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 16px var(--accent-glow)}
+.btn-primary:hover{translate:0 -3px;box-shadow:0 8px 30px var(--accent-glow-strong)}
+.btn-secondary{background:var(--card);color:var(--text);border:1px solid var(--border);backdrop-filter:blur(12px)}
+.btn-secondary:hover{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent);translate:0 -2px}
+.btn-success{background:linear-gradient(135deg,#10b981,#059669);color:#fff;box-shadow:0 4px 16px rgba(16,185,129,.3)}
+.btn-success:hover{translate:0 -3px;box-shadow:0 8px 30px rgba(16,185,129,.4)}
+.btn-outline{background:transparent;color:var(--accent);border:2px solid var(--accent)}
+.btn-outline:hover{background:var(--accent);color:#fff;translate:0 -2px}
+
+.badge{display:inline-flex;align-items:center;gap:.35rem;padding:.25rem .85rem;border-radius:999px;font-size:.7rem;font-weight:600;letter-spacing:.02em;transition:all .3s}
+
+/* ===== SECTIONS ===== */
+.section-wrap{position:relative}
+.section-header{text-align:center;margin-bottom:3.5rem}
+.section-header .badge{margin-bottom:.75rem}
+
+/* ===== MODAL ===== */
+.modal-overlay{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.6);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+.modal-overlay.active{display:flex}
+.modal-content{background:var(--card);backdrop-filter:blur(40px);border:1px solid var(--card-border);border-radius:1.5rem;max-width:580px;width:92%;max-height:90vh;overflow-y:auto;padding:2rem;position:relative;animation:modalIn .4s cubic-bezier(.175,.885,.32,1.275);box-shadow:0 32px 80px rgba(0,0,0,.2)}
+@keyframes modalIn{from{opacity:0;scale:.92;translate:0 30px}to{opacity:1;scale:1;translate:0 0}}
+
+.preview-box{height:280px;position:relative;overflow:hidden;background:var(--border)}
+.preview-box::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(0,0,0,.06));pointer-events:none}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;translate:0 40px;transition:all .7s cubic-bezier(.175,.885,.32,1)}
+.reveal.visible{opacity:1;translate:0 0}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+
+/* ===== TEMPLATE GRID ===== */
+.template-card .badge-group{opacity:0;translate:0 -4px;transition:all .3s}
+.template-card:hover .badge-group{opacity:1;translate:0 0}
+
+/* ===== QUIZ ===== */
+.quiz-card{border:1px solid var(--border);background:var(--card);backdrop-filter:blur(12px);border-radius:var(--radius-lg);padding:1.25rem 1rem;cursor:pointer;transition:all .3s cubic-bezier(.175,.885,.32,1.275);text-align:center;font-size:.875rem;font-weight:500;box-shadow:var(--shadow)}
+.quiz-card:hover{border-color:var(--accent);translate:0 -4px;box-shadow:0 12px 32px var(--accent-glow)}
+.quiz-card.selected{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent),0 12px 32px var(--accent-glow-strong)}
+
+/* ===== PRICING ===== */
+.pricing-card{background:var(--card);backdrop-filter:blur(12px);border:1px solid var(--border);border-radius:1.5rem;padding:2rem 1.5rem;text-align:center;display:flex;flex-direction:column;transition:all .4s cubic-bezier(.175,.885,.32,1.275);position:relative;box-shadow:var(--shadow)}
+.pricing-card:hover{translate:0 -6px;box-shadow:var(--shadow-xl);border-color:var(--accent)}
+.pricing-card.featured{border:2px solid var(--accent);box-shadow:0 8px 32px var(--accent-glow)}
+.pricing-card.featured::before{content:'POPULAR';position:absolute;top:-12px;left:50%;translate:-50% 0;background:linear-gradient(135deg,var(--accent),var(--accent2),#f472b6);color:#fff;padding:.25rem 1.4rem;border-radius:999px;font-size:.65rem;font-weight:800;letter-spacing:.1em}
+
+/* ===== PICK GRID ===== */
+.pick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
+.pick-item{padding:.5rem .25rem;border:2px solid var(--border);border-radius:.75rem;text-align:center;cursor:pointer;font-size:.7rem;font-weight:500;transition:all .25s cubic-bezier(.175,.885,.32,1.275);background:var(--card)}
+.pick-item:hover{border-color:var(--accent);translate:0 -2px}
+.pick-item.picked{border-color:#10b981;background:linear-gradient(135deg,#f0fdf4,#ecfdf5);color:#065f46;font-weight:600}
+
+.faq-q{cursor:pointer;transition:color .2s}
+.faq-q:hover{color:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(.4,0,.2,1),padding .4s cubic-bezier(.4,0,.2,1),opacity .3s;opacity:0}
+.faq-a.open{max-height:500px;padding-top:.75rem;opacity:1}
+.faq-i{transition:transform .4s cubic-bezier(.175,.885,.32,1.275);display:inline-block}
+.faq-i.open{transform:rotate(135deg)}
+
+.toast{position:fixed;bottom:2rem;right:2rem;z-index:70;padding:1rem 1.5rem;border-radius:1rem;background:var(--card);backdrop-filter:blur(20px);border:1px solid var(--card-border);box-shadow:0 16px 48px rgba(0,0,0,.15);display:none;font-weight:500;max-width:420px;animation:toastIn .4s cubic-bezier(.175,.885,.32,1.275)}
+.toast.show{display:flex;align-items:center;gap:.75rem}
+@keyframes toastIn{from{translate:120% 0;opacity:0}to{translate:0;opacity:1}}
+
+input,textarea,select{background:var(--bg);color:var(--text);border:1px solid var(--border);border-radius:.75rem;padding:.65rem .9rem;width:100%;font-family:inherit;font-size:.9rem;transition:all .25s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+
+.btn-shimmer{background:linear-gradient(110deg,var(--card) 30%,color-mix(in srgb,var(--accent) 6%,transparent) 50%,var(--card) 70%);background-size:200% 100%;animation:shimmer 3s ease-in-out infinite}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* pulse dot */
+.pulse-dot{width:8px;height:8px;border-radius:50%;background:#10b981;position:relative}
+.pulse-dot::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(16,185,129,.4);animation:pulseRing 2s infinite}
+@keyframes pulseRing{0%{scale:1;opacity:1}100%{scale:2;opacity:0}}
+
+/* floating */
+.floating{animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{translate:0 0}50%{translate:0 -12px}}
+
+/* number counter */
+.stat-num{font-variant-numeric:tabular-nums}
+
+@media(max-width:640px){
+  .pick-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media print{.no-print{display:none!important}}
+</style>
+</head>
+<body>
+
+<div class="grid-overlay"></div>
+
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="no-print fixed top-0 inset-x-0 z-40" style="height:var(--nav-h);background:var(--card);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:background .4s,box-shadow .4s" id="navbar">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center justify-between">
+    <a href="#" class="flex items-center gap-2.5 text-xl font-bold group">
+      <span class="flex items-center justify-center w-9 h-9 rounded-xl transition-transform duration-300 group-hover:scale-110 group-hover:rotate-[-6deg]" style="background:linear-gradient(135deg,var(--accent),var(--accent2),#f472b6);color:#fff;font-size:1rem;font-weight:800;box-shadow:0 4px 12px var(--accent-glow)">RP</span>
+      <span class="font-grotesk font-bold tracking-tight">Resume<span style="color:var(--accent)">Pro</span></span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-6">
+      <a href="#templates" class="nav-link text-sm font-medium relative" style="color:var(--text2);transition:color .2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text2)'">Templates</a>
+      <a href="#pricing" class="nav-link text-sm font-medium relative" style="color:var(--text2);transition:color .2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text2)'">Pricing</a>
+      <a href="#faq" class="nav-link text-sm font-medium relative" style="color:var(--text2);transition:color .2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text2)'">FAQ</a>
+      <div class="flex items-center gap-2 ml-2">
+        <button onclick="toggleDark()" class="p-2.5 rounded-xl transition-all duration-300 hover:scale-110" style="background:var(--bg);color:var(--text2);border:1px solid var(--border);cursor:pointer" aria-label="Toggle dark mode">
+          <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="transition:all .3s"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;transition:all .3s"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+        <a href="#templates" class="btn btn-primary text-sm !py-2 !px-5 !rounded-xl">Browse &#8594;</a>
+      </div>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <div class="flex md:hidden items-center gap-2">
+      <button onclick="toggleDark()" class="p-2.5 rounded-xl transition-all duration-300" style="background:var(--bg);color:var(--text2);border:1px solid var(--border);cursor:pointer" aria-label="Toggle dark mode">
+        <svg id="sunIconMob" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+        <svg id="moonIconMob" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      </button>
+      <button onclick="toggleMobileMenu()" class="p-2.5 rounded-xl" style="background:var(--bg);color:var(--text2);border:1px solid var(--border);cursor:pointer" aria-label="Menu">
+        <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="md:hidden" style="display:none;background:var(--card);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding:1rem;animation:slideDown .3s cubic-bezier(.175,.885,.32,1.275)">
+    <div class="flex flex-col gap-2">
+      <a href="#templates" class="py-2.5 px-3 rounded-xl text-sm font-medium transition-all" style="color:var(--text2)" onclick="toggleMobileMenu()" onmouseover="this.style.background='color-mix(in srgb,var(--accent) 8%,transparent)';this.style.color='var(--accent)'" onmouseout="this.style.background='';this.style.color='var(--text2)'">Templates</a>
+      <a href="#pricing" class="py-2.5 px-3 rounded-xl text-sm font-medium transition-all" style="color:var(--text2)" onclick="toggleMobileMenu()" onmouseover="this.style.background='color-mix(in srgb,var(--accent) 8%,transparent)';this.style.color='var(--accent)'" onmouseout="this.style.background='';this.style.color='var(--text2)'">Pricing</a>
+      <a href="#faq" class="py-2.5 px-3 rounded-xl text-sm font-medium transition-all" style="color:var(--text2)" onclick="toggleMobileMenu()" onmouseover="this.style.background='color-mix(in srgb,var(--accent) 8%,transparent)';this.style.color='var(--accent)'" onmouseout="this.style.background='';this.style.color='var(--text2)'">FAQ</a>
+      <a href="#templates" class="btn btn-primary text-sm justify-center mt-2" onclick="toggleMobileMenu()">Browse Templates &#8594;</a>
+    </div>
+  </div>
+</nav>
+
+<main class="relative z-10">
+
+<!-- ===== HERO ===== -->
+<section class="relative pt-36 pb-20 sm:pt-44 sm:pb-24 overflow-hidden text-center">
+  <div class="hero-bg">
+    <div class="orb"></div>
+    <div class="orb"></div>
+    <div class="orb"></div>
+  </div>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div class="reveal visible">
+      <span class="badge mb-6 reveal visible" style="background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 14%,transparent),color-mix(in srgb,var(--accent2) 14%,transparent));color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:.45rem 1.2rem;font-size:.72rem">
+        <span class="pulse-dot"></span>
+        Premium Collection &middot; 32 Templates
+      </span>
+    </div>
+    <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.06] mb-6 tracking-tight" style="color:var(--text);letter-spacing:-.03em">
+      Land Your<br/>
+      <span class="gradient-text">Dream Job</span>
+    </h1>
+    <p class="text-lg sm:text-xl mb-8 reveal visible reveal-delay-1" style="color:var(--text2);max-width:520px;margin-left:auto;margin-right:auto;line-height:1.75">
+      Professionally designed, print-ready resume templates. One-time payment. Instant delivery.
+    </p>
+    <div class="flex flex-wrap justify-center gap-3 mb-10 reveal visible reveal-delay-2">
+      <a href="#templates" class="btn btn-primary text-base !py-3 !px-8 !rounded-xl">Browse Templates &#8595;</a>
+      <a href="#how-it-works" class="btn btn-secondary text-base !py-3 !px-8 !rounded-xl">How It Works</a>
+    </div>
+    <div class="flex flex-wrap justify-center gap-5 sm:gap-8 text-sm reveal visible reveal-delay-3" style="color:var(--text3)">
+      <span class="flex items-center gap-2"><span class="flex items-center justify-center w-7 h-7 rounded-full" style="background:color-mix(in srgb,var(--accent) 12%,transparent);font-size:.75rem">&#11088;</span> 32 Premium Templates</span>
+      <span class="flex items-center gap-2"><span class="flex items-center justify-center w-7 h-7 rounded-full" style="background:color-mix(in srgb,var(--accent) 12%,transparent);font-size:.75rem">&#128176;</span> Starting at $2</span>
+      <span class="flex items-center gap-2"><span class="flex items-center justify-center w-7 h-7 rounded-full" style="background:color-mix(in srgb,var(--accent) 12%,transparent);font-size:.75rem">&#9993;</span> Instant Delivery</span>
+      <span class="flex items-center gap-2"><span class="flex items-center justify-center w-7 h-7 rounded-full" style="background:color-mix(in srgb,var(--accent) 12%,transparent);font-size:.75rem">&#9998;</span> 100% Editable</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST BAR ===== -->
+<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+  <div class="reveal p-6 sm:p-8 rounded-2xl text-center" style="background:var(--card);backdrop-filter:blur(20px);border:1px solid var(--card-border);box-shadow:var(--shadow-lg)">
+    <div class="flex flex-wrap justify-center items-center gap-x-10 gap-y-4 text-sm font-medium" style="color:var(--text2)">
+      <span class="flex items-center gap-2"><span class="flex items-center justify-center w-8 h-8 rounded-lg text-base" style="background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent)">&#9989;</span> ATS-Friendly</span>
+      <span class="flex items-center gap-2"><span class="flex items-center justify-center w-8 h-8 rounded-lg text-base" style="background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent)">&#128203;</span> Print-Ready</span>
+      <span class="flex items-center gap-2"><span class="flex items-center justify-center w-8 h-8 rounded-lg text-base" style="background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent)">&#127912;</span> 32 Unique Styles</span>
+      <span class="flex items-center gap-2"><span class="flex items-center justify-center w-8 h-8 rounded-lg text-base" style="background:color-mix(in srgb,var(--accent) 12%,transparent);color:var(--accent)">&#128274;</span> Lifetime Access</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section id="how-it-works" class="py-24 section-wrap">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="section-header reveal">
+      <span class="badge" style="background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 14%,transparent),color-mix(in srgb,var(--accent2) 14%,transparent));color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:.45rem 1.2rem">&#9889; Simple Process</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight" style="color:var(--text)">Get Your Resume in <span style="color:var(--accent)">4 Steps</span></h2>
+    </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-5xl mx-auto">
+      <div class="reveal reveal-delay-1 p-6 sm:p-7 rounded-2xl text-center glass transition-all duration-400 hover:translate-y-[-6px]" style="box-shadow:var(--shadow);transition:all .4s cubic-bezier(.175,.885,.32,1.275)">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl font-bold" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 16px var(--accent-glow);transition:transform .3s">1</div>
+        <h3 class="font-grotesk font-bold text-lg mb-1.5">Choose</h3>
+        <p class="text-sm" style="color:var(--text3)">Browse 32 templates and pick your favorites</p>
+      </div>
+      <div class="reveal reveal-delay-2 p-6 sm:p-7 rounded-2xl text-center glass transition-all duration-400 hover:translate-y-[-6px]" style="box-shadow:var(--shadow);transition:all .4s cubic-bezier(.175,.885,.32,1.275)">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl font-bold" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 16px var(--accent-glow);transition:transform .3s">2</div>
+        <h3 class="font-grotesk font-bold text-lg mb-1.5">Pay</h3>
+        <p class="text-sm" style="color:var(--text3)">Send USDT (BSC) to our wallet — low fees</p>
+      </div>
+      <div class="reveal reveal-delay-3 p-6 sm:p-7 rounded-2xl text-center glass transition-all duration-400 hover:translate-y-[-6px]" style="box-shadow:var(--shadow);transition:all .4s cubic-bezier(.175,.885,.32,1.275)">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl font-bold" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 16px var(--accent-glow);transition:transform .3s">3</div>
+        <h3 class="font-grotesk font-bold text-lg mb-1.5">Verify</h3>
+        <p class="text-sm" style="color:var(--text3)">Enter TX hash + email — unlock code instantly</p>
+      </div>
+      <div class="reveal reveal-delay-4 p-6 sm:p-7 rounded-2xl text-center glass transition-all duration-400 hover:translate-y-[-6px]" style="box-shadow:var(--shadow);transition:all .4s cubic-bezier(.175,.885,.32,1.275)">
+        <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4 text-xl font-bold" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;box-shadow:0 4px 16px var(--accent-glow);transition:transform .3s">4</div>
+        <h3 class="font-grotesk font-bold text-lg mb-1.5">Customize</h3>
+        <p class="text-sm" style="color:var(--text3)">Edit online and download clean PDF</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEMPLATES GRID ===== -->
+<section id="templates" class="py-24 section-wrap" style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="section-header reveal">
+      <span class="badge" style="background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 14%,transparent),color-mix(in srgb,var(--accent2) 14%,transparent));color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:.45rem 1.2rem">&#127912; The Collection</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight" style="color:var(--text)">Choose Your <span style="color:var(--accent)">Template</span></h2>
+      <p class="text-base mt-2" style="color:var(--text3);max-width:480px;margin:0 auto">Each design is print-optimized, fully customizable, and ready in seconds.</p>
+    </div>
+
+    <!-- 3-Pack promo banner -->
+    <div class="reveal mb-10 p-6 sm:p-8 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-5" style="background:linear-gradient(135deg,var(--card),color-mix(in srgb,var(--accent) 8%,transparent));border:1px solid var(--card-border);backdrop-filter:blur(20px);box-shadow:var(--shadow-lg)">
+      <div>
+        <span class="badge mb-2" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff">&#9733; Most Popular</span>
+        <h3 class="font-display text-xl font-bold">3-Template Pack</h3>
+        <p class="text-sm" style="color:var(--text3)">Mix &amp; match any 3 templates</p>
+      </div>
+      <div class="text-center sm:text-right">
+        <div class="text-4xl font-black stat-num" style="color:var(--accent)">$5</div>
+        <div class="text-sm" style="color:var(--text3)"><s>$8</s> — save 37%</div>
+      </div>
+      <button onclick="openBuyModal('3pack', null, 5)" class="btn btn-primary text-base !px-6">Buy 3-Pack &#8594;</button>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5" id="templateGrid"></div>
+
+    <!-- Bundle CTA -->
+    <div class="reveal mt-14 p-10 sm:p-12 rounded-3xl text-center relative" style="background:linear-gradient(135deg,var(--accent),var(--accent2),#8b5cf6);color:#fff;overflow:hidden;box-shadow:0 16px 48px var(--accent-glow-strong)">
+      <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,255,255,.15),transparent 60%);pointer-events:none"></div>
+      <span class="badge mb-3" style="background:rgba(255,255,255,.2);color:#fff;border:1px solid rgba(255,255,255,.3)">&#9733; Best Value</span>
+      <h3 class="font-display text-3xl sm:text-4xl font-bold mb-2">The Complete Bundle</h3>
+      <p class="text-lg mb-4 opacity-90">All 32 templates — one low price</p>
+      <div class="text-5xl font-black mb-6 stat-num">$10 <span class="text-xl font-normal opacity-70"><s>$30</s></span></div>
+      <button onclick="openBuyModal('bundle', null, 10)" class="btn text-base !py-3 !px-10 font-bold" style="background:#fff;color:var(--accent);box-shadow:0 8px 32px rgba(0,0,0,.15);border-radius:1rem" onmouseover="this.style.translate='0 -3px';this.style.boxShadow='0 12px 40px rgba(0,0,0,.2)'" onmouseout="this.style.translate='0';this.style.boxShadow='0 8px 32px rgba(0,0,0,.15)'">Get the Bundle &#8594;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEMPLATE QUIZ ===== -->
+<section id="quiz" class="py-24">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="reveal">
+      <span class="badge mb-4" style="background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 14%,transparent),color-mix(in srgb,var(--accent2) 14%,transparent));color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:.45rem 1.2rem">&#128161; Not Sure?</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold mb-3 tracking-tight" style="color:var(--text)">Find Your <span style="color:var(--accent)">Perfect Match</span></h2>
+      <p class="mb-8" style="color:var(--text3)">Tell us your field — we'll recommend the best templates.</p>
+    </div>
+    <div id="quizStep1" class="reveal reveal-delay-1">
+      <p class="font-grotesk font-semibold mb-6 text-lg" style="color:var(--text)">What best describes your role?</p>
+      <div class="grid sm:grid-cols-3 gap-3 max-w-2xl mx-auto">
+        <button onclick="quizAnswer('tech')" class="quiz-card">&#128187; Tech / Engineering</button>
+        <button onclick="quizAnswer('exec')" class="quiz-card">&#128188; Executive / Management</button>
+        <button onclick="quizAnswer('creative')" class="quiz-card">&#127912; Design / Creative</button>
+        <button onclick="quizAnswer('corporate')" class="quiz-card">&#128188; Finance / Legal</button>
+        <button onclick="quizAnswer('academic')" class="quiz-card">&#128220; Academia / Research</button>
+        <button onclick="quizAnswer('general')" class="quiz-card">&#128100; Other / General</button>
+      </div>
+    </div>
+    <div id="quizResult" style="display:none">
+      <p class="font-semibold mb-5 text-lg" style="color:var(--accent)">&#10003; Recommended for you:</p>
+      <div id="quizMatches" class="text-left space-y-4 max-w-xl mx-auto"></div>
+      <button onclick="quizReset()" class="btn btn-secondary mt-6">&#8592; Retry quiz</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section id="pricing" class="py-24 section-wrap" style="background:var(--bg-secondary);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="section-header reveal">
+      <span class="badge" style="background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 14%,transparent),color-mix(in srgb,var(--accent2) 14%,transparent));color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:.45rem 1.2rem">&#128176; Simple Pricing</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight" style="color:var(--text)">Invest in Your <span style="color:var(--accent)">Career</span></h2>
+      <p class="mt-2" style="color:var(--text3);max-width:440px;margin:0 auto">One-time payment. Instant delivery. Unlock codes arrive via email.</p>
+    </div>
+    <div class="grid sm:grid-cols-3 gap-5 max-w-3xl mx-auto">
+      <div class="pricing-card reveal reveal-delay-1">
+        <h3 class="font-grotesk font-bold text-xl mb-1">Single</h3>
+        <p class="text-sm mb-4" style="color:var(--text3)">One template of your choice</p>
+        <div class="text-5xl font-black mb-5 stat-num" style="color:var(--accent)">$2</div>
+        <a href="#templates" class="btn btn-secondary w-full">Choose Template &#8594;</a>
+      </div>
+      <div class="pricing-card featured reveal reveal-delay-2">
+        <h3 class="font-grotesk font-bold text-xl mb-1">3-Pack</h3>
+        <p class="text-sm mb-4" style="color:var(--text3)">Any 3 templates</p>
+        <div class="text-5xl font-black mb-5 stat-num" style="color:var(--accent)">$5</div>
+        <button onclick="openBuyModal('3pack', null, 5)" class="btn btn-primary w-full">Buy 3-Pack &#8594;</button>
+      </div>
+      <div class="pricing-card reveal reveal-delay-3">
+        <h3 class="font-grotesk font-bold text-xl mb-1">Bundle</h3>
+        <p class="text-sm mb-4" style="color:var(--text3)">All 32 templates</p>
+        <div class="text-5xl font-black mb-5 stat-num" style="color:var(--accent)">$10</div>
+        <button onclick="openBuyModal('bundle', null, 10)" class="btn btn-secondary w-full">Buy Bundle &#8594;</button>
+      </div>
+    </div>
+    <p class="mt-8 text-sm reveal" style="color:var(--text3)">USDT (BEP-20 / BSC Network). Pay from Binance, Trust Wallet, or any wallet.</p>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="py-24">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12 reveal">
+      <span class="badge mb-4" style="background:linear-gradient(135deg,color-mix(in srgb,var(--accent) 14%,transparent),color-mix(in srgb,var(--accent2) 14%,transparent));color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);padding:.45rem 1.2rem">&#10067; Questions</span>
+      <h2 class="font-display text-3xl sm:text-4xl font-bold tracking-tight" style="color:var(--text)">Common <span style="color:var(--accent)">Questions</span></h2>
+    </div>
+    <div class="space-y-3 max-w-2xl mx-auto" id="faqList">
+      <div class="reveal reveal-delay-1 p-5 rounded-xl glass" style="box-shadow:var(--shadow)"><button onclick="toggleFaq(this)" class="flex items-center justify-between w-full text-left faq-q"><span class="font-semibold">Are these templates really editable?</span><span class="faq-i text-xl font-light" style="color:var(--accent)">+</span></button><div class="faq-a text-sm leading-relaxed" style="color:var(--text3)">Yes. Each template is a standalone HTML file with inline CSS. Open in any text editor or use our online customizer to click-and-edit directly in the browser.</div></div>
+      <div class="reveal reveal-delay-1 p-5 rounded-xl glass" style="box-shadow:var(--shadow)"><button onclick="toggleFaq(this)" class="flex items-center justify-between w-full text-left faq-q"><span class="font-semibold">Do I need design skills?</span><span class="faq-i text-xl font-light" style="color:var(--accent)">+</span></button><div class="faq-a text-sm leading-relaxed" style="color:var(--text3)">No. Templates work out of the box. The browser customizer lets you click any text to edit it directly — no design experience needed.</div></div>
+      <div class="reveal reveal-delay-1 p-5 rounded-xl glass" style="box-shadow:var(--shadow)"><button onclick="toggleFaq(this)" class="flex items-center justify-between w-full text-left faq-q"><span class="font-semibold">How fast will I receive my unlock code?</span><span class="faq-i text-xl font-light" style="color:var(--accent)">+</span></button><div class="faq-a text-sm leading-relaxed" style="color:var(--text3)">Instantly. After sending USDT and entering your TX hash + email, the system verifies and emails your unlock code within seconds.</div></div>
+      <div class="reveal reveal-delay-1 p-5 rounded-xl glass" style="box-shadow:var(--shadow)"><button onclick="toggleFaq(this)" class="flex items-center justify-between w-full text-left faq-q"><span class="font-semibold">Is USDT the only payment option?</span><span class="faq-i text-xl font-light" style="color:var(--accent)">+</span></button><div class="faq-a text-sm leading-relaxed" style="color:var(--text3)">Yes, USDT on BSC (BEP-20). It's instant, low-fee, and accessible via Binance, Trust Wallet, MetaMask, and more.</div></div>
+      <div class="reveal reveal-delay-1 p-5 rounded-xl glass" style="box-shadow:var(--shadow)"><button onclick="toggleFaq(this)" class="flex items-center justify-between w-full text-left faq-q"><span class="font-semibold">Are these ATS-friendly?</span><span class="faq-i text-xl font-light" style="color:var(--accent)">+</span></button><div class="faq-a text-sm leading-relaxed" style="color:var(--text3)">Yes. All templates use standard heading structures and avoid tables for layout — designed to parse cleanly through any ATS.</div></div>
+      <div class="reveal reveal-delay-1 p-5 rounded-xl glass" style="box-shadow:var(--shadow)"><button onclick="toggleFaq(this)" class="flex items-center justify-between w-full text-left faq-q"><span class="font-semibold">What if something goes wrong?</span><span class="faq-i text-xl font-light" style="color:var(--accent)">+</span></button><div class="faq-a text-sm leading-relaxed" style="color:var(--text3)">Email <strong class="contact-email" style="color:var(--accent)"></strong> with your TX hash and we'll help within 24 hours.</div></div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="no-print border-t py-12 text-center" style="border-color:var(--border);background:var(--card);backdrop-filter:blur(20px)">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="flex items-center justify-center gap-2.5 mb-4">
+      <span class="flex items-center justify-center w-8 h-8 rounded-xl" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:.9rem;font-weight:700">RP</span>
+      <span class="font-display font-bold text-lg">ResumePro</span>
+    </div>
+    <p style="color:var(--text3);font-size:.875rem">&copy; 2026 ResumePro. All templates are digital products. No refunds after download.</p>
+    <div class="flex justify-center gap-4 mt-4 text-xs" style="color:var(--text3)">
+      <a href="#templates" style="transition:color .2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">Templates</a>
+      <a href="#pricing" style="transition:color .2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">Pricing</a>
+      <a href="#faq" style="transition:color .2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">FAQ</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== DETAIL MODAL ===== -->
+<div id="detailModal" class="modal-overlay">
+  <div class="modal-content">
+    <button onclick="closeDetailModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110 hover:rotate-90" style="color:var(--text2);background:var(--bg);border:none;cursor:pointer;font-size:1.3rem;transition:all .3s">&times;</button>
+    <div id="detailContent"></div>
+  </div>
+</div>
+
+<!-- ===== BUY MODAL ===== -->
+<div id="buyModal" class="modal-overlay">
+  <div class="modal-content">
+    <button onclick="closeBuyModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110 hover:rotate-90" style="color:var(--text2);background:var(--bg);border:none;cursor:pointer;font-size:1.3rem;transition:all .3s">&times;</button>
+    <div id="buyContent">
+      <div class="flex items-center justify-center gap-2 mb-1">
+        <span class="flex items-center justify-center w-9 h-9 rounded-xl" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-size:.9rem">&#128722;</span>
+        <h3 class="font-display text-2xl font-bold" id="buyModalTitle">Checkout</h3>
+      </div>
+      <p class="mb-1 text-sm" style="color:var(--text3)" id="buyProductName">Resume Template</p>
+      <div class="text-4xl font-black mb-5 stat-num" style="color:var(--accent)" id="buyPrice">$2</div>
+
+      <div id="pickerStep" style="display:none;">
+        <div class="glass p-5 rounded-2xl mb-4" style="box-shadow:var(--shadow)">
+          <p class="text-sm font-semibold mb-3">Pick exactly 3 templates:</p>
+          <div class="pick-grid" id="pickerGrid"></div>
+          <p class="text-xs mt-3" style="color:var(--text3)" id="pickerStatus">Select 3 templates</p>
+          <button onclick="confirmPick3()" id="pickerConfirmBtn" class="btn btn-primary w-full mt-3 text-sm" disabled>Confirm &amp; Continue &#8594;</button>
+        </div>
+      </div>
+
+      <div id="buyStep1">
+        <div class="glass p-6 rounded-2xl mb-5 text-left" style="box-shadow:var(--shadow)">
+          <p class="text-sm font-semibold mb-3 flex items-center gap-2"><span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff">1</span> Send USDT (BEP-20) to:</p>
+          <div class="flex items-center gap-2 mb-4">
+            <input type="text" value="" id="walletAddress" readonly class="text-xs font-mono text-center" style="flex:1;background:var(--card);letter-spacing:.03em" />
+            <button onclick="copyAddress()" class="btn btn-primary !py-2 !px-3 text-xs whitespace-nowrap !rounded-lg">&#128203; Copy</button>
+          </div>
+          <div id="qrcode" class="flex justify-center mb-4"></div>
+          <div class="text-sm space-y-1.5" style="color:var(--text3)">
+            <p><strong style="color:var(--text)">Amount:</strong> <span id="buyAmount">$2</span> USDT</p>
+            <p><strong style="color:var(--text)">Network:</strong> BSC (BEP-20)</p>
+          </div>
+          <div class="mt-4 p-4 rounded-xl text-xs text-left" style="background:var(--bg);border:1px dashed var(--border);color:var(--text3);line-height:1.6">
+            <strong style="color:var(--text)">New to crypto?</strong> Buy USDT on Binance, then send to the address above. Make sure you select <strong>BSC (BEP-20)</strong> network.
+          </div>
+        </div>
+        <button onclick="showVerifyForm()" class="btn btn-primary text-base w-full !py-3 !rounded-xl">&#9989; I've Sent the Payment — Verify</button>
+      </div>
+
+      <div id="buyStep2" style="display:none;">
+        <div class="glass p-6 rounded-2xl mb-5 text-left" style="box-shadow:var(--shadow)">
+          <p class="text-sm font-semibold mb-4 flex items-center gap-2"><span class="w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold" style="background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff">2</span> Enter transaction details:</p>
+          <form id="verifyForm" onsubmit="submitVerification(event)" class="space-y-4">
+            <div>
+              <label for="verifyEmail" class="block text-sm font-medium mb-1" style="color:var(--text)">Your Email</label>
+              <input type="email" id="verifyEmail" required placeholder="you@example.com" />
+            </div>
+            <div>
+              <label for="verifyTxHash" class="block text-sm font-medium mb-1" style="color:var(--text)">Transaction Hash (TX Hash)</label>
+              <input type="text" id="verifyTxHash" required placeholder="0x..." class="font-mono text-xs" />
+              <p class="text-xs mt-1.5" style="color:var(--text3)">Found in your wallet under USDT transfer history</p>
+            </div>
+            <button type="submit" id="verifySubmitBtn" class="btn btn-primary w-full text-base !py-3 !rounded-xl">&#128270; Verify Payment</button>
+            <button type="button" onclick="backToStep1()" class="btn btn-secondary w-full text-sm">&#8592; Back</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="buyStep3" style="display:none;">
+        <div class="p-6 rounded-2xl mb-5" style="background:linear-gradient(135deg,#f0fdf4,#ecfdf5);border:1px solid #bbf7d0;box-shadow:0 8px 32px rgba(16,185,129,.15)">
+          <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3" style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-size:2rem;box-shadow:0 4px 16px rgba(16,185,129,.3)">&#10003;</div>
+          <h3 class="font-display text-xl font-bold mb-1" style="color:#065f46;">Payment Verified!</h3>
+          <p class="text-sm mb-3" style="color:#166534;" id="verifySuccessMsg">Your unlock code is below.</p>
+          <div style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border:2px dashed #818cf8;border-radius:16px;padding:1.25rem;text-align:center;">
+            <p style="font-size:.7rem;color:#64748b;margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.12em;font-weight:700">Unlock Code</p>
+            <div id="verifyUnlockCode" style="font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:#4f46e5;letter-spacing:.12em;word-break:break-all"></div>
+            <button onclick="copyUnlockCode()" class="btn btn-primary !py-1.5 !px-5 text-sm mt-3 !rounded-lg">&#128203; Copy Code</button>
+          </div>
+          <p class="text-xs mt-2" style="color:#64748b">Also sent to <strong id="verifySentEmail"></strong></p>
+          <div class="flex gap-2 mt-3">
+            <a href="customize.html" target="_blank" class="btn flex-1 text-sm" style="background:linear-gradient(135deg,#065f46,#047857);color:#fff;box-shadow:0 4px 16px rgba(6,95,70,.3)">&#9998; Open Customizer</a>
+            <button onclick="closeBuyModal()" class="btn btn-secondary flex-1 text-sm">&#10003; Done</button>
+          </div>
+        </div>
+        <div class="p-4 rounded-xl text-sm text-left glass" style="border:1px solid var(--card-border);color:var(--text3);box-shadow:var(--shadow)">
+          <p class="font-semibold mb-2" style="color:var(--text)">&#128274; Unlocked templates:</p>
+          <ul id="verifyUnlockedList" class="space-y-1 text-xs" style="color:#065f46;"></ul>
+        </div>
+      </div>
+
+      <div id="buyStep4" style="display:none;">
+        <div class="p-6 rounded-2xl mb-5" style="background:linear-gradient(135deg,#fef2f2,#fee2e2);border:1px solid #fecaca;">
+          <div class="text-4xl mb-2">&#10060;</div>
+          <h3 class="font-display text-xl font-bold mb-1" style="color:#991b1b;">Verification Failed</h3>
+          <p class="text-sm" style="color:#7f1d1d;" id="verifyErrorMsg">Check your TX hash and try again.</p>
+        </div>
+        <button onclick="backToStep2()" class="btn btn-primary w-full text-base !rounded-xl">&#8592; Try Again</button>
+        <p class="text-xs mt-3" style="color:var(--text3)">Need help? Email <span class="contact-email" style="color:var(--accent)"></span></p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div id="toast" class="toast"></div>
+
+<script>
+const STORE = {
+  walletAddress: '0x56da8226d5a0e833e91ca4b3614be0b4e5b34b6b',
+  contactEmail: 'thinkedover@gmail.com',
+  apiBase: 'https://resumepro-store.vercel.app'
+};
+
+let currentBuyType = null;
+let currentBuyTemplateIds = [];
+let pick3Selected = [];
+let isDark = localStorage.getItem('resumepro-dark') === 'true';
+
+const templates = [
+  { id:'classic', name:'Classic', style:'Editorial Serif', bg:'#faf9f7', color:'#1a1a2e', audience:'Product / General', tagline:'Refined typography with numbered sections', badges:['Signature','ATS-Friendly'], desc:'Cormorant Garamond + Inter pairing. Gold accents, timeline entries.', price:2 },
+  { id:'executive', name:'Executive', style:'Dark Luxury', bg:'#0a1628', color:'#c9952b', audience:'C-Suite / Board', tagline:'Dark navy, gold, indented sidebar', badges:['Signature','Premium'], desc:'Deep navy header, gold typography, competency grid.', price:2 },
+  { id:'modern', name:'Modern', style:'Technical Dark', bg:'#0f172a', color:'#818cf8', audience:'Engineers / Devs', tagline:'Indigo dark mode, filled skill dots', badges:['Signature','ATS-Friendly'], desc:'Dark indigo sidebar with vibrant accent titles.', price:2 },
+  { id:'editorial', name:'Editorial', style:'Magazine', bg:'#f0ece6', color:'#c9372c', audience:'Directors', tagline:'Three-column editorial with vertical text', badges:['Showstopper','Print-Ready'], desc:'Magazine-style with massive serif masthead.', price:2 },
+  { id:'minimal', name:'Minimal', style:'Understated', bg:'#fafafa', color:'#1e293b', audience:'Design/Creative', tagline:'Whitespace-forward, elegant typography', badges:['ATS-Friendly','Print-Ready'], desc:'Whitespace-forward with elegant typography.', price:2 },
+  { id:'creative', name:'Creative', style:'Artistic', bg:'#fdf2f8', color:'#ec4899', audience:'Design/Marketing', tagline:'Bold colors & unique layout', badges:['Creative','Print-Ready'], desc:'Bold colors and a unique layout.', price:2 },
+  { id:'technical', name:'Technical', style:'Structured', bg:'#f0fdf4', color:'#059669', audience:'Engineers/Devs', tagline:'Optimized for skills & projects', badges:['ATS-Friendly','Print-Ready'], desc:'Optimized for skills, projects, and technical expertise.', price:2 },
+  { id:'academic', name:'Academic', style:'Scholarly', bg:'#f5f3ff', color:'#7c3aed', audience:'Academia', tagline:'Publications, research & conferences', badges:['Academic','Print-Ready'], desc:'Publications, research, and conference sections.', price:2 },
+  { id:'bold', name:'Bold', style:'Confident', bg:'#fff7ed', color:'#ea580c', audience:'Sales/Leadership', tagline:'Strong typography, commands attention', badges:['ATS-Friendly','Print-Ready'], desc:'Strong typography that commands attention.', price:2 },
+  { id:'elegant', name:'Elegant', style:'Refined', bg:'#f8fafc', color:'#0d9488', audience:'Finance/Legal', tagline:'Sophisticated, refined details', badges:['Premium','Print-Ready'], desc:'Sophisticated design for finance, legal, consulting.', price:2 },
+  { id:'compact', name:'Compact', style:'Dense', bg:'#f1f5f9', color:'#475569', audience:'Career Changers', tagline:'One-page, maximum impact', badges:['ATS-Friendly','Print-Ready'], desc:'One-page optimized for maximum impact.', price:2 },
+  { id:'vibrant', name:'Vibrant', style:'Bold Creative', bg:'#f5f3ff', color:'#7c3aed', audience:'Designers', tagline:'Purple sidebar, skill bars, portfolio', badges:['Showstopper','Creative','Print-Ready'], desc:'Bold purple gradient sidebar with visual skill bars.', price:2 },
+  { id:'mcwell', name:'McWell', style:'Clean Corporate', bg:'#f8fafc', color:'#1e3a5f', audience:'Corporate / Finance', tagline:'Clean one-column, refined serif', badges:['Premium','ATS-Friendly'], desc:'Elegant serif body with navy accents, thin gold lines, corporate feel.', price:2 },
+  { id:'altacv', name:'AltaCV', style:'Two-Column Teal', bg:'#0d9488', color:'#ffffff', audience:'Creative / Design', tagline:'Teal sidebar, elegant serif', badges:['Signature','Print-Ready'], desc:'Teal sidebar, Playfair Display headings, circular skill markers.', price:2 },
+  { id:'friggeri', name:'Friggeri', style:'Dark Navy', bg:'#0a1628', color:'#c9372c', audience:'Technical', tagline:'Dark sidebar, red accent, small caps', badges:['Premium','Print-Ready'], desc:'Navy sidebar with white text, monospace contact, red accent dates.', price:2 },
+  { id:'twentys', name:'TwentySeconds', style:'Bold Modern', bg:'#7c3aed', color:'#ffffff', audience:'Modern Professional', tagline:'Bold header, vibrant purple', badges:['Showstopper','Creative'], desc:'Vibrant purple accent, avatar, numbered section badges.', price:2 },
+  { id:'material', name:'Material', style:'Material Design', bg:'#4338ca', color:'#ffffff', audience:'Tech / Product', tagline:'Material Design indigo layout', badges:['Premium','ATS-Friendly'], desc:'Indigo primary, card-style sections, Material underline on headings.', price:2 },
+  { id:'orbit', name:'Orbit', style:'Warm Amber', bg:'#d97706', color:'#ffffff', audience:'Marketing', tagline:'Warm amber, timeline entries', badges:['Signature','Print-Ready'], desc:'Amber accents, circular decorative elements, timeline-style experience.', price:2 },
+  { id:'hipster', name:'Hipster', style:'Dark Green', bg:'#065f46', color:'#ffffff', audience:'Design / Creative', tagline:'Green sidebar, skill dots', badges:['Creative','Print-Ready'], desc:'Emerald sidebar, Playfair Display name, circular skill dots.', price:2 },
+  { id:'rows', name:'Rows', style:'Clean Grid', bg:'#059669', color:'#ffffff', audience:'Consulting', tagline:'Row-based entries, emerald accent', badges:['ATS-Friendly','Print-Ready'], desc:'Each job as a bordered row, alternating backgrounds, emerald accent.', price:2 },
+  { id:'sidebarleft', name:'Sidebar Left', style:'Charcoal Dark', bg:'#1e1e2f', color:'#f97316', audience:'Executives', tagline:'Charcoal sidebar, coral accent', badges:['Premium','ATS-Friendly'], desc:'Dark charcoal sidebar, coral accent, clean experience timeline.', price:2 },
+  { id:'infographic', name:'Infographic', style:'Data Visual', bg:'#0d9488', color:'#ffffff', audience:'Analytics / Data', tagline:'Data-driven, progress bars', badges:['Showstopper','Creative'], desc:'Teal accent, skill progress bars with percentages, timeline markers.', price:2 },
+  { id:'sharp', name:'Sharp', style:'Geometric', bg:'#1e293b', color:'#06b6d4', audience:'Engineers', tagline:'Geometric, cyan accent', badges:['Premium','ATS-Friendly'], desc:'Dark slate header, sharp angles, cyan accent, monospace code elements.', price:2 },
+  { id:'simple', name:'Simple', style:'Ultra Minimal', bg:'#ffffff', color:'#e11d48', audience:'Design', tagline:'Ultra-minimal, rose accents', badges:['ATS-Friendly','Print-Ready'], desc:'Whitespace-forward, thin gray borders, rose highlights, font-weight 300.', price:2 },
+  { id:'thoughteer', name:'Thoughteer', style:'Warm Academia', bg:'#fdf6ec', color:'#b8860b', audience:'Academia', tagline:'Sepia-toned vintage feel', badges:['Academic','Premium'], desc:'Sepia page, Source Serif 4, deep brown text, gold accents, classic.', price:2 },
+  { id:'pseudomanifold', name:'Pseudomanifold', style:'Scientific', bg:'#0f172a', color:'#7c3aed', audience:'Science / Math', tagline:'Scientific, purple grid', badges:['Academic','Print-Ready'], desc:'Dark blue header, gray section backgrounds, purple accent, grid skills.', price:2 },
+  { id:'bobok', name:'Bobok', style:'Consulting Pro', bg:'#1e3a8a', color:'#06b6d4', audience:'Consulting', tagline:'Professional, dark blue gradient', badges:['Premium','ATS-Friendly'], desc:'Dark blue/teal gradient sidebar, double underline headers, consulting feel.', price:2 },
+  { id:'cies', name:'Cies', style:'Warm European', bg:'#991b1b', color:'#fefce8', audience:'European', tagline:'Brick-red sidebar, cream main', badges:['Signature','Print-Ready'], desc:'Dark brick-red sidebar, cream background, warm serif, European style.', price:2 },
+  { id:'gboeing', name:'GBoeing', style:'Academic Research', bg:'#ea580c', color:'#ffffff', audience:'Research', tagline:'Research-focused, publications', badges:['Academic','Premium'], desc:'Orange accent, small font, publication references, DOI-style entries.', price:2 },
+  { id:'roycoding', name:'RoyCoding', style:'Fun Creative', bg:'#0f172a', color:'#d946ef', audience:'Creative Tech', tagline:'Gradient bar, playful design', badges:['Creative','Showstopper'], desc:'Pink-to-purple gradient, dark header, emoji markers, fun vibrant feel.', price:2 },
+  { id:'agonist', name:'Agonist', style:'Blue Professional', bg:'#f1f5f9', color:'#2563eb', audience:'Professional', tagline:'Clean two-column, blue sidebar', badges:['ATS-Friendly','Print-Ready'], desc:'Light gray sidebar, blue accent, clean professional layout, versatile.', price:2 },
+  { id:'sc932', name:'SC932', style:'Formal Gold', bg:'#ca8a04', color:'#1e293b', audience:'Formal / Law', tagline:'Formal one-column, gold accents', badges:['Premium','ATS-Friendly'], desc:'Large name, gold role dividers, serif-italic quotations, formal feel.', price:2 }
+];
+
+const ALL_IDS = templates.map(t => t.id);
+
+// ===== PARTICLES =====
+function createParticles() {
+  const container = document.getElementById('particles');
+  for (let i = 0; i < 15; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+    p.style.opacity = .15 + Math.random() * .2;
+    p.style.animationDuration = (12 + Math.random() * 18) + 's';
+    p.style.animationDelay = (Math.random() * 20) + 's';
+    container.appendChild(p);
+  }
+}
+createParticles();
+
+// ===== DARK MODE =====
+function applyDark() {
+  document.documentElement.classList.toggle('dark', isDark);
+  ['sunIcon','sunIconMob'].forEach(id => document.getElementById(id).style.display = isDark ? 'none' : 'block');
+  ['moonIcon','moonIconMob'].forEach(id => document.getElementById(id).style.display = isDark ? 'block' : 'none');
+  const qr = document.querySelector('#qrcode canvas');
+  if (qr) { /* qr re-renders in openBuyModal */ }
+}
+function toggleDark() { isDark = !isDark; localStorage.setItem('resumepro-dark', isDark); applyDark(); }
+applyDark();
+
+// ===== MOBILE MENU =====
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  const closeIcon = document.getElementById('closeIcon');
+  const isOpen = menu.style.display === 'block';
+  menu.style.display = isOpen ? 'none' : 'block';
+  menuIcon.style.display = isOpen ? 'block' : 'none';
+  closeIcon.style.display = isOpen ? 'none' : 'block';
+}
+
+// ===== SCROLL REVEAL =====
+function observeReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+}
+observeReveal();
+
+// ===== NAVBAR SCROLL EFFECT =====
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  const scrollY = window.scrollY;
+  if (scrollY > 20) {
+    nav.style.boxShadow = '0 4px 24px rgba(0,0,0,.06)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+  lastScroll = scrollY;
+});
+
+// ===== RENDER TEMPLATES =====
+function renderTemplates() {
+  const grid = document.getElementById('templateGrid');
+  grid.innerHTML = templates.map((t, i) => `
+    <div class="card template-card reveal" onclick="openDetail('${t.id}')" style="transition-delay:${i * 0.05}s">
+      <div class="preview-box">
+        <img src="previews/${t.id}.png" alt="${t.name}" class="card-img" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+        <div class="flex items-center justify-center font-display text-xl" hidden style="position:absolute;inset:0;background:${t.bg};color:${t.color}">${t.name}</div>
+      </div>
+      <div class="p-4 sm:p-5">
+        <div class="flex items-center justify-between mb-1.5">
+          <h3 class="font-bold text-base sm:text-lg" style="color:var(--text)">${t.name}</h3>
+          <span class="font-black text-base sm:text-lg stat-num" style="color:var(--accent)">$${t.price}</span>
+        </div>
+        <div class="flex flex-wrap gap-1 mb-2.5 badge-group">
+          ${t.badges.map(b => `<span class="text-[.6rem] font-semibold px-2.5 py-[3px] rounded-full" style="background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent)">${b}</span>`).join('')}
+        </div>
+        <p class="text-sm leading-relaxed" style="color:var(--text3)">${t.tagline}</p>
+        <div class="flex gap-2 mt-4">
+          <button onclick="event.stopPropagation();openDetail('${t.id}')" class="btn btn-secondary text-xs !py-2 !px-3 flex-1 !rounded-lg">Preview</button>
+          <button onclick="event.stopPropagation();openBuyModal('single','${t.id}',${t.price})" class="btn btn-primary text-xs !py-2 !px-3 flex-1 !rounded-lg">Buy — $${t.price}</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+  // observe new reveals
+  observeReveal();
+}
+renderTemplates();
+
+// ===== DETAIL MODAL =====
+function openDetail(id) {
+  const t = templates.find(x => x.id === id);
+  if (!t) return;
+  document.getElementById('detailContent').innerHTML = `
+    <div class="flex items-start justify-between mb-4">
+      <div>
+        <h3 class="font-display text-2xl font-bold" style="color:var(--text)">${t.name}</h3>
+        <p class="text-xs mt-0.5" style="color:var(--text3)">${t.style}</p>
+        <div class="flex flex-wrap gap-1.5 mt-2">
+          ${t.badges.map(b => `<span class="badge text-[.65rem]" style="background:color-mix(in srgb,var(--accent) 10%,transparent);color:var(--accent);border:1px solid color-mix(in srgb,var(--accent) 20%,transparent)">${b}</span>`).join('')}
+          <span class="badge text-[.65rem]" style="background:var(--bg);color:var(--text3);border:1px solid var(--border)">${t.audience}</span>
+        </div>
+      </div>
+      <span class="text-3xl font-black stat-num" style="color:var(--accent)">$${t.price}</span>
+    </div>
+    <p class="mb-5" style="color:var(--text3);line-height:1.7">${t.desc}</p>
+    <div class="flex gap-3">
+      <a href="customize.html?template=${t.id}" target="_blank" class="btn btn-secondary flex-1 text-center text-sm">Customize</a>
+      <a href="templates/${t.id}.html" target="_blank" class="btn btn-secondary flex-1 text-center text-sm">Live Preview</a>
+      <button onclick="closeDetailModal();openBuyModal('single','${t.id}',${t.price})" class="btn btn-primary flex-1 text-sm">Buy — $${t.price}</button>
+    </div>
+  `;
+  document.getElementById('detailModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeDetailModal() { document.getElementById('detailModal').classList.remove('active'); document.body.style.overflow = ''; }
+document.getElementById('detailModal').addEventListener('click', function(e) { if (e.target === this) closeDetailModal(); });
+
+// ===== BUY MODAL =====
+function openBuyModal(type, templateIdOrNull, price) {
+  currentBuyType = type;
+  document.getElementById('buyModalTitle').textContent = type === 'single' ? 'Buy Template' : type === '3pack' ? 'Buy 3-Pack' : 'Buy Bundle';
+  document.getElementById('buyPrice').textContent = '$' + price;
+  document.getElementById('buyAmount').textContent = '$' + price;
+  document.getElementById('buyModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('buyStep1').style.display = 'block';
+  document.getElementById('buyStep2').style.display = 'none';
+  document.getElementById('buyStep3').style.display = 'none';
+  document.getElementById('buyStep4').style.display = 'none';
+  document.getElementById('pickerStep').style.display = 'none';
+
+  if (type === 'single') {
+    currentBuyTemplateIds = templateIdOrNull ? [templateIdOrNull] : [];
+    const t = templates.find(x => x.id === templateIdOrNull);
+    document.getElementById('buyProductName').textContent = t ? t.name + ' Template' : 'Single Template';
+  } else if (type === '3pack') {
+    currentBuyTemplateIds = [];
+    pick3Selected = [];
+    document.getElementById('buyProductName').textContent = '3-Template Pack (pick 3)';
+    document.getElementById('pickerStep').style.display = 'block';
+    renderPicker3();
+  } else if (type === 'bundle') {
+    currentBuyTemplateIds = ALL_IDS;
+    document.getElementById('buyProductName').textContent = 'Complete Bundle (All 32)';
+  }
+
+  document.getElementById('qrcode').innerHTML = '';
+  new QRCode(document.getElementById('qrcode'), {
+    text: STORE.walletAddress, width: 176, height: 176,
+    colorDark: (isDark ? '#f1f5f9' : '#0f172a'),
+    colorLight: (isDark ? '#1e293b' : '#ffffff'),
+    correctLevel: QRCode.CorrectLevel.H
+  });
+  document.getElementById('walletAddress').value = STORE.walletAddress;
+  setTimeout(() => copyAddress(), 350);
+}
+
+function closeBuyModal() {
+  document.getElementById('buyModal').classList.remove('active');
+  document.body.style.overflow = '';
+  document.getElementById('verifyForm').reset();
+}
+document.getElementById('buyModal').addEventListener('click', function(e) { if (e.target === this) closeBuyModal(); });
+
+// ===== 3-PACK PICKER =====
+function renderPicker3() {
+  const grid = document.getElementById('pickerGrid');
+  grid.innerHTML = templates.map(t => `
+    <div class="pick-item ${pick3Selected.includes(t.id) ? 'picked' : ''}" onclick="togglePick3('${t.id}')" id="p3-${t.id}">${t.name}</div>
+  `).join('');
+  updatePickerStatus();
+}
+function togglePick3(id) {
+  const idx = pick3Selected.indexOf(id);
+  if (idx >= 0) pick3Selected.splice(idx, 1);
+  else if (pick3Selected.length < 3) pick3Selected.push(id);
+  else { showToast('You can only pick 3 templates'); return; }
+  renderPicker3();
+}
+function updatePickerStatus() {
+  document.getElementById('pickerStatus').textContent = pick3Selected.length + ' of 3 selected';
+  document.getElementById('pickerConfirmBtn').disabled = pick3Selected.length !== 3;
+}
+function confirmPick3() {
+  if (pick3Selected.length !== 3) return;
+  currentBuyTemplateIds = pick3Selected;
+  document.getElementById('pickerStep').style.display = 'none';
+  document.getElementById('buyProductName').textContent = '3-Pack: ' + pick3Selected.map(id => templates.find(t => t.id === id).name).join(', ');
+}
+
+// ===== VERIFY FLOW =====
+function showVerifyForm() {
+  if (currentBuyType === '3pack' && currentBuyTemplateIds.length !== 3) { showToast('Please select your 3 templates first'); return; }
+  document.getElementById('buyStep1').style.display = 'none';
+  document.getElementById('buyStep2').style.display = 'block';
+  document.getElementById('buyStep4').style.display = 'none';
+}
+function backToStep1() { document.getElementById('buyStep1').style.display = 'block'; document.getElementById('buyStep2').style.display = 'none'; }
+function backToStep2() { document.getElementById('buyStep2').style.display = 'block'; document.getElementById('buyStep4').style.display = 'none'; }
+
+async function submitVerification(e) {
+  e.preventDefault();
+  const btn = document.getElementById('verifySubmitBtn');
+  const email = document.getElementById('verifyEmail').value.trim();
+  const txHash = document.getElementById('verifyTxHash').value.trim();
+  if (!email || !txHash) { showToast('Fill in email and TX hash'); return; }
+  btn.disabled = true; btn.textContent = 'Verifying...';
+  try {
+    const res = await fetch(STORE.apiBase + '/api/verify-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ txHash, email, product: currentBuyType, templateIds: currentBuyTemplateIds })
+    });
+    const data = await res.json();
+    if (res.ok && data.success) {
+      document.getElementById('buyStep2').style.display = 'none';
+      document.getElementById('buyStep3').style.display = 'block';
+      document.getElementById('verifyUnlockCode').textContent = data.unlockCode;
+      document.getElementById('verifySuccessMsg').textContent = data.message || 'Payment verified!';
+      document.getElementById('verifySentEmail').textContent = email;
+      const listEl = document.getElementById('verifyUnlockedList');
+      if (data.unlockedTemplates === 'ALL' || (Array.isArray(data.unlockedTemplates) && data.unlockedTemplates.includes('ALL'))) {
+        listEl.innerHTML = templates.map(t => '<li class="flex items-center gap-2"><span style="color:#10b981">&#10003;</span>' + t.name + '</li>').join('');
+      } else if (Array.isArray(data.unlockedTemplates)) {
+        listEl.innerHTML = data.unlockedTemplates.map(id => {
+          const t = templates.find(x => x.id === id);
+          return t ? '<li class="flex items-center gap-2"><span style="color:#10b981">&#10003;</span>' + t.name + '</li>' : '';
+        }).join('');
+      }
+      showToast('Payment verified!');
+    } else {
+      document.getElementById('buyStep2').style.display = 'none';
+      document.getElementById('buyStep4').style.display = 'block';
+      document.getElementById('verifyErrorMsg').textContent = data.error || 'Verification failed.';
+    }
+  } catch (err) {
+    document.getElementById('buyStep2').style.display = 'none';
+    document.getElementById('buyStep4').style.display = 'block';
+    document.getElementById('verifyErrorMsg').textContent = 'Network error. Try again.';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Verify Payment';
+  }
+}
+
+// ===== COPY =====
+function copyAddress() {
+  const input = document.getElementById('walletAddress');
+  input.select(); input.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(input.value).then(() => showToast('Wallet address copied!')).catch(() => showToast('Wallet address copied!'));
+}
+function copyUnlockCode() {
+  const code = document.getElementById('verifyUnlockCode').textContent;
+  navigator.clipboard.writeText(code).then(() => showToast('Unlock code copied!')).catch(() => showToast('Unlock code copied!'));
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.innerHTML = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ===== QUIZ =====
+const quizMatches = {
+  tech:    [{ id:'modern', reason:'Built for engineers — dark indigo sidebar with skill dots' }, { id:'technical', reason:'Explicitly designed for technical roles' }, { id:'material', reason:'Material Design — clean tech aesthetic' }, { id:'sharp', reason:'Geometric cyan design for engineers' }],
+  exec:    [{ id:'executive', reason:'Dark navy, gold typography — for C-Suite' }, { id:'editorial', reason:'Magazine-style layout for executives' }, { id:'sidebarleft', reason:'Charcoal sidebar, coral accent — executive feel' }, { id:'bobok', reason:'Consulting pro with dark blue gradient' }],
+  creative:[{ id:'creative', reason:'Bold colors for creative professionals' }, { id:'vibrant', reason:'Purple gradient with skill bars' }, { id:'altacv', reason:'Teal sidebar — modern creative layout' }, { id:'roycoding', reason:'Fun gradient design, playful elements' }],
+  corporate:[{ id:'classic', reason:'Timeless serif for finance/legal' }, { id:'elegant', reason:'Refined, sophisticated' }, { id:'mcwell', reason:'Clean corporate with serif body' }, { id:'sc932', reason:'Formal gold accents for professionals' }],
+  academic:[{ id:'academic', reason:'Publications and research sections' }, { id:'thoughteer', reason:'Sepia-toned vintage academic feel' }, { id:'gboeing', reason:'Research-focused with references' }, { id:'pseudomanifold', reason:'Scientific grid layout' }],
+  general: [{ id:'classic', reason:'Most versatile template' }, { id:'compact', reason:'One-page optimized' }, { id:'simple', reason:'Ultra-minimal, clean' }, { id:'agonist', reason:'Clean blue professional, versatile' }]
+};
+function quizAnswer(role) {
+  const matches = quizMatches[role] || quizMatches['general'];
+  document.getElementById('quizMatches').innerHTML = matches.map(m => {
+    const t = templates.find(x => x.id === m.id);
+    if (!t) return '';
+    return `<div class="glass p-4 sm:p-5 rounded-xl flex items-center justify-between gap-4 transition-all hover:translate-y-[-2px]" style="border:1px solid var(--card-border);box-shadow:var(--shadow);transition:all .3s cubic-bezier(.175,.885,.32,1.275)">
+      <div class="text-left"><p class="font-bold text-base" style="color:var(--text)">${t.name}</p><p class="text-sm" style="color:var(--text3)">${m.reason}</p></div>
+      <div class="flex gap-2 flex-shrink-0">
+        <button onclick="closeDetailModal();openDetail('${t.id}')" class="btn btn-secondary text-xs !py-2 !px-3">Preview</button>
+        <button onclick="closeDetailModal();openBuyModal('single','${t.id}',${t.price})" class="btn btn-primary text-xs !py-2 !px-3">$${t.price}</button>
+      </div>
+    </div>`;
+  }).join('');
+  document.getElementById('quizStep1').style.display = 'none';
+  const result = document.getElementById('quizResult');
+  result.style.display = 'block';
+  setTimeout(() => result.style.opacity = '1', 10);
+}
+function quizReset() {
+  document.getElementById('quizStep1').style.display = 'block';
+  const result = document.getElementById('quizResult');
+  result.style.display = 'none';
+}
+
+// ===== FAQ =====
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const icon = btn.querySelector('.faq-i');
+  const isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(el => el.classList.remove('open'));
+  document.querySelectorAll('.faq-i').forEach(el => el.classList.remove('open'));
+  if (!isOpen) { answer.classList.add('open'); icon.classList.add('open'); }
+}
+
+// ===== INIT =====
+document.querySelectorAll('.contact-email').forEach(el => { el.textContent = STORE.contactEmail; });
+</script>
+</body>
+</html>

@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bold Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+
+    /* ── Reset & Base ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body {
+      font-family: 'Manrope', sans-serif;
+      color: #0f172a;
+      background: #fafafa;
+      line-height: 1.55;
+      font-size: 9.5pt;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Page ── */
+    .page {
+      max-width: 21cm;
+      min-height: 29.7cm;
+      margin: 2cm auto;
+      background: #fff;
+      position: relative;
+      display: flex;
+      box-shadow: 0 8px 40px rgba(15,23,42,0.08);
+      overflow: hidden;
+    }
+
+    /* ── Left Orange Stripe ── */
+    .side-stripe {
+      width: 2.4cm;
+      min-height: 29.7cm;
+      background: linear-gradient(180deg, #ea580c 0%, #c2410c 50%, #ea580c 100%);
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 4.5cm;
+    }
+    .side-stripe::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 8px,
+        rgba(255,255,255,0.04) 8px,
+        rgba(255,255,255,0.04) 16px
+      );
+      pointer-events: none;
+    }
+    .stripe-dot {
+      width: 6px; height: 6px;
+      background: rgba(255,255,255,0.35);
+      border-radius: 50%;
+      margin-bottom: 1.2rem;
+    }
+    .stripe-dot:first-of-type { background: rgba(255,255,255,0.7); }
+
+    /* ── Main Content ── */
+    .content {
+      flex: 1;
+      padding: 2.2cm 2.2cm 2.2cm 1.6cm;
+    }
+
+    /* ── Header ── */
+    .header { margin-bottom: 1.2rem; position: relative; }
+    .header h1 {
+      font-size: 40pt;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+    .header h1 .highlight {
+      color: #ea580c;
+    }
+    .header .title {
+      font-size: 12pt;
+      font-weight: 700;
+      color: #ea580c;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      margin-top: 0.35rem;
+      position: relative;
+      display: inline-block;
+    }
+    .header .title::after {
+      content: "";
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: #ea580c;
+      margin-top: 0.3rem;
+      border-radius: 2px;
+    }
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem 2rem;
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #475569;
+      margin-top: 0.7rem;
+    }
+    .contact-row span {
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .contact-row .icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 18px; height: 18px;
+      background: #fff7ed;
+      border-radius: 50%;
+      font-size: 8pt;
+      color: #ea580c;
+      flex-shrink: 0;
+    }
+
+    /* ── Impact Metric Cards ── */
+    .metrics-row {
+      display: flex;
+      gap: 0.6rem;
+      margin: 0.9rem 0 1.1rem;
+    }
+    .metric-card {
+      flex: 1;
+      background: #fff7ed;
+      border-radius: 6px;
+      padding: 0.5rem 0.4rem;
+      text-align: center;
+      border-left: 3px solid #ea580c;
+      transition: none;
+    }
+    .metric-card .metric-val {
+      font-size: 18pt;
+      font-weight: 900;
+      color: #ea580c;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .metric-card .metric-lbl {
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      margin-top: 0.15rem;
+    }
+
+    /* ── Summary ── */
+    .summary-text {
+      font-size: 10pt;
+      font-weight: 500;
+      color: #334155;
+      line-height: 1.7;
+      margin-bottom: 0.8rem;
+    }
+    .summary-text .num {
+      color: #ea580c;
+      font-weight: 800;
+    }
+
+    /* ── Sections ── */
+    .section { margin-bottom: 1rem; }
+    .section-title {
+      font-size: 11pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #0f172a;
+      margin-bottom: 0.55rem;
+      padding-left: 0.85rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .section-title::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      bottom: 0.1rem;
+      width: 5px;
+      background: #ea580c;
+      border-radius: 3px;
+    }
+
+    /* ── Experience Entries ── */
+    .entry { margin-bottom: 0.75rem; }
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.2rem;
+    }
+    .entry-title {
+      font-weight: 800;
+      font-size: 10.5pt;
+      color: #0f172a;
+    }
+    .entry-company {
+      font-size: 9.5pt;
+      color: #ea580c;
+      font-weight: 700;
+      margin-top: 0.05rem;
+    }
+    .entry-date {
+      font-size: 8pt;
+      color: #94a3b8;
+      font-weight: 600;
+      white-space: nowrap;
+      letter-spacing: 0.03em;
+    }
+    .entry-desc {
+      margin-top: 0.2rem;
+      font-size: 9pt;
+      color: #475569;
+      line-height: 1.65;
+    }
+    .entry-desc ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .entry-desc ul li {
+      padding-left: 1.1rem;
+      margin-bottom: 0.15rem;
+      position: relative;
+    }
+    .entry-desc ul li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #ea580c;
+      font-weight: 800;
+      font-size: 9pt;
+    }
+    .entry-desc .num {
+      color: #ea580c;
+      font-weight: 800;
+    }
+
+    /* ── Highlighted Stats Bar (inline in experience) ── */
+    .stats-inline {
+      display: flex;
+      gap: 0.5rem;
+      margin: 0.3rem 0 0.2rem 1.1rem;
+      flex-wrap: wrap;
+    }
+    .stats-inline .stat {
+      background: #fff7ed;
+      padding: 0.15rem 0.6rem;
+      border-radius: 4px;
+      font-size: 7.5pt;
+      font-weight: 700;
+      color: #ea580c;
+    }
+
+    /* ── Education Grid ── */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 1.5rem;
+    }
+    .edu-item { padding-left: 0; }
+    .edu-item .edu-title {
+      font-weight: 800;
+      font-size: 10pt;
+      color: #0f172a;
+    }
+    .edu-item .edu-school {
+      font-size: 9pt;
+      color: #ea580c;
+      font-weight: 600;
+    }
+    .edu-item .edu-year {
+      font-size: 8pt;
+      color: #94a3b8;
+      font-weight: 600;
+    }
+
+    /* ── Awards Grid ── */
+    .award-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+    .award-card {
+      background: #fff7ed;
+      border-radius: 6px;
+      padding: 0.5rem 0.7rem;
+      border-left: 3px solid #ea580c;
+    }
+    .award-card .award-name {
+      font-weight: 800;
+      font-size: 9.5pt;
+      color: #0f172a;
+    }
+    .award-card .award-org {
+      font-size: 8pt;
+      color: #64748b;
+      font-weight: 500;
+      margin-top: 0.1rem;
+    }
+    .award-card .award-year {
+      font-size: 7pt;
+      font-weight: 700;
+      color: #ea580c;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Competency Pills ── */
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+    .pill {
+      padding: 0.3rem 0.85rem;
+      background: #fff7ed;
+      border-radius: 999px;
+      font-size: 8.5pt;
+      font-weight: 700;
+      color: #0f172a;
+      border: 1.5px solid transparent;
+      transition: none;
+    }
+    .pill.orange { background: #ea580c; color: #fff; }
+    .pill.outline { background: #fff; border-color: #ea580c; color: #ea580c; }
+
+    /* ── Divider ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, #ea580c 0%, #fde68a 50%, transparent 100%);
+      margin: 0.5rem 0 0.8rem;
+      opacity: 0.5;
+    }
+
+    /* ── Print Styles ── */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { size: A4; margin: 0; }
+      html { zoom: 0.78; }
+      body { background: #fff; font-size: 7.75pt; line-height: 1.28; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 21cm;
+        min-height: 29.7cm;
+      }
+      .side-stripe { min-height: 29.7cm; align-self: stretch; }
+      .content { padding: 0; }
+      .header h1 { font-size: 26pt; margin-bottom: 0.15rem; }
+      .metrics-row { margin-bottom: 0.35rem; gap: 0.35rem; }
+      .metric-card { padding: 0.25rem 0.35rem; }
+      .section { margin-bottom: 0.45rem; }
+      .entry { margin-bottom: 0.35rem; }
+      .divider { margin: 0.25rem 0 0.35rem; }
+      .entry-desc ul li { margin-bottom: 0.05rem; }
+      .award-grid { gap: 0.3rem; }
+      .award-card { padding: 0.3rem 0.45rem; }
+    }
+
+    @media screen and (max-width: 700px) {
+      .page { flex-direction: column; margin: 0; min-height: auto; border-radius: 0; }
+      .side-stripe { width: 100%; min-height: 8px; height: 8px; padding: 0; flex-direction: row; justify-content: center; gap: 0.5rem; }
+      .side-stripe::after { display: none; }
+      .stripe-dot { display: none; }
+      .content { padding: 1.2rem; }
+      .header h1 { font-size: 28pt; }
+      .metrics-row { flex-wrap: wrap; }
+      .metric-card { min-width: calc(50% - 0.3rem); }
+      .grid-2, .award-grid { grid-template-columns: 1fr; }
+    }
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; }
+      .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; }
+    }
+    .watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+    .watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+
+</style>
+</head>
+<body>
+  <div class="page">
+    <!-- Left Stripe -->
+    <div class="side-stripe">
+      <div class="stripe-dot"></div>
+      <div class="stripe-dot"></div>
+      <div class="stripe-dot"></div>
+      <div class="stripe-dot"></div>
+      <div class="stripe-dot"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+      <!-- ─── HEADER ─── -->
+      <div class="header">
+        <h1>MARCUS<br><span class="highlight">THOMPSON</span></h1>
+        <div class="title">Vice President of Sales</div>
+        <div class="contact-row">
+          <span><span class="icon">&#9993;</span> m.thompson@email.com</span>
+          <span><span class="icon">&#9742;</span> (555) 890-1234</span>
+          <span><span class="icon">&#9906;</span> Dallas, TX</span>
+          <span><span class="icon">&#9654;</span> linkedin.com/in/marcusthompson</span>
+        </div>
+      </div>
+
+      <!-- ─── IMPACT METRICS ─── -->
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-val">$50M+</div>
+          <div class="metric-lbl">Personal Sales</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">$200M+</div>
+          <div class="metric-lbl">Team Revenue</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">300%</div>
+          <div class="metric-lbl">Quota Attainment</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-val">40+</div>
+          <div class="metric-lbl">Team Members</div>
+        </div>
+      </div>
+
+      <!-- ─── SUMMARY ─── -->
+      <div class="section">
+        <div class="section-title">Impact Summary</div>
+        <p class="summary-text">
+          High-energy sales executive who consistently overachieves targets and builds championship teams. Track record of turning underperforming regions into market leaders. <span class="num">$50M+</span> in personal sales, <span class="num">$200M+</span> in team-managed revenue. Built and scaled sales organizations from scratch across <span class="num">3</span> continents.
+        </p>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ─── EXPERIENCE ─── -->
+      <div class="section">
+        <div class="section-title">Experience</div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Vice President of Sales</span>
+            <span class="entry-date">2022 &ndash; Present</span>
+          </div>
+          <div class="entry-company">Velocity SaaS Corp. &mdash; Dallas, TX</div>
+          <div class="stats-inline">
+            <span class="stat">$28M ARR</span>
+            <span class="stat">18 AEs</span>
+            <span class="stat">47% Win Rate</span>
+          </div>
+          <div class="entry-desc">
+            <ul>
+              <li>Built and scaled the enterprise sales division from zero to <span class="num">$28M</span> ARR in just <span class="num">18</span> months</li>
+              <li>Hired, trained, and mentored a team of <span class="num">18</span> account executives, with <span class="num">85%</span> exceeding quota</li>
+              <li>Implemented MEDDIC sales methodology, increasing win rates from <span class="num">22%</span> to <span class="num">47%</span> within one year</li>
+              <li>Secured <span class="num">3</span> Fortune 500 enterprise accounts worth <span class="num">$4.2M</span> in annual recurring revenue</li>
+              <li>Reduced average sales cycle from <span class="num">120</span> days to <span class="num">65</span> days through process optimization</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Regional Sales Director</span>
+            <span class="entry-date">2018 &ndash; 2022</span>
+          </div>
+          <div class="entry-company">Peak Performance Group &mdash; Dallas, TX</div>
+          <div class="stats-inline">
+            <span class="stat">142% Quota</span>
+            <span class="stat">12 States</span>
+            <span class="stat">$45M Revenue</span>
+          </div>
+          <div class="entry-desc">
+            <ul>
+              <li>Led a team of <span class="num">12</span> sales managers across the Southeast region, delivering <span class="num">142%</span> of quota for <span class="num">4</span> consecutive years</li>
+              <li>Expanded market coverage from <span class="num">3</span> states to <span class="num">12</span> states, increasing regional revenue from <span class="num">$18M</span> to <span class="num">$45M</span></li>
+              <li>Developed a sales training program that reduced ramp time for new hires from <span class="num">6</span> months to <span class="num">10</span> weeks</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Senior Account Executive</span>
+            <span class="entry-date">2015 &ndash; 2018</span>
+          </div>
+          <div class="entry-company">Enterprise Solutions Inc. &mdash; Atlanta, GA</div>
+          <div class="stats-inline">
+            <span class="stat">#1 Performer</span>
+            <span class="stat">$1.8M Biggest Deal</span>
+            <span class="stat">3x SOTY</span>
+          </div>
+          <div class="entry-desc">
+            <ul>
+              <li>Consistently ranked <span class="num">#1</span> performer nationally, exceeding <span class="num">$2.5M</span> in annual quota achievement</li>
+              <li>Closed the largest deal in company history (<span class="num">$1.8M</span>) through a <span class="num">9</span>-month enterprise engagement</li>
+              <li>Named Salesperson of the Year for <span class="num">3</span> consecutive years</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ─── EDUCATION ─── -->
+      <div class="section">
+        <div class="section-title">Education &amp; Credentials</div>
+        <div class="grid-2">
+          <div class="edu-item">
+            <div class="edu-title">MBA, Marketing</div>
+            <div class="edu-school">University of Texas at Austin</div>
+            <div class="edu-year">2015</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-title">B.B.A. Business Administration</div>
+            <div class="edu-school">University of Georgia</div>
+            <div class="edu-year">2013</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ─── AWARDS ─── -->
+      <div class="section">
+        <div class="section-title">Awards &amp; Recognition</div>
+        <div class="award-grid">
+          <div class="award-card">
+            <div class="award-name">Top Sales Leader Award</div>
+            <div class="award-org">Velocity SaaS</div>
+            <div class="award-year">2023 &bull; 2024</div>
+          </div>
+          <div class="award-card">
+            <div class="award-name">Presidents Club</div>
+            <div class="award-org">5-time inductee</div>
+            <div class="award-year">2017 &ndash; 2024</div>
+          </div>
+          <div class="award-card">
+            <div class="award-name">Salesperson of the Year</div>
+            <div class="award-org">Enterprise Solutions Inc.</div>
+            <div class="award-year">2016 &bull; 2017 &bull; 2018</div>
+          </div>
+          <div class="award-card">
+            <div class="award-name">Forbes 30 Under 30</div>
+            <div class="award-org">Enterprise Technology</div>
+            <div class="award-year">2019</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- ─── CORE COMPETENCIES ─── -->
+      <div class="section">
+        <div class="section-title">Core Competencies</div>
+        <div class="pills">
+          <span class="pill orange">Enterprise Sales</span>
+          <span class="pill">Team Leadership</span>
+          <span class="pill outline">MEDDIC</span>
+          <span class="pill">SalesForce</span>
+          <span class="pill orange">Strategic Planning</span>
+          <span class="pill">Negotiation</span>
+          <span class="pill outline">Channel Sales</span>
+          <span class="pill">Public Speaking</span>
+          <span class="pill orange">Contract Negotiation</span>
+          <span class="pill">CRM Management</span>
+        </div>
+      </div>
+
+    </div>
+<!-- /content -->
+  </div>
+<!-- /page -->
+    <div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

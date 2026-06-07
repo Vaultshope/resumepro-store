@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felix Andersson - Creative Director</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; font-size: 9.5pt; line-height: 1.6; color: #1c1917; background: #ecfdf5; }
+.page { width: 210mm; min-height: 297mm; margin: 2rem auto; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,0.12); position: relative; display: flex; }
+.sidebar { width: 30%; background: #065f46; color: #fff; padding: 36px 24px; display: flex; flex-direction: column; gap: 22px; }
+.sidebar-name { font-family: 'Playfair Display', serif; font-size: 22pt; font-weight: 700; line-height: 1.15; color: #fff; }
+.sidebar-role { font-size: 8.5pt; font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.8; margin-bottom: 8px; }
+.sidebar-contact { font-size: 8pt; line-height: 2; opacity: 0.85; }
+.sidebar-section-title { font-size: 8.5pt; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #a7f3d0; border-bottom: 1px solid rgba(167,243,208,0.2); padding-bottom: 4px; margin-bottom: 10px; }
+.sidebar-skill-item { font-size: 8.5pt; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.sidebar-skill-dots { display: flex; gap: 3px; }
+.sidebar-skill-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); }
+.sidebar-skill-dot.filled { background: #a7f3d0; }
+.sidebar-edu-item { font-size: 8.5pt; margin-bottom: 8px; }
+.sidebar-edu-item .deg { font-weight: 500; }
+.sidebar-edu-item .sch { font-size: 8pt; opacity: 0.7; }
+.main { flex: 1; padding: 36px 34px; }
+.summary { font-size: 9.5pt; color: #57534e; line-height: 1.7; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #e7e5e4; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 11pt; font-weight: 600; color: #065f46; margin-bottom: 14px; border-bottom: 1px solid #d1fae5; padding-bottom: 6px; }
+.entry { margin-bottom: 20px; }
+.entry-header { display: flex; justify-content: space-between; align-items: baseline; }
+.entry-title { font-size: 10.5pt; font-weight: 600; color: #1c1917; }
+.entry-subtitle { font-size: 9pt; color: #78716c; font-weight: 500; }
+.entry-date { font-size: 8pt; color: #065f46; font-weight: 500; white-space: nowrap; }
+.entry-bullets { margin-top: 5px; padding-left: 18px; list-style: none; }
+.entry-bullets li { font-size: 9pt; color: #57534e; line-height: 1.65; position: relative; padding-left: 14px; margin-bottom: 2px; }
+.entry-bullets li::before { content: "✦"; position: absolute; left: 0; color: #065f46; font-size: 6pt; top: 3px; }
+.skills-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.skill-tag { font-size: 8pt; background: #ecfdf5; color: #065f46; padding: 3px 10px; border: 1px solid #a7f3d0; border-radius: 3px; letter-spacing: 0.02em; }
+.watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+.watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+@media print { * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } @page { size: A4; margin: 0; } body { background: #fff; } .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; overflow: hidden; } .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; } .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="sidebar">
+<div>
+<div class="sidebar-name">Felix Andersson</div>
+<div class="sidebar-role">Creative Director</div>
+<div class="sidebar-contact">felix.a@email.com · +1 (503) 555-0862 · Portland, OR · felixandersson.studio</div>
+</div>
+<div>
+<div class="sidebar-section-title">Capabilities</div>
+<div class="sidebar-skill-item"><span>Creative Strategy</span><span class="sidebar-skill-dots"><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span></span></div>
+<div class="sidebar-skill-item"><span>Brand Identity</span><span class="sidebar-skill-dots"><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span></span></div>
+<div class="sidebar-skill-item"><span>Campaign Direction</span><span class="sidebar-skill-dots"><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot"></span></span></div>
+<div class="sidebar-skill-item"><span>Content Strategy</span><span class="sidebar-skill-dots"><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot"></span></span></div>
+<div class="sidebar-skill-item"><span>Team Leadership</span><span class="sidebar-skill-dots"><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span><span class="sidebar-skill-dot filled"></span></span></div>
+</div>
+<div>
+<div class="sidebar-section-title">Education</div>
+<div class="sidebar-edu-item"><div class="deg">B.A., Communications</div><div class="sch">University of Oregon, 2013</div></div>
+<div class="sidebar-edu-item"><div class="deg">Cert., Design Leadership</div><div class="sch">IDEO U, 2020</div></div>
+</div>
+<div>
+<div class="sidebar-section-title">Languages</div>
+<div class="sidebar-skill-item" style="justify-content:space-between"><span>English</span><span>Native</span></div>
+<div class="sidebar-skill-item" style="justify-content:space-between"><span>Swedish</span><span>Native</span></div>
+<div class="sidebar-skill-item" style="justify-content:space-between"><span>German</span><span>Conversational</span></div>
+</div>
+</div>
+<div class="main">
+<div class="summary">Visionary creative director with 10 years of experience shaping brand narratives for lifestyle, apparel, and consumer goods companies. Combines strategic thinking with hands-on creative execution to build authentic brand experiences that resonate with modern audiences.</div>
+<div class="section-title">Experience</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Creative Director</span><span class="entry-date">2020 — Present</span></div>
+<div class="entry-subtitle">Timbre Creative Studio, Portland, OR</div>
+<ul class="entry-bullets">
+<li>Founded and grew a boutique creative agency serving 35+ clients in the outdoor and sustainable goods sectors, achieving 95% client retention rate year-over-year.</li>
+<li>Directed brand strategy and visual identity for 12 DTC brands, contributing to aggregate revenue growth of $24M across client portfolios within 3 years.</li>
+<li>Cultivated a remote-first creative team of 8 designers, copywriters, and strategists, fostering a culture that ranked in the top 5% of company culture scores on Glassdoor.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Associate Creative Director</span><span class="entry-date">2017 — 2020</span></div>
+<div class="entry-subtitle">North Star Collective, San Francisco, CA</div>
+<ul class="entry-bullets">
+<li>Led creative development for a national rebrand of a major outdoor apparel company, including logo redesign, packaging system, and retail environment guidelines.</li>
+<li>Oversaw production of 40+ video and photo shoots annually, managing a $1.2M production budget and coordinating with external creative partners globally.</li>
+<li>Developed and implemented a content strategy framework that increased organic social media engagement by 340% and grew total following by 180K in 18 months.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Senior Copywriter</span><span class="entry-date">2014 — 2017</span></div>
+<div class="entry-subtitle">Palisade Media, Los Angeles, CA</div>
+<ul class="entry-bullets">
+<li>Crafted brand voice and messaging frameworks for 20+ consumer brands, ensuring consistent tone across website, social, email, and print touchpoints.</li>
+<li>Wrote and edited long-form brand documentaries and campaign manifestos that were featured at Sundance Film Festival and SXSW.</li>
+<li>Collaborated with design and strategy teams to pitch and win 8 major new business accounts, contributing $4.5M in new annual recurring revenue.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Oliver Park - Environmental Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; font-size: 8pt; line-height: 1.45; color: #1e293b; background: #e2e6ed; }
+.page { width: 210mm; min-height: 297mm; margin: 2rem auto; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,0.12); position: relative; display: flex; }
+.sidebar { width: 28%; background: #f8fafc; padding: 22px 16px; display: flex; flex-direction: column; gap: 14px; border-right: 1px solid #e2e8f0; }
+.sidebar-name { font-size: 14pt; font-weight: 700; color: #0f172a; line-height: 1.1; }
+.sidebar-role { font-size: 7pt; font-weight: 500; color: #ea580c; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; }
+.sidebar-contact { font-size: 7pt; color: #64748b; line-height: 1.8; }
+.sidebar-contact .label { font-family: 'JetBrains Mono', monospace; color: #ea580c; font-size: 6.5pt; }
+.sidebar-section-title { font-size: 7pt; font-weight: 600; color: #0f172a; text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px; margin-bottom: 6px; }
+.sidebar-skill-item { font-size: 7.5pt; margin-bottom: 2px; }
+.sidebar-edu-item { font-size: 7.5pt; margin-bottom: 6px; }
+.sidebar-edu-item .deg { font-weight: 500; }
+.sidebar-edu-item .sch { font-size: 7pt; color: #64748b; }
+.sidebar-pub { font-size: 6.5pt; color: #475569; margin-bottom: 4px; line-height: 1.4; }
+.sidebar-pub .cite { font-family: 'JetBrains Mono', monospace; font-size: 6pt; color: #ea580c; }
+.main { flex: 1; padding: 22px 24px; }
+.summary { font-size: 8pt; color: #475569; line-height: 1.5; margin-bottom: 14px; }
+.section-title { font-size: 7.5pt; font-weight: 600; color: #0f172a; text-transform: uppercase; letter-spacing: 0.12em; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px; margin-bottom: 8px; }
+.entry { margin-bottom: 10px; }
+.entry-header { display: flex; justify-content: space-between; align-items: baseline; }
+.entry-title { font-size: 8.5pt; font-weight: 600; color: #0f172a; }
+.entry-subtitle { font-size: 7.5pt; color: #64748b; }
+.entry-date { font-size: 7pt; color: #ea580c; font-weight: 500; white-space: nowrap; }
+.entry-bullets { margin-top: 2px; padding-left: 12px; list-style: none; }
+.entry-bullets li { font-size: 7.5pt; color: #334155; line-height: 1.5; position: relative; padding-left: 8px; margin-bottom: 1px; }
+.entry-bullets li::before { content: "–"; position: absolute; left: 0; color: #ea580c; }
+.skills-tags { display: flex; flex-wrap: wrap; gap: 2px; }
+.skill-tag { font-size: 6.5pt; background: #fff7ed; color: #9a3412; padding: 1px 5px; border: 1px solid #fed7aa; }
+.ref-item { font-size: 7pt; color: #475569; line-height: 1.4; margin-bottom: 4px; padding-left: 12px; text-indent: -12px; }
+.ref-item .doi { font-family: 'JetBrains Mono', monospace; font-size: 6pt; color: #ea580c; }
+.watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+.watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+@media print { * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } @page { size: A4; margin: 0; } body { background: #fff; } .page { margin: 0; box-shadow: none; width: 210mm; min-height: 297mm; overflow: hidden; } .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; } .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; } }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="sidebar">
+<div>
+<div class="sidebar-name">Oliver Park</div>
+<div class="sidebar-role">Environmental Scientist</div>
+<div class="sidebar-contact"><span class="label">@</span> oliver.park@email.com<br><span class="label">#</span> +1 (303) 555-0649<br><span class="label">*</span> Boulder, CO<br><span class="label">&gt;</span> github.com/opark</div>
+</div>
+<div>
+<div class="sidebar-section-title">Skills</div>
+<div class="sidebar-skill-item">R · Python · GIS (ArcGIS, QGIS)</div>
+<div class="sidebar-skill-item">Remote Sensing · MODIS · Landsat</div>
+<div class="sidebar-skill-item">Statistical Modeling · Spatial Analysis</div>
+<div class="sidebar-skill-item">Field Sampling · Water Quality</div>
+<div class="sidebar-skill-item">Machine Learning · Random Forest</div>
+<div class="sidebar-skill-item">Scientific Writing · Peer Review</div>
+</div>
+<div>
+<div class="sidebar-section-title">Education</div>
+<div class="sidebar-edu-item"><div class="deg">Ph.D., Environmental Science</div><div class="sch">CU Boulder, 2016</div></div>
+<div class="sidebar-edu-item"><div class="deg">M.S., Ecology</div><div class="sch">University of Montana, 2011</div></div>
+<div class="sidebar-edu-item"><div class="deg">B.S., Biology</div><div class="sch">Oberlin College, 2008</div></div>
+</div>
+<div>
+<div class="sidebar-section-title">Selected Publications</div>
+<div class="sidebar-pub">Park, O. et al. (2023). Landscape Ecol. <span class="cite">DOI:10.1007/s10980-023-0165</span></div>
+<div class="sidebar-pub">Park, O. &amp; Singh, R. (2022). J. Geophys. Res. <span class="cite">DOI:10.1029/2022JG0067</span></div>
+<div class="sidebar-pub">Park, O. et al. (2021). Ecol. Monogr. <span class="cite">DOI:10.1002/ecm.1478</span></div>
+<div class="sidebar-pub">Park, O. (2020). Remote Sens. Environ. <span class="cite">DOI:10.1016/j.rse.2020.1117</span></div>
+</div>
+</div>
+<div class="main">
+<div class="summary">Environmental scientist specializing in landscape ecology, remote sensing, and spatial analysis. 10+ years of research experience investigating the impacts of climate change on forest ecosystems. 25+ peer-reviewed publications with an h-index of 12. Proven success in securing competitive research funding and leading interdisciplinary field campaigns.</div>
+<div class="section-title">Research Experience</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Research Scientist</span><span class="entry-date">2020 — Present</span></div>
+<div class="entry-subtitle">INSTAAR — University of Colorado Boulder, Boulder, CO</div>
+<ul class="entry-bullets">
+<li>Lead a NASA-funded project ($850K) using multi-temporal Landsat and Sentinel-2 imagery to quantify forest disturbance and recovery dynamics across the Rocky Mountain region.</li>
+<li>Developed a machine learning framework integrating satellite data and field measurements that improved forest biomass estimation accuracy by 28% compared to traditional approaches.</li>
+<li>Supervise 3 graduate students and 2 research assistants, managing fieldwork logistics, data collection protocols, and publication pipelines.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Postdoctoral Researcher</span><span class="entry-date">2016 — 2020</span></div>
+<div class="entry-subtitle">National Center for Ecological Analysis &amp; Synthesis, Santa Barbara, CA</div>
+<ul class="entry-bullets">
+<li>Conducted macroecological analyses of North American forest plot data (FIA, NEON) to assess climate change impacts on tree species distribution shifts across 40-degree latitudinal gradients.</li>
+<li>Published 9 first-author papers in high-impact journals (PNAS, Ecology, Global Change Biology) on topics including drought-induced mortality and phenological responses to warming.</li>
+<li>Organized a synthesis working group that brought together 25 researchers from 12 institutions to develop standardized protocols for vegetation monitoring using remote sensing.</li>
+</ul>
+</div>
+<div class="entry">
+<div class="entry-header"><span class="entry-title">Graduate Research Assistant</span><span class="entry-date">2012 — 2016</span></div>
+<div class="entry-subtitle">CU Boulder Department of Ecology &amp; Evolutionary Biology, Boulder, CO</div>
+<ul class="entry-bullets">
+<li>Completed doctoral dissertation on "Spatiotemporal Dynamics of Subalpine Forest Recovery Following Wildfire" using LANDSAT time series and field-based dendrochronology.</li>
+<li>Collected and analyzed vegetation data from 200+ field plots across 4 wildfire complexes in the Colorado Front Range over 3 field seasons.</li>
+<li>Published 6 manuscripts from dissertation research and presented findings at 12 national and international conferences.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

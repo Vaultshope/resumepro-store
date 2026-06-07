@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editorial — Magazine-Style Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 9pt;
+      line-height: 1.5;
+      color: #1a1a1a;
+      background: #f0ece6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .page {
+      width: 220mm;
+      min-height: 297mm;
+      margin: 2rem auto;
+      background: #fff;
+      box-shadow: 0 30px 90px rgba(0,0,0,0.18), 0 2px 10px rgba(0,0,0,0.06);
+      display: grid;
+      grid-template-columns: 200px 1fr 60px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ═══ LEFT EDGE BAR ═══ */
+    .edge-bar {
+      background: #1a1a1a;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.4cm 0;
+    }
+    .edge-bar::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: #c9372c;
+    }
+    .edge-initial {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72pt;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: -0.04em;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      line-height: 1;
+      margin-bottom: 1.2rem;
+      opacity: 0.95;
+    }
+    .edge-label {
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      font-size: 7pt;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      margin-top: auto;
+      margin-bottom: 2rem;
+    }
+
+    /* ═══ MAIN CONTENT ═══ */
+    .main {
+      padding: 2.6cm 2cm 2.4cm 1.8cm;
+      position: relative;
+    }
+
+    /* ── MASSIVE NAME HEADER ── */
+    .masthead {
+      margin-bottom: 1.8cm;
+      position: relative;
+    }
+    .masthead-name {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 52pt;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      margin-bottom: 0.3cm;
+    }
+    .masthead-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8pt;
+      font-weight: 500;
+      letter-spacing: 0.3em;
+      color: #c9372c;
+      text-transform: uppercase;
+      margin-bottom: 0.4cm;
+    }
+    .masthead-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0 1.6rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      color: #666;
+      letter-spacing: 0.02em;
+    }
+    .masthead-contact .item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .masthead-contact .icon {
+      color: #c9372c;
+      font-size: 7pt;
+    }
+
+    /* ── EDITORIAL SECTION HEADERS ── */
+    .section {
+      margin-bottom: 1.3cm;
+      position: relative;
+    }
+    .section-header {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 0.3rem 0.8rem;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .section-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22pt;
+      font-weight: 400;
+      color: #c9372c;
+      line-height: 1;
+      opacity: 0.9;
+    }
+    .section-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 8.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      color: #1a1a1a;
+    }
+
+    /* ── SUMMARY ── */
+    .summary {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 12pt;
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.6;
+      color: #333;
+      padding-left: 0.8rem;
+      border-left: 2px solid #c9372c;
+    }
+
+    /* ── TIMELINE EXPERIENCE ── */
+    .timeline-entry {
+      position: relative;
+      padding-left: 1.4rem;
+      margin-bottom: 1.1rem;
+      border-left: 1px solid #ddd;
+    }
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 6px;
+      width: 7px;
+      height: 7px;
+      background: #c9372c;
+      border-radius: 50%;
+    }
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0 1rem;
+      margin-bottom: 0.15rem;
+    }
+    .timeline-role {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #1a1a1a;
+      letter-spacing: -0.01em;
+    }
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 7.5pt;
+      color: #999;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+    }
+    .timeline-company {
+      font-size: 8.5pt;
+      color: #666;
+      margin-bottom: 0.4rem;
+      font-style: italic;
+    }
+    .timeline-body {
+      font-size: 8.5pt;
+      line-height: 1.65;
+      color: #444;
+    }
+    .timeline-body ul {
+      list-style: none;
+      padding: 0;
+    }
+    .timeline-body ul li {
+      position: relative;
+      padding-left: 1.1rem;
+      margin-bottom: 0.2rem;
+    }
+    .timeline-body ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #c9372c;
+      opacity: 0.7;
+    }
+
+    /* ── EDUCATION ═══ */
+    .edu-block {
+      padding-left: 1.4rem;
+      border-left: 1px solid #ddd;
+      margin-bottom: 0.9rem;
+      position: relative;
+    }
+    .edu-block::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 5px;
+      width: 7px;
+      height: 7px;
+      background: #1a1a1a;
+      border-radius: 50%;
+    }
+
+    /* ── SKILLS GRID ═══ */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+    .skill-cell {
+      padding: 0.5rem 0.6rem;
+      background: #fafafa;
+      border-left: 2px solid #1a1a1a;
+    }
+    .skill-cell-label {
+      font-size: 6.5pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #c9372c;
+      margin-bottom: 0.2rem;
+    }
+    .skill-cell-items {
+      font-size: 7.5pt;
+      line-height: 1.4;
+      color: #333;
+    }
+
+    /* ═══ RIGHT DECORATIVE COLUMN ═══ */
+    .deco-column {
+      background: #f7f5f2;
+      border-left: 1px solid #e8e4dd;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2.6cm 0.3cm;
+    }
+    .deco-column::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, #c9372c 30%, #c9372c 70%, transparent);
+      opacity: 0.25;
+    }
+    .deco-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 14pt;
+      font-weight: 500;
+      color: #1a1a1a;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.8rem;
+      opacity: 0.4;
+    }
+    .deco-dot {
+      width: 4px;
+      height: 4px;
+      background: #c9372c;
+      border-radius: 50%;
+      margin: 0.3rem 0;
+      opacity: 0.5;
+    }
+
+    /* ═══ FOOTER ═══ */
+    .page-footer {
+      position: absolute;
+      bottom: 0;
+      left: 200px;
+      right: 60px;
+      height: 18px;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.2rem;
+    }
+    .page-footer-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 6pt;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    /* ═══ PRINT ═══ */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { size: A4; margin: 0; }
+      html { zoom: 0.68; }
+      body { background: #fff; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 220mm;
+        min-height: 297mm;
+      }
+      .edge-bar, .deco-column { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .page-footer { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+
+    @media screen and (max-width: 900px) {
+      .page {
+        grid-template-columns: 1fr;
+        margin: 1rem;
+      }
+      .edge-bar, .deco-column { display: none; }
+      .main { padding: 1.5rem; }
+      .masthead-name { font-size: 36pt; }
+    }
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; }
+      .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; }
+    }
+    .watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+    .watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <aside class="edge-bar">
+      <div class="edge-initial">MR</div>
+      <div class="edge-label">Editorial · Vol. MMXXVI</div>
+    </aside>
+
+    <main class="main">
+      <div class="masthead">
+        <div class="masthead-name">Marcus<br>Reynolds</div>
+        <div class="masthead-role">Chief Product Officer</div>
+        <div class="masthead-contact">
+          <span class="item"><span class="icon">&#9993;</span> marcus@email.com</span>
+          <span class="item"><span class="icon">&#9742;</span> (555) 456-7890</span>
+          <span class="item"><span class="icon">&#9906;</span> New York, NY</span>
+          <span class="item"><span class="icon">&#128279;</span> linkedin.com/in/marcusreynolds</span>
+        </div>
+      </div>
+
+      <section class="section">
+        <div class="section-header">
+          <div class="section-num">01</div>
+          <div class="section-title">Editorial</div>
+        </div>
+        <p class="summary">
+          Award-winning product executive with 15+ years shaping digital products at the intersection of design, technology, and business. Led four 0-to-1 launches generating $180M+ in combined revenue. Board advisor to two Series B startups. Known for building design-forward cultures that ship.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div class="section-num">02</div>
+          <div class="section-title">Selected Works</div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-header">
+            <span class="timeline-role">Chief Product Officer</span>
+            <span class="timeline-date">2020 — Present</span>
+          </div>
+          <div class="timeline-company">Atlas Digital · New York, NY</div>
+          <div class="timeline-body">
+            <ul>
+              <li>Grow CPO; scaled product org from 18 to 65; launched 3 product lines generating $45M ARR</li>
+              <li>Led redesign of core SaaS platform; NPS rose from 31 to 68 within 9 months</li>
+              <li>Established design systems and research practice adopted company-wide</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-header">
+            <span class="timeline-role">VP of Product</span>
+            <span class="timeline-date">2016 — 2020</span>
+          </div>
+          <div class="timeline-company">Northwind Tech · Boston, MA</div>
+          <div class="timeline-body">
+            <ul>
+              <li>Drove $90M revenue growth through platform expansion and enterprise GTM motion</li>
+              <li>Negotiated 2 strategic acquisitions worth $32M combined</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-entry">
+          <div class="timeline-header">
+            <span class="timeline-role">Senior Product Manager</span>
+            <span class="timeline-date">2012 — 2016</span>
+          </div>
+          <div class="timeline-company">Cobalt Labs · San Francisco, CA</div>
+          <div class="timeline-body">
+            <ul>
+              <li>Shipped payments infra used by 2M+ merchants; reduced integration time from 3 weeks to 3 days</li>
+              <li>Promoted twice in 4 years; mentored 6 associate PMs</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div class="section-num">03</div>
+          <div class="section-title">Education</div>
+        </div>
+
+        <div class="edu-block">
+          <div class="timeline-header">
+            <span class="timeline-role">MBA, Technology &amp; Design</span>
+            <span class="timeline-date">2012</span>
+          </div>
+          <div class="timeline-company">Stanford Graduate School of Business</div>
+        </div>
+
+        <div class="edu-block">
+          <div class="timeline-header">
+            <span class="timeline-role">B.S. Computer Science</span>
+            <span class="timeline-date">2008</span>
+          </div>
+          <div class="timeline-company">University of Michigan</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div class="section-num">04</div>
+          <div class="section-title">Disciplines</div>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-cell">
+            <div class="skill-cell-label">Strategy</div>
+            <div class="skill-cell-items">Roadmapping · GTM · OKRs · Portfolio Mgmt</div>
+          </div>
+          <div class="skill-cell">
+            <div class="skill-cell-label">Analytics</div>
+            <div class="skill-cell-items">SQL · Amplitude · Tableau · Forecasting</div>
+          </div>
+          <div class="skill-cell">
+            <div class="skill-cell-label">Leadership</div>
+            <div class="skill-cell-items">Org Design · Executive Comms · Coaching</div>
+          </div>
+          <div class="skill-cell">
+            <div class="skill-cell-label">Tools</div>
+            <div class="skill-cell-items">Figma · Notion · Linear · Jira · FigJam</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <aside class="deco-column">
+      <div class="deco-year">20<br>24</div>
+      <div class="deco-dot"></div>
+      <div class="deco-dot"></div>
+      <div class="deco-dot"></div>
+    </aside>
+
+    <div class="page-footer">
+      <span class="page-footer-text">ResumePro · Editorial Collection</span>
+      <span class="page-footer-text">Page 01</span>
+    </div>
+
+  </div>
+  
+  <div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

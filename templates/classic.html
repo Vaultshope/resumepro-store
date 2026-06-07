@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Classic — Premium Resume Template</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 9.5pt;
+      line-height: 1.55;
+      color: #1a1a2e;
+      background: #f5f3ef;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 2rem auto;
+      background: #fff;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06);
+      position: relative;
+    }
+
+    /* ── Sophisticated header band ── */
+    .header-band {
+      position: relative;
+      padding: 2.8cm 2.4cm 2.2cm;
+      background: linear-gradient(180deg, #faf9f7 0%, #f5f3ef 100%);
+      border-bottom: 1px solid #e8e4dd;
+    }
+    .header-band::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 2.4cm;
+      right: 2.4cm;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #1a1a2e 20%, #1a1a2e 80%, transparent);
+      opacity: 0.08;
+    }
+
+    .header-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: end;
+    }
+
+    .name-block h1 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 34pt;
+      font-weight: 600;
+      color: #1a1a2e;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 0.4rem;
+    }
+    .name-block .role-line {
+      font-family: 'Inter', sans-serif;
+      font-size: 10pt;
+      font-weight: 500;
+      color: #636363;
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      margin-bottom: 1.2rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.35rem 1.8rem;
+      font-size: 8pt;
+      color: #5a5a5a;
+    }
+    .contact-grid .item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .contact-grid .icon {
+      color: #1a1a2e;
+      font-size: 7.5pt;
+      opacity: 0.6;
+      width: 14px;
+      text-align: center;
+    }
+
+    /* ── Main content ── */
+    .content {
+      padding: 1.8cm 2.4cm 2.4cm;
+    }
+
+    /* ── Refined section titles ── */
+    .section {
+      margin-bottom: 1.6rem;
+    }
+    .section-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.9rem 1rem;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    .section-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18pt;
+      font-weight: 400;
+      color: #1a1a2e;
+      opacity: 0.25;
+      line-height: 1;
+      min-width: 28px;
+      text-align: right;
+    }
+    .section-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 9pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: #1a1a2e;
+    }
+    .section-line {
+      height: 1px;
+      background: linear-gradient(90deg, #d4d0c8, transparent);
+      margin-top: 3px;
+    }
+
+    /* ── Summary ── */
+    .summary {
+      font-size: 9.5pt;
+      line-height: 1.75;
+      color: #3a3a3a;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ── Experience entries ── */
+    .entry {
+      margin-bottom: 1.1rem;
+      padding-left: 1.2rem;
+      border-left: 1px solid #e0dcd4;
+      position: relative;
+    }
+    .entry::before {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: 7px;
+      width: 5px;
+      height: 5px;
+      background: #1a1a2e;
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 4px 1rem;
+      margin-bottom: 0.15rem;
+    }
+    .entry-title {
+      font-size: 10.5pt;
+      font-weight: 600;
+      color: #1a1a2e;
+      letter-spacing: -0.01em;
+    }
+    .entry-date {
+      font-size: 8pt;
+      color: #888;
+      white-space: nowrap;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+    .entry-company {
+      font-size: 9pt;
+      color: #555;
+      margin-bottom: 0.4rem;
+      font-style: italic;
+    }
+    .entry-desc {
+      font-size: 9pt;
+      line-height: 1.7;
+      color: #3a3a3a;
+    }
+    .entry-desc ul {
+      list-style: none;
+      padding: 0;
+    }
+    .entry-desc ul li {
+      position: relative;
+      padding-left: 1.1rem;
+      margin-bottom: 0.25rem;
+    }
+    .entry-desc ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #1a1a2e;
+      opacity: 0.5;
+      font-weight: 300;
+    }
+
+    /* ── Education ── */
+    .edu-entry {
+      padding-left: 1.2rem;
+      border-left: 1px solid #e0dcd4;
+      margin-bottom: 0.8rem;
+      position: relative;
+    }
+    .edu-entry::before {
+      content: '';
+      position: absolute;
+      left: -3px;
+      top: 6px;
+      width: 5px;
+      height: 5px;
+      background: #1a1a2e;
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+
+    /* ── Skills with refined categorization ── */
+    .skills-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8rem;
+    }
+    .skill-group {
+      padding: 0.6rem 0.8rem;
+      background: #faf9f7;
+      border: 1px solid #edeae3;
+      border-radius: 2px;
+    }
+    .skill-group-label {
+      font-size: 7.5pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #1a1a2e;
+      margin-bottom: 0.35rem;
+      opacity: 0.7;
+    }
+    .skill-group-items {
+      font-size: 8.5pt;
+      color: #3a3a3a;
+      line-height: 1.5;
+    }
+
+    /* ── Footer mark ── */
+    .footer-mark {
+      text-align: center;
+      padding: 1.2rem;
+      border-top: 1px solid #e8e4dd;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 11pt;
+      color: #1a1a2e;
+      opacity: 0.2;
+      letter-spacing: 0.3em;
+    }
+
+    /* ── Print perfection ── */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { size: A4; margin: 0; }
+      html { zoom: 0.78; }
+      body { background: #fff; font-size: 8.25pt; line-height: 1.28; }
+      .page {
+        margin: 0;
+        box-shadow: none;
+        width: 210mm;
+        min-height: 297mm;
+        overflow: hidden;
+      }
+      .header-band { padding: 1.4cm 1.8cm 1.2cm; }
+      .content { padding: 1cm 1.8cm 1.4cm; }
+      .section { margin-bottom: 0.6rem; }
+      .section-header { margin-bottom: 0.4rem; }
+      .entry { margin-bottom: 0.4rem; }
+      .footer-mark { display: none; }
+    }
+
+    @media screen and (max-width: 700px) {
+      .header-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .skills-layout { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .watermark { display: block !important; position: fixed !important; top: 0 !important; left: 0 !important; right: 0 !important; bottom: 0 !important; z-index: 99999 !important; pointer-events: none !important; }
+      .watermark-text { display: block !important; position: absolute !important; top: 45% !important; left: 50% !important; transform: translate(-50%, -50%) rotate(-35deg) !important; font-size: 42pt !important; font-weight: 700 !important; color: rgba(0,0,0,0.12) !important; white-space: nowrap !important; letter-spacing: 0.15em !important; }
+    }
+    .watermark { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99999; pointer-events: none; }
+    .watermark-text { display: none; position: absolute; top: 45%; left: 50%; transform: translate(-50%, -50%) rotate(-35deg); font-size: 42pt; font-weight: 700; color: rgba(0,0,0,0.12); white-space: nowrap; letter-spacing: 0.15em; }
+
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <div class="header-band">
+      <div class="header-grid">
+        <div class="name-block">
+          <h1>Alexandria<br>Blackwood</h1>
+          <div class="role-line">Senior Product Manager</div>
+        </div>
+        <div class="contact-grid">
+          <div class="item"><span class="icon">&#9993;</span> alex@email.com</div>
+          <div class="item"><span class="icon">&#9742;</span> (555) 123-4567</div>
+          <div class="item"><span class="icon">&#9906;</span> San Francisco, CA</div>
+          <div class="item"><span class="icon">&#128279;</span> linkedin.com/in/alex</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <section class="section">
+        <div class="section-header">
+          <div class="section-number">01</div>
+          <div class="section-title">Professional Summary</div>
+          <div class="section-line"></div>
+        </div>
+        <p class="summary">
+          Strategic product leader with 9+ years scaling B2B SaaS platforms from seed to Series C. Combines rigorous user research with data-driven decision-making to ship products that generate measurable revenue impact. Built and led teams of 12 across engineering, design, and analytics. Currently focused on AI-native workflow tools.
+        </p>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div class="section-number">02</div>
+          <div class="section-title">Experience</div>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Senior Product Manager</span>
+            <span class="entry-date">2021 — Present</span>
+          </div>
+          <div class="entry-company">NovaTech Inc. · San Francisco, CA</div>
+          <div class="entry-desc">
+            <ul>
+              <li>Owned roadmap for AI-powered analytics suite serving 500+ enterprise clients; grew ARR from $3M to $9.2M in 24 months</li>
+              <li>Led 12-person product triad; shipped 18 major features on 99.4% uptime SLA</li>
+              <li>Introduced continuous discovery program that lifted NPS from 34 to 61</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Product Manager</span>
+            <span class="entry-date">2018 — 2021</span>
+          </div>
+          <div class="entry-company">CloudBase · Austin, TX</div>
+          <div class="entry-desc">
+            <ul>
+              <li>Grew developer platform from 10K to 75K active users; reduced churn by 18% via onboarding redesign</li>
+              <li>Negotiated 3 strategic integrations worth $450K ARR</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Associate Product Manager</span>
+            <span class="entry-date">2016 — 2018</span>
+          </div>
+          <div class="entry-company">StartupHub · Remote</div>
+          <div class="entry-desc">
+            <ul>
+              <li>Drove mobile product from 0 to 2M+ downloads; led beta program with 5,000 users</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div class="section-number">03</div>
+          <div class="section-title">Education</div>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="edu-entry">
+          <div class="entry-header">
+            <span class="entry-title">MBA, Product &amp; Marketing</span>
+            <span class="entry-date">2016</span>
+          </div>
+          <div class="entry-company">Kellogg School of Management, Northwestern</div>
+        </div>
+
+        <div class="edu-entry">
+          <div class="entry-header">
+            <span class="entry-title">B.S. Computer Science</span>
+            <span class="entry-date">2014</span>
+          </div>
+          <div class="entry-company">University of Texas at Austin</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <div class="section-number">04</div>
+          <div class="section-title">Core Competencies</div>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="skills-layout">
+          <div class="skill-group">
+            <div class="skill-group-label">Product Strategy</div>
+            <div class="skill-group-items">Roadmapping · OKRs · GTM Strategy · prioritization · Competitive Intel</div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Analytics</div>
+            <div class="skill-group-items">SQL · Amplitude · Mixpanel · Tableau · Experiment Design</div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Leadership</div>
+            <div class="skill-group-items">Cross-functional · Stakeholder Mgmt · Mentorship · Sprint Planning</div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-label">Tools</div>
+            <div class="skill-group-items">Figma · Notion · Jira · Confluence · Linear · Raycast</div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="footer-mark">C L A S S I C</div>
+  <div class="watermark"><span class="watermark-text">PREVIEW · ResumePro · resumepro-store</span></div>
+</body>
+</html>

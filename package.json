@@ -1,0 +1,20 @@
+{
+  "name": "resumepro-store",
+  "version": "2.0.0",
+  "description": "Premium, print-ready resume templates — automated crypto checkout via Binance USDT (BEP-20). Instant delivery by email.",
+  "type": "commonjs",
+  "scripts": {
+    "serve": "python3 -m http.server 8000",
+    "preview:capture": "node capture-previews.js",
+    "preview:serve": "npx serve .",
+    "validate": "node scripts/validate.js",
+    "test": "node scripts/validate.js",
+    "deliver": "node clean-templates.js"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.1.0"
+  },
+  "keywords": ["resume", "templates", "storefront", "crypto", "binance"],
+  "author": "",
+  "license": "MIT"
+}
