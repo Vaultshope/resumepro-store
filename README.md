@@ -9,6 +9,8 @@
 
 **Live store:** [`https://resumepro-store.vercel.app`](https://resumepro-store.vercel.app)
 
+> **Note:** This store runs on Vercel's free tier. After 5 minutes of inactivity, the server may need a few seconds to wake up. Download links use self-verifying tokens and work instantly regardless — no server-side storage needed.
+
 ---
 
 ## Overview

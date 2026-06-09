@@ -1,13 +1,25 @@
 const fs = require('fs');
 const path = require('path');
-const { DOWNLOADS_FILE, TEMPLATE_NAMES } = require('./_config');
-
-function loadJSON(file) {
-  try { if (fs.existsSync(file)) return JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
-  return null;
-}
+const crypto = require('crypto');
+const { TEMPLATE_NAMES, PRODUCTS } = require('./_config');
 
 const VALID_IDS = new Set(Object.keys(TEMPLATE_NAMES));
+const SIGNING_KEY = process.env.TOKEN_SIGNING_KEY || 'resumepro-default-signing-key-change-me';
+
+function verifyToken(token) {
+  try {
+    const parts = token.split('.');
+    if (parts.length !== 3) return null;
+    const [encodedData, ts, sig] = parts;
+    const expectedSig = crypto.createHmac('sha256', SIGNING_KEY)
+      .update(encodedData + '.' + ts)
+      .digest('hex');
+    if (sig !== expectedSig) return null;
+    const data = JSON.parse(Buffer.from(encodedData, 'base64url').toString('utf8'));
+    if (Date.now() > data.exp) return null;
+    return data;
+  } catch { return null; }
+}
 
 function serveFile(filePath, res) {
   if (!fs.existsSync(filePath)) return res.status(404).send('File not found');
@@ -28,29 +40,22 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(204).end();
 
   const token = req.query.token;
-  if (!token || typeof token !== 'string' || !/^[a-f0-9]{64}$/.test(token)) {
+  if (!token || typeof token !== 'string') {
     return res.status(400).send('Invalid download token');
   }
 
-  const downloads = loadJSON(DOWNLOADS_FILE);
-  if (!downloads) return res.status(404).send('No orders found');
-
-  const order = downloads.orders.find(o => o.token === token);
-  if (!order) return res.status(404).send('Invalid download link');
-  if (new Date(order.expiresAt) < new Date()) return res.status(410).send('Download link expired');
-
-  order.downloaded = true;
-  fs.writeFileSync(DOWNLOADS_FILE, JSON.stringify(downloads, null, 2));
+  const data = verifyToken(token);
+  if (!data) return res.status(404).send('Invalid or expired download link');
 
   const deliveryDir = path.resolve(__dirname, '..', 'delivery');
 
-  if (order.product === 'bundle' || order.product === '3pack') {
+  if (data.product === 'bundle' || data.product === '3pack') {
     const bundlePath = path.join(deliveryDir, 'Complete-Bundle-32-Templates.zip');
     return serveFile(bundlePath, res);
   }
 
-  if (order.product === 'single' && Array.isArray(order.templateIds) && order.templateIds[0]) {
-    const id = order.templateIds[0];
+  if (data.product === 'single' && data.templateId) {
+    const id = data.templateId;
     if (!VALID_IDS.has(id)) return res.status(400).send('Invalid template');
     const zipPath = path.join(deliveryDir, id + '.zip');
     return serveFile(zipPath, res);

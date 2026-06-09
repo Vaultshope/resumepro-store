@@ -4,11 +4,12 @@ const path = require('path');
 const crypto = require('crypto');
 const {
   BSCSCAN_API_KEY, RESEND_API_KEY, FROM_EMAIL, SITE_URL,
-  USDT_CONTRACT, DOWNLOADS_FILE, ALL_TEMPLATE_IDS, TEMPLATE_NAMES,
+  USDT_CONTRACT, ALL_TEMPLATE_IDS, TEMPLATE_NAMES,
   PRODUCTS, WALLET_ADDRESS
 } = require('./_config');
 
 const CODES_FILE = '/tmp/codes.json';
+const SIGNING_KEY = process.env.TOKEN_SIGNING_KEY || 'resumepro-default-signing-key-change-me';
 
 const TX_HASH_RE = /^0x[a-fA-F0-9]{64}$/;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -32,8 +33,13 @@ function generateCode() {
   return code;
 }
 
-function generateToken() {
-  return crypto.randomBytes(32).toString('hex');
+function generateDownloadToken(data) {
+  const encodedData = Buffer.from(JSON.stringify(data)).toString('base64url');
+  const ts = Date.now().toString(36);
+  const sig = crypto.createHmac('sha256', SIGNING_KEY)
+    .update(encodedData + '.' + ts)
+    .digest('hex');
+  return encodedData + '.' + ts + '.' + sig;
 }
 
 function bscscanCall(params) {
@@ -178,9 +184,14 @@ module.exports = async (req, res) => {
     }
 
     const unlockCode = generateCode();
-    const downloadToken = generateToken();
+    const downloadToken = generateDownloadToken({
+      product,
+      templateId: product === 'single' ? unlockedTemplates[0] : null,
+      exp: Date.now() + 90 * 86400000
+    });
 
-    // Store in codes registry
+    const downloadUrl = `${SITE_URL}/download/${downloadToken}`;
+
     const codes = loadJSON(CODES_FILE) || { codes: [], templateAccess: {}, issued: [], processedTxs: [] };
     codes.processedTxs = codes.processedTxs || [];
     codes.processedTxs.push(txHash.toLowerCase());
@@ -193,24 +204,7 @@ module.exports = async (req, res) => {
       expiresAt: new Date(Date.now() + 90 * 86400000).toISOString(),
       amount: verified.value, product
     });
-    saveJSON(CODES_FILE, codes);
-
-    // Store download token
-    const downloads = loadJSON(DOWNLOADS_FILE) || { tokens: [], orders: [] };
-    downloads.tokens.push(downloadToken);
-    downloads.orders.push({
-      token: downloadToken, code: unlockCode, email, product,
-      templateIds: unlockedTemplates,
-      productLabel: templateLabel, amount: verified.value,
-      txHash, fromAddress: verified.from,
-      blockNumber: verified.blockNumber,
-      createdAt: new Date().toISOString(),
-      expiresAt: new Date(Date.now() + 90 * 86400000).toISOString(),
-      downloaded: false
-    });
-    saveJSON(DOWNLOADS_FILE, downloads);
-
-    const downloadUrl = `${SITE_URL}/download/${downloadToken}`;
+    try { saveJSON(CODES_FILE, codes); } catch {}
 
     // Send email with unlock code
     if (RESEND_API_KEY && FROM_EMAIL) {
@@ -253,7 +247,6 @@ module.exports = async (req, res) => {
       success: true,
       unlockCode,
       downloadUrl,
-      downloadToken,
       productLabel: templateLabel,
       unlockedTemplates,
       amount: verified.value,

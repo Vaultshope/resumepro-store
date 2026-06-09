@@ -36,10 +36,9 @@ const SITE_URL = process.env.VERCEL_URL
   : (process.env.SITE_URL ? (process.env.SITE_URL.startsWith('http') ? process.env.SITE_URL : `https://${process.env.SITE_URL}`) : 'http://localhost:8000');
 
 const USDT_CONTRACT = '0x55d398326f99059ff775485246999027b3197955';
-const DOWNLOADS_FILE = '/tmp/downloads.json';
 
 module.exports = {
   PRODUCTS, ALL_TEMPLATE_IDS, TEMPLATE_NAMES,
   WALLET_ADDRESS, BSCSCAN_API_KEY, RESEND_API_KEY,
-  FROM_EMAIL, SITE_URL, USDT_CONTRACT, DOWNLOADS_FILE
+  FROM_EMAIL, SITE_URL, USDT_CONTRACT
 };
