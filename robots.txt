@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /delivery/
+
+Sitemap: https://resumepro-store.vercel.app/sitemap.xml
