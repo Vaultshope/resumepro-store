@@ -201,7 +201,7 @@ function zipFiles(files, outPath) {
       return fs.existsSync(pdf) ? [html, pdf] : [html];
     }).flat();
     zipFiles(allFiles, bundleZip);
-    console.log(`  ✓ Complete-Bundle-12-Templates.zip`);
+    console.log(`  ✓ Complete-Bundle-32-Templates.zip`);
 
     console.log('\n✅ Done!\n');
     console.log(`  Clean files  → ${CLEAN_DIR}`);

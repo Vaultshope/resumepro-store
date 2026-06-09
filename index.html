@@ -7,6 +7,7 @@
 <meta name="description" content="Premium, print-ready resume templates starting at $2. Pay with USDT, receive your files instantly." />
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>if(!window.QRCode)document.write('<script src="qrcode.min.js"><\/script>');</script>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
@@ -557,7 +558,6 @@ input:focus,textarea:focus,select:focus{outline:none;border-color:var(--accent);
 
 <script>
 const STORE = {
-  walletAddress: '0x56da8226d5a0e833e91ca4b3614be0b4e5b34b6b',
   contactEmail: 'thinkedover@gmail.com',
   apiBase: 'https://resumepro-store.vercel.app'
 };
@@ -729,7 +729,7 @@ function closeDetailModal() { document.getElementById('detailModal').classList.r
 document.getElementById('detailModal').addEventListener('click', function(e) { if (e.target === this) closeDetailModal(); });
 
 // ===== BUY MODAL =====
-function openBuyModal(type, templateIdOrNull, price) {
+async function openBuyModal(type, templateIdOrNull, price) {
   currentBuyType = type;
   document.getElementById('buyModalTitle').textContent = type === 'single' ? 'Buy Template' : type === '3pack' ? 'Buy 3-Pack' : 'Buy Bundle';
   document.getElementById('buyPrice').textContent = '$' + price;
@@ -757,15 +757,28 @@ function openBuyModal(type, templateIdOrNull, price) {
     document.getElementById('buyProductName').textContent = 'Complete Bundle (All 32)';
   }
 
-  document.getElementById('qrcode').innerHTML = '';
-  new QRCode(document.getElementById('qrcode'), {
-    text: STORE.walletAddress, width: 176, height: 176,
-    colorDark: (isDark ? '#f1f5f9' : '#0f172a'),
-    colorLight: (isDark ? '#1e293b' : '#ffffff'),
-    correctLevel: QRCode.CorrectLevel.H
-  });
-  document.getElementById('walletAddress').value = STORE.walletAddress;
-  setTimeout(() => copyAddress(), 350);
+  // Fetch wallet address from API
+  try {
+    const res = await fetch(STORE.apiBase + '/api/create-order', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product: type })
+    });
+    const data = await res.json();
+    if (data.walletAddress) {
+      document.getElementById('walletAddress').value = data.walletAddress;
+      document.getElementById('qrcode').innerHTML = '';
+      new QRCode(document.getElementById('qrcode'), {
+        text: data.walletAddress, width: 176, height: 176,
+        colorDark: (isDark ? '#f1f5f9' : '#0f172a'),
+        colorLight: (isDark ? '#1e293b' : '#ffffff'),
+        correctLevel: QRCode.CorrectLevel.H
+      });
+      setTimeout(() => copyAddress(), 350);
+    }
+  } catch {
+    showToast('Could not load payment details. Please try again.');
+  }
 }
 
 function closeBuyModal() {

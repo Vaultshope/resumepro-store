@@ -1,12 +1,17 @@
 const https = require('https');
 const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
 const {
   BSCSCAN_API_KEY, RESEND_API_KEY, FROM_EMAIL, SITE_URL,
-  USDT_CONTRACT, DOWNLOADS_FILE, ALL_TEMPLATE_IDS, TEMPLATE_NAMES
+  USDT_CONTRACT, DOWNLOADS_FILE, ALL_TEMPLATE_IDS, TEMPLATE_NAMES,
+  PRODUCTS, WALLET_ADDRESS
 } = require('./_config');
 
 const CODES_FILE = '/tmp/codes.json';
-const TEMPLATES_LIST_STR = ALL_TEMPLATE_IDS.map(id => `• ${TEMPLATE_NAMES[id]}`).join('\n');
+
+const TX_HASH_RE = /^0x[a-fA-F0-9]{64}$/;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function loadJSON(file) {
   try { if (fs.existsSync(file)) return JSON.parse(fs.readFileSync(file, 'utf8')); } catch {}
@@ -19,18 +24,16 @@ function saveJSON(file, data) {
 
 function generateCode() {
   const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const rand = crypto.randomBytes(8);
   let code = 'RESUME-';
-  for (let i = 0; i < 4; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  for (let i = 0; i < 4; i++) code += chars[rand[i] % chars.length];
   code += '-';
-  for (let i = 0; i < 4; i++) code += chars[Math.floor(Math.random() * chars.length)];
+  for (let i = 0; i < 4; i++) code += chars[rand[i + 4] % chars.length];
   return code;
 }
 
 function generateToken() {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let t = '';
-  for (let i = 0; i < 32; i++) t += chars[Math.floor(Math.random() * chars.length)];
-  return t;
+  return crypto.randomBytes(32).toString('hex');
 }
 
 function bscscanCall(params) {
@@ -57,12 +60,12 @@ async function verifyTx(hash) {
   if (tx.status !== '0x1') throw new Error('Transaction failed');
   const isUsdt = details.to && details.to.toLowerCase() === USDT_CONTRACT.toLowerCase();
   const value = parseInt(details.value, 16) / 1e6;
-  return { success: true, from: details.from, to: details.to, value, isUsdt, blockNumber: tx.blockNumber, status: 'SUCCESS' };
+  return { success: true, from: details.from, to: details.to, value, isUsdt, blockNumber: tx.blockNumber, status: 'SUCCESS', logs: tx.logs || [] };
 }
 
 function sendEmail(email, subject, html) {
   return new Promise((resolve, reject) => {
-    const data = JSON.stringify({ from: `ResumePro <${FROM_EMAIL}>`, to: email, subject, html });
+    const data = JSON.stringify({ from: FROM_EMAIL ? `ResumePro <${FROM_EMAIL}>` : 'ResumePro <noreply@resumepro.store>', to: email, subject, html });
     const req = https.request({
       hostname: 'api.resend.com', path: '/emails', method: 'POST',
       headers: {
@@ -78,6 +81,10 @@ function sendEmail(email, subject, html) {
 }
 
 module.exports = async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://resumepro-store.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   let timedOut = false;
@@ -90,12 +97,52 @@ module.exports = async (req, res) => {
     if (!txHash || !email || !product) {
       return res.status(400).json({ error: 'Missing required fields: txHash, email, product' });
     }
+
+    if (!TX_HASH_RE.test(txHash)) {
+      return res.status(400).json({ error: 'Invalid TX hash format. Must be a 66-character hex string starting with 0x.' });
+    }
+
+    if (!EMAIL_RE.test(email)) {
+      return res.status(400).json({ error: 'Invalid email address format.' });
+    }
+
     if (!BSCSCAN_API_KEY) return res.status(500).json({ error: 'BSCSCAN_API_KEY not configured' });
+    if (!WALLET_ADDRESS) return res.status(500).json({ error: 'WALLET_ADDRESS not configured' });
+
+    const productConfig = PRODUCTS[product];
+    if (!productConfig) return res.status(400).json({ error: 'Invalid product type' });
+
+    // Prevent TX hash reuse
+    const existing = loadJSON(CODES_FILE);
+    if (existing && existing.processedTxs && existing.processedTxs.includes(txHash.toLowerCase())) {
+      return res.status(400).json({ error: 'This transaction has already been verified.' });
+    }
 
     const verified = await verifyTx(txHash);
     if (!verified.isUsdt) return res.status(400).json({ error: 'Transaction is not a USDT transfer' });
-    if (verified.value < 1.5) {
-      return res.status(400).json({ error: `Payment too low: ${verified.value.toFixed(2)} USDT. Expected at least $2 USDT.` });
+
+    // Verify the USDT was sent TO the store's wallet by parsing Transfer event logs
+    const logs = verified.logs || [];
+    let sentToStore = false;
+    for (const log of logs) {
+      const topic0 = log.topics && log.topics[0];
+      if (topic0 && topic0.toLowerCase() === '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef') {
+        const recipient = log.topics[2] ? '0x' + log.topics[2].slice(-40).toLowerCase() : '';
+        if (recipient === WALLET_ADDRESS.toLowerCase()) {
+          sentToStore = true;
+          break;
+        }
+      }
+    }
+
+    if (!sentToStore) {
+      return res.status(400).json({ error: 'Payment was not sent to the store wallet. Verify the recipient address.' });
+    }
+
+    const expectedPrice = productConfig.price;
+    const tolerance = 0.01;
+    if (verified.value < expectedPrice - tolerance) {
+      return res.status(400).json({ error: `Payment too low: ${verified.value.toFixed(2)} USDT. Expected at least $${expectedPrice} USDT.` });
     }
 
     // Determine which templates are unlocked based on product + templateIds
@@ -134,7 +181,9 @@ module.exports = async (req, res) => {
     const downloadToken = generateToken();
 
     // Store in codes registry
-    const codes = loadJSON(CODES_FILE) || { codes: [], templateAccess: {}, issued: [] };
+    const codes = loadJSON(CODES_FILE) || { codes: [], templateAccess: {}, issued: [], processedTxs: [] };
+    codes.processedTxs = codes.processedTxs || [];
+    codes.processedTxs.push(txHash.toLowerCase());
     codes.codes.push(unlockCode);
     codes.templateAccess[unlockCode] = unlockedTemplates.includes('ALL') ? 'ALL' : unlockedTemplates;
     codes.issued.push({
@@ -164,9 +213,9 @@ module.exports = async (req, res) => {
     const downloadUrl = `${SITE_URL}/download/${downloadToken}`;
 
     // Send email with unlock code
-    if (RESEND_API_KEY) {
+    if (RESEND_API_KEY && FROM_EMAIL) {
       const templatesText = unlockedTemplates.includes('ALL')
-        ? 'all 12 templates'
+        ? 'all 32 templates'
         : unlockedTemplates.map(id => TEMPLATE_NAMES[id]).join(', ');
 
       await sendEmail(email, `Your ResumePro Unlock Code — ${templateLabel}`, `
@@ -208,7 +257,7 @@ module.exports = async (req, res) => {
       productLabel: templateLabel,
       unlockedTemplates,
       amount: verified.value,
-      message: `Payment verified! Unlock code sent to ${email}.`
+      message: 'Payment verified! Check your email for the unlock code.'
     });
 
   } catch (err) {

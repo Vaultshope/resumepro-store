@@ -108,12 +108,7 @@ if (indexHtml.includes(PLACEHOLDER_WALLET)) {
   warn('Placeholder wallet address still present in index.html', 'Replace with your real address before going live');
 }
 
-// 7. Check for placeholder seller password
-if (indexHtml.includes("sellerPassword: 'BlueMoon_2026'")) {
-  warn('Default seller password still present', 'Change in STORE config before going live');
-}
-
-// 8. Check for old placeholder email
+// 7. Check for old placeholder email
 if (indexHtml.includes('memospixel@gmail.com')) {
   warn('Old placeholder contact email still present', 'Update to real email before going live');
 }

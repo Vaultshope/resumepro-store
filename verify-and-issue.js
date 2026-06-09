@@ -166,5 +166,5 @@ const EXPIRY_DAYS = 365;
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
   console.log('📧 Email this to the customer:\n');
   console.log(`Subject: Your ResumePro Unlock Code — ${templates === 'ALL' ? 'Complete Bundle' : templates.join(', ')}\n`);
-  console.log(`Hi,\n\nYour payment has been verified! Here's your unlock code:\n\n   ${code}\n\nValid for: ${Array.isArray(templates) ? templates.join(', ') : 'All 12 templates'}\nExpires: ${expiresAt.split('T')[0]}\n\nHow to use:\n1. Go to your store's customizer\n2. Enter this code to unlock all templates (or the ones you bought)\n3. Edit and download your resume instantly\n\nNeed help? Reply to this email.\n\nBest,\nResumePro\n`);
+  console.log(`Hi,\n\nYour payment has been verified! Here's your unlock code:\n\n   ${code}\n\nValid for: ${Array.isArray(templates) ? templates.join(', ') : 'All 32 templates'}\nExpires: ${expiresAt.split('T')[0]}\n\nHow to use:\n1. Go to your store's customizer\n2. Enter this code to unlock all templates (or the ones you bought)\n3. Edit and download your resume instantly\n\nNeed help? Reply to this email.\n\nBest,\nResumePro\n`);
 })();

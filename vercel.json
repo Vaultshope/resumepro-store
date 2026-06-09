@@ -6,9 +6,9 @@
     }
   },
   "routes": [
-    { "src": "/api/_config", "dest": "/api/_config" },
     { "src": "/api/(.*)", "dest": "/api/$1" },
     { "src": "/download/(.*)", "dest": "/api/download.js?token=$1" },
+    { "src": "/delivery/.*", "status": 404 },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }

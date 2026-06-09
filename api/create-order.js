@@ -1,9 +1,12 @@
+const crypto = require('crypto');
 const { PRODUCTS, WALLET_ADDRESS } = require('./_config');
 
 module.exports = async (req, res) => {
-  if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
-  }
+  res.setHeader('Access-Control-Allow-Origin', 'https://resumepro-store.vercel.app');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  if (req.method === 'OPTIONS') return res.status(204).end();
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   try {
     const { product, templateName } = req.body;
@@ -12,8 +15,12 @@ module.exports = async (req, res) => {
       return res.status(400).json({ error: 'Invalid product. Valid: single, 3pack, bundle' });
     }
 
+    if (!WALLET_ADDRESS) {
+      return res.status(500).json({ error: 'Store not configured for payments' });
+    }
+
     const p = PRODUCTS[product];
-    const orderId = `RP-${Date.now().toString(36)}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+    const orderId = `RP-${crypto.randomUUID().split('-')[0].toUpperCase()}`;
     const label = product === 'single' && templateName
       ? `${templateName} Template`
       : p.label;

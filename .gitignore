@@ -2,7 +2,6 @@
 node_modules/
 .venv/
 .pnpm-store/
-package-lock.json
 
 # OS / Editor
 .DS_Store
@@ -14,15 +13,21 @@ Thumbs.db
 # Build outputs / temp
 .temp/
 dist/
+clean-templates/
 
-# Local configs (never commit real credentials)
+# Runtime data (generated per-deployment)
+downloads.json
+codes.json
+
+# Local configs
 config.local.js
 config.local.json
 
-# Secrets / credentials (sanity check — move wallet/password out of index.html!)
-*.env
+# Secrets / credentials
+.env
 .env.local
 .env.*.local
+.env.*
 credentials.json
 
 # Vercel
@@ -40,8 +45,9 @@ yarn-error.log*
 *.sublime-project
 *.sublime-workspace
 
-# Preview capture artifacts only needed for local dev
-# (keep committed PNGs, but ignore runs)
+# Cache
 .cache/
 .claude/
-.vercel
+
+# Package lock (handled by Vercel)
+package-lock.json

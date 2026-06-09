@@ -27,13 +27,13 @@ const TEMPLATE_NAMES = {
   agonist:'Agonist', sc932:'SC932'
 };
 
-const WALLET_ADDRESS = process.env.WALLET_ADDRESS || '0x56da8226d5a0e833e91ca4b3614be0b4e5b34b6b';
+const WALLET_ADDRESS = process.env.WALLET_ADDRESS;
 const BSCSCAN_API_KEY = process.env.BSCSCAN_API_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const FROM_EMAIL = process.env.FROM_EMAIL || 'thinkedover@gmail.com';
+const FROM_EMAIL = process.env.FROM_EMAIL;
 const SITE_URL = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : (process.env.SITE_URL || 'http://localhost:8000');
+  : (process.env.SITE_URL ? (process.env.SITE_URL.startsWith('http') ? process.env.SITE_URL : `https://${process.env.SITE_URL}`) : 'http://localhost:8000');
 
 const USDT_CONTRACT = '0x55d398326f99059ff775485246999027b3197955';
 const DOWNLOADS_FILE = '/tmp/downloads.json';
